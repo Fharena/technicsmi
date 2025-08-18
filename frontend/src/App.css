@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -40,3 +40,340 @@
 .read-the-docs {
   color: #888;
 }
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 물방울 효과를 위한 SVG 필터 */
+.waterdrop-filter {
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='waterdrop'%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.8 0'/%3E%3CfeConvolveMatrix order='3' kernelMatrix='0 0 0 0 1 0 0 0 0'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E#waterdrop");
+}
+
+/* 기존 .navigation 블록 전체 교체 */
+.navigation {
+  left: auto !important;
+  transform: none !important;
+  margin-inline: auto !important;
+  width: min(920px, calc(100% - 32px)); /* 큰 화면 920px, 작은 화면 좌우 16px 여백 */
+}
+
+
+/* 
+.navigation::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  border-radius: 50px;
+  pointer-events: none;
+} */
+
+/* 굴절 효과를 위한 추가 가상 요소 */
+/* .navigation::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50px;
+  transform: rotateX(15deg) rotateY(5deg);
+  filter: blur(2px);
+  pointer-events: none;
+  animation: refraction-distortion 4s ease-in-out infinite;
+} */
+
+/* 굴절 왜곡 애니메이션 */
+/* @keyframes refraction-distortion {
+  0%, 100% { 
+    transform: rotateX(15deg) rotateY(5deg) scale(1);
+    filter: blur(2px);
+  }
+  25% { 
+    transform: rotateX(20deg) rotateY(-5deg) scale(1.05);
+    filter: blur(3px);
+  }
+  50% { 
+    transform: rotateX(10deg) rotateY(10deg) scale(0.95);
+    filter: blur(1px);
+  }
+  75% { 
+    transform: rotateX(25deg) rotateY(-10deg) scale(1.1);
+    filter: blur(4px);
+  }
+} */
+
+/* @keyframes waterdrop-shine {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) rotate(180deg); }
+} */
+
+.nav-left-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.navigation li {
+  margin: 0;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navigation a:hover {
+  background-color: #ffffff;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+
+/* 페이지별 기본 스타일 */
+.home-page {
+  padding: 0;
+  background-color: #000;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.home-hero,
+.home-section,
+.home-video-section,
+.home-footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+/* 굴절 효과를 위한 배경 패턴 */
+.home-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 15px,
+      rgba(255, 255, 255, 0.15) 15px,
+      rgba(255, 255, 255, 0.15) 30px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 20px,
+      rgba(200, 200, 200, 0.1) 20px,
+      rgba(200, 200, 200, 0.1) 40px
+    );
+  z-index: -1;
+}
+
+/* 네비게이션 바 아래 이미지 굴절 효과 */
+.home-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.home-video,
+.footer-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.about-page,
+.aqua-page,
+.froma-page,
+.libra-page,
+.work-page,
+.archive-page,
+.archive1-page,
+.archive2-page,
+.archive3-page,
+.archive4-page,
+.archive5-page,
+.archive6-page,
+.archive7-page,
+.archive8-page {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.archive-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.archive-links a {
+  display: block;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.archive-links a:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  line-height: 1.6;
+}
+
+
+/* App.css 맨 아래 추가 */
+
+/* 아이폰 컨트롤 센터 느낌의 네비게이션 */
+.navigation.ios-glass { 
+  position: sticky;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(28px) saturate(160%) contrast(105%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%) contrast(105%);
+  border: 1px solid rgba(255,255,255,0.30);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35),
+              inset 0 1px 0 rgba(255,255,255,0.45),
+              inset 0 -1px 0 rgba(0,0,0,0.12);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.navigation.ios-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.06) 40%,
+    rgba(255,255,255,0.00) 70%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.navigation.ios-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.10) 0.7px, transparent 0.8px);
+  background-size: 3px 3px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.nav-pill {
+  appearance: none;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35),
+              0 2px 10px rgba(0,0,0,0.25);
+  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+}
+
+.nav-pill:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-1px);
+}
+
+.nav-pill:active {
+  transform: translateY(0);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),
+              0 1px 6px rgba(0,0,0,0.18);
+}
+
+.nav-pill.active {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.navigation { position: sticky; top:16px; margin-inline:auto; width:min(920px, calc(100% - 32px)); border-radius:28px; overflow:hidden; isolation:isolate; }
+.nav-overlay { position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit; overflow:hidden; }
+.nav-refract-svg { position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none; }
+.navigation > *:not(.nav-overlay) { position:relative; z-index:1; }

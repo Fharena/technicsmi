@@ -1,379 +1,643 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.App {
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 물방울 효과를 위한 SVG 필터 */
-.waterdrop-filter {
-  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='waterdrop'%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.8 0'/%3E%3CfeConvolveMatrix order='3' kernelMatrix='0 0 0 0 1 0 0 0 0'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E#waterdrop");
-}
-
-/* 기존 .navigation 블록 전체 교체 */
-.navigation {
-  left: auto !important;
-  transform: none !important;
-  margin-inline: auto !important;
-  width: min(920px, calc(100% - 32px)); /* 큰 화면 920px, 작은 화면 좌우 16px 여백 */
-}
-
-
-/* 
-.navigation::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
-  );
-  border-radius: 50px;
-  pointer-events: none;
-} */
-
-/* 굴절 효과를 위한 추가 가상 요소 */
-/* .navigation::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  width: 140%;
-  height: 140%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.1) 0%,
-    transparent 70%
-  );
-  border-radius: 50px;
-  transform: rotateX(15deg) rotateY(5deg);
-  filter: blur(2px);
-  pointer-events: none;
-  animation: refraction-distortion 4s ease-in-out infinite;
-} */
-
-/* 굴절 왜곡 애니메이션 */
-/* @keyframes refraction-distortion {
-  0%, 100% { 
-    transform: rotateX(15deg) rotateY(5deg) scale(1);
-    filter: blur(2px);
-  }
-  25% { 
-    transform: rotateX(20deg) rotateY(-5deg) scale(1.05);
-    filter: blur(3px);
-  }
-  50% { 
-    transform: rotateX(10deg) rotateY(10deg) scale(0.95);
-    filter: blur(1px);
-  }
-  75% { 
-    transform: rotateX(25deg) rotateY(-10deg) scale(1.1);
-    filter: blur(4px);
-  }
-} */
-
-/* @keyframes waterdrop-shine {
-  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-  50% { transform: translate(-50%, -50%) rotate(180deg); }
-} */
-
-.nav-left-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  margin-right: 1rem;
-  flex-shrink: 0;
-}
-
-.navigation ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: nowrap;
-}
-
-.navigation li {
-  margin: 0;
-}
-
-.navigation a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.navigation a:hover {
-  background-color: #ffffff;
-}
-
-.main-content {
-  flex: 1;
-  padding: 0;
-  max-width: none;
-  margin: 0;
-  width: 100%;
-}
-
-/* 페이지별 기본 스타일 */
-.home-page {
-  padding: 0;
-  background-color: #000;
-  margin: 0;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.home-hero,
-.home-section,
-.home-video-section,
-.home-footer {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  z-index: 1;
-  display: block;
-}
-
-/* 굴절 효과를 위한 배경 패턴 */
-.home-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 15px,
-      rgba(255, 255, 255, 0.15) 15px,
-      rgba(255, 255, 255, 0.15) 30px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 20px,
-      rgba(200, 200, 200, 0.1) 20px,
-      rgba(200, 200, 200, 0.1) 40px
-    );
-  z-index: -1;
-}
-
-/* 네비게이션 바 아래 이미지 굴절 효과 */
-.home-hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.home-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
-}
-
-.home-video,
-.footer-video {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
-}
-
-.about-page,
-.aqua-page,
-.froma-page,
-.libra-page,
-.work-page,
-.archive-page,
-.archive1-page,
-.archive2-page,
-.archive3-page,
-.archive4-page,
-.archive5-page,
-.archive6-page,
-.archive7-page,
-.archive8-page {
-  padding: 2rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-.archive-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.archive-links a {
-  display: block;
-  padding: 1rem;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.archive-links a:hover {
-  background-color: #0056b3;
-}
-
-h1 {
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-p {
-  color: #666;
-  line-height: 1.6;
-}
-
-
-/* App.css 맨 아래 추가 */
-
-/* 아이폰 컨트롤 센터 느낌의 네비게이션 */
-.navigation.ios-glass { 
-  position: sticky;
+/* 기존 .nav-shell 규칙 교체 */
+.nav-shell{
+  position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  display: flex;
-  gap: 8px;
-  padding: 10px;
-  border-radius: 28px;
-  background: rgba(255,255,255,0.10);
-  backdrop-filter: blur(28px) saturate(160%) contrast(105%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%) contrast(105%);
-  border: 1px solid rgba(255,255,255,0.30);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35),
-              inset 0 1px 0 rgba(255,255,255,0.45),
-              inset 0 -1px 0 rgba(0,0,0,0.12);
-  overflow: hidden;
+
+  /* 100vw 대신 풀블리드 마진 트릭: 부모가 1280px이어도 뷰포트 전체로 확장 */
+  width: 100%;
+  margin:0;
+}
+
+/* 네비 본체: 위치 속성 없음! (가운데는 margin으로) */
+.navigation{
+  --nav-h: 46px;                      /* 접힘 높이 */
+  --nav-h-sub: 160px;                 /* 서브 펼침 높이 */
+  --w-collapsed: clamp(160px, 36vw, 240px);
+  --w-expanded:  clamp(560px, 80vw, 920px);
+  
+  --nav-r: calc(var(--nav-h) / 2);
+  --dot: 16px;
+  --icon-inset: clamp(8px, 1.5vw, 12px);  /* 👈 왼쪽 마진 조정 */
+  --dot-nudge: 4px;
+  --gap: 12px;   
+
+   /* 좌/우 패딩(메뉴가 시작·끝나는 지점 확보) */
+   --pl-left: calc(var(--icon-inset) + var(--dot) + var(--gap));
+   --pl-right: 0; /* 오른쪽 패딩 제거 */
+  /* position: relative;   
+  height: var(--nav-h);
+  width: clamp(340px, 80vw, 920px); */
+  position: relative;
+  height: var(--nav-h);
+  width: var(--w-collapsed);          /* 기본은 좁게 */
+  padding-left:  0;
+  padding-right: var(--pl-right);
+  margin-inline: auto;                /* ✅ 가로 정중앙 */
+  border-radius: var(--nav-r);
+  box-sizing: border-box;
+  overflow: visible;
   isolation: isolate;
+
+  /* ← 패딩과 점 좌표를 같은 변수로 계산 */
+  /* padding-left:  var(--pl-left); */
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  transition:
+  width .28s cubic-bezier(.22,.61,.36,1),
+  padding-bottom .5s cubic-bezier(.22,.61,.36,1); /* padding-bottom 애니메이션 */  
 }
 
-.navigation.ios-glass::before {
-  content: "";
+/* iOS 글래스(비주얼만—위치 관련 금지) */
+.navigation.ios-glass{
+  background: rgba(0,0,0,0.3); /* 검정 반투명 배경으로 변경 */
+  backdrop-filter: blur(20px) saturate(120%) contrast(100%); /* 블러 효과 유지 */
+  -webkit-backdrop-filter: blur(20px) saturate(120%) contrast(100%);
+  border: 1px solid rgba(255,255,255,0.2); /* 테두리를 밝게 조정 */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3), /* 그림자 강화 */
+              inset 0 1px 0 rgba(255,255,255,0.1), /* 내부 하이라이트 유지 */
+              inset 0 -1px 0 rgba(0,0,0,0.1); /* 내부 그림자 유지 */
+  border-radius: 23px; /* 명시적으로 둥근 모서리 설정 */
+}
+
+.navigation.ios-glass::before{ content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(255,255,255,.08), rgba(255,255,255,.02) 40%, rgba(255,255,255,0) 70%);
+  pointer-events:none; mix-blend-mode:screen; opacity:.2; /* 투명도 더 줄임 */
+  border-radius: 23px; /* 둥근 모서리 적용 */
+}
+.navigation.ios-glass::after{ content:""; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.03) .7px, transparent .8px);
+  background-size:3px 3px; opacity:.08; pointer-events:none; /* 투명도 더 줄임 */
+  border-radius: 23px; /* 둥근 모서리 적용 */
+}
+
+/* 렌즈 오버레이/레이어 */
+.nav-overlay{ position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit; }
+.nav-refract-svg{ position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none; }
+.navigation > *:not(.nav-overlay){ position:relative; z-index:1; }
+
+/* 네비 확장 - React 상태 기반으로만 제어 */
+.navigation.open {
+  width: var(--w-expanded);
+  border-radius: 23px;
+}
+
+/* 포커스가 있을 때 메뉴 유지 */
+.navigation:focus-within .nav-list > li:not(.home) {
+  opacity: 1 !important;
+  max-width: none !important;
+  pointer-events: auto !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  flex: none !important;
+}
+
+/* 기본 상태: 작게 */
+.navigation {
+  width: clamp(120px, 28vw, 180px); /* 너비를 더 줄임 */
+  transition: width 0.4s ease;
+  overflow: visible; /* 하위 메뉴가 보이도록 visible로 변경 */
+  border-radius: 23px; /* 둥근 모서리 직접 설정 */
+}
+
+/* 마우스 hover or focus or open state 시 넓게 */
+.navigation.open {
+  width: clamp(560px, 80vw, 920px);
+  border-radius: 23px; /* 확장 시에도 둥근 모서리 유지 */
+}
+
+
+/* 왼쪽 흰 원(절대배치) - 완전 고정 */
+.nav-left-icon,.nav-right-icon{
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(255,255,255,0.25),
-    rgba(255,255,255,0.06) 40%,
-    rgba(255,255,255,0.00) 70%);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: #fff;
   pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.6;
+  z-index: 15; /* 가장 위에 표시 */
+
 }
 
-.navigation.ios-glass::after {
-  content: "";
+.nav-left-icon{  
+  left: var(--icon-inset); /* 변수 사용으로 반응형 적용 */
+  background: #fff; 
+}
+
+.nav-right-icon{ 
+  right: var(--icon-inset); /* 변수 사용으로 반응형 적용 */
+  background: rgba(255,255,255,.18); 
+  border: 1px solid rgba(255,255,255,.45); 
+}
+
+/* 메뉴 */
+.navigation ul{ list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:1rem; height:100%; }
+.navigation a{ color:#fff; text-decoration:none; font-weight:500; display:flex; align-items:center; height:100%; line-height:1; padding:0 8px; border-radius:4px; transition:background-color .3s, box-shadow .3s ease; }
+.navigation a:hover{ 
+  background-color:rgba(255,255,255,.08); 
+  box-shadow: 
+    0 0 8px rgba(255,255,255,0.15),
+    0 0 16px rgba(255,255,255,0.1),
+    inset 0 0 12px rgba(255,255,255,0.05);
+}
+
+/* 메뉴 리스트 - 위에서 이미 정의됨, 중복 제거 */
+.nav-list .home .nav-link {
+  opacity: 1 !important;
+}
+.nav-link{
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  white-space: nowrap;
+  color:#fff; text-decoration:none; font-weight:500;
+  height: var(--nav-h); display:flex; align-items:center;
+  padding: 0 8px; border-radius:6px; transition:background-color .18s ease, opacity .18s ease, max-width .28s ease, transform .18s ease, box-shadow .18s ease;
+}
+.navigation.open .nav-link {
+  opacity: 1;
+}
+.nav-link:hover{ 
+  background-color: rgba(255,255,255,.08);
+  box-shadow: 
+    0 0 8px rgba(255,255,255,0.15),
+    0 0 16px rgba(255,255,255,0.1),
+    inset 0 0 12px rgba(255,255,255,0.05);
+}
+
+/* 접힘 상태: React 상태 기반으로만 제어 */
+.navigation:not(.open) .nav-list{ gap:0; } /* 간격도 0으로 */
+.navigation:not(.open) .nav-list > li:not(.home){
+  opacity:0; max-width:0; pointer-events:none;
+  overflow:hidden; margin:0; padding:0; flex:0 0 auto;
+}
+/* a 내부 패딩도 제거 */
+.navigation:not(.open) .nav-list > li:not(.home) .nav-link{
+  padding-left:0; padding-right:0;
+}
+/* ⏬ 서브메뉴: 네비 내부 아래로 펼치기 */
+.has-sub{
+  position: relative; /* static에서 relative로 변경 */
+  overflow: visible; /* 하위 메뉴가 잘리지 않도록 */
+}
+
+/* WORK와 서브메뉴 사이의 hover bridge - 더 넓게 */
+.has-sub::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.10) 0.7px, transparent 0.8px);
-  background-size: 3px 3px;
-  opacity: 0.25;
+  top: 100%;
+  left: -10px;
+  right: -10px;
+  height: 15px; /* bridge 영역을 더 크게 */
+  z-index: 2;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* 서브메뉴가 열린 상태일 때만 네비게이션 바가 세로로 확장 */
+.navigation.sub-open {
+  height: auto;
+  min-height: var(--nav-h);
+  padding-bottom: 120px; /* 서브메뉴를 위한 하단 여백 조정 (160px → 120px, 약 1cm 줄임) */
+  overflow: visible;
+  /* hover 상태에서 위치 완전 고정 - 미묘한 움직임 방지 */
+  margin: 0 auto !important;
+  padding-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+  box-sizing: border-box !important;
+  /* hover 상태에서도 애니메이션 유지 */
+  transition:
+  width .28s cubic-bezier(.22,.61,.36,1),
+  padding-bottom .5s cubic-bezier(.22,.61,.36,1);
+}
+
+/* 모든 상태에서 리스트와 아이콘이 움직이지 않도록 완전히 고정 */
+.navigation .nav-list {
+  position: absolute; /* 항상 absolute로 고정 */
+  top: 0; /* 네비게이션 바 상단에 고정 */
+  left: 0;
+  right: 0;
+  height: var(--nav-h); /* 원래 높이 유지 */
+  align-items: center; /* 중앙 정렬 유지 */
+  z-index: 10; /* 서브메뉴는 z-index 20으로 위에 표시됨 */
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: visible; /* 서브메뉴가 nav-list 영역을 벗어나도 표시되도록 */
+}
+
+/* hover 상태에서도 동일한 위치 유지 */
+.navigation:hover .nav-list,
+.navigation:focus-within .nav-list,
+.navigation.open .nav-list {
+  justify-content: center; /* 기본과 동일하게 중앙 정렬 유지 */
+}
+
+/* 왼쪽 아이콘은 이미 위에서 완전 고정 설정됨 - 중복 제거 */
+
+/* 모든 메뉴 아이템에 relative 위치 설정 */
+.nav-list li {
+  position: relative;
+}
+
+/* 모든 메뉴 아래 흰색 선 */
+.nav-list li::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; /* bottom을 음수로 설정하여 메뉴 아래에 위치 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px; /* 1px → 2px로 증가 */
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* WORK 메뉴 흰색 선은 더 두껍게 */
+.has-sub::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px; /* 2px → 3px로 더 두껍게 */
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 모든 메뉴에 hover 시 흰색 선 표시 */
+.nav-list li:hover::after {
+  opacity: 1;
+}
+
+/* WORK 메뉴에 hover 시 흰색 선 제거 */
+.has-sub:hover::after {
+  opacity: 0;
+}
+
+.submenu{
+  position: absolute; /* relative → absolute로 변경하여 WORK 아래에 정확히 배치 */
+  top: var(--nav-h); /* WORK 바로 아래에 위치 */
+  left: 0; /* 왼쪽 정렬 */
+  right: 0; /* 오른쪽도 맞춤 */
+  transform: none; /* transform 제거 */
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* gap 제거 */
+  padding: 0; /* padding 완전 제거 */
+  margin: 0; /* 마진 제거 */
+  background: transparent; /* 배경 완전 제거 */
+  border: none; /* 흰 테두리 제거 */
+  border-radius: 0; /* 둥근 모서리 제거 */
+  backdrop-filter: none; /* 블러 효과 제거 */
+  -webkit-backdrop-filter: none; /* 블러 효과 제거 */
+  box-shadow: none; /* 그림자 제거 */
+  opacity: 0;
   pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 20; /* nav-list(10), nav-left-icon(15)보다 위에 표시 */
+  /* 기본 상태에서 완전히 숨김 */
+  max-height: 0;
+  overflow: hidden;
+  width: 100%; /* 네비바 전체 너비 사용 */
 }
 
-.nav-pill {
-  appearance: none;
-  border: 0;
-  padding: 10px 14px;
-  border-radius: 18px;
-  font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #fff;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px) saturate(130%);
-  -webkit-backdrop-filter: blur(10px) saturate(130%);
-  border: 1px solid rgba(255,255,255,0.22);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35),
-              0 2px 10px rgba(0,0,0,0.25);
-  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+/* WORK 기본 상태 스타일링 - 중복 제거 */
+
+/* WORK와 서브메뉴를 하나의 그룹으로 만들어 더 뚜렷하게 표시 */
+.has-sub:hover {
+  background: transparent; /* WORK 배경 제거 */
+  border-radius: 0; /* WORK 둥근 모서리 제거 */
 }
 
-.nav-pill:hover {
-  background: rgba(255,255,255,0.14);
-  transform: translateY(-1px);
+/* WORK가 위로 올라가지 않도록 위치 고정 */
+.has-sub:hover .nav-link {
+  position: relative;
+  top: 0;
+  transform: none;
 }
 
-.nav-pill:active {
-  transform: translateY(0);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),
-              0 1px 6px rgba(0,0,0,0.18);
+/* React 상태가 열린 상태일 때만 서브메뉴 표시 */
+.navigation.sub-open .submenu {
+  opacity: 1;
+  pointer-events: auto !important; /* 강제로 pointer-events 활성화 */
+  visibility: visible;
+  max-height: 400px; /* 서브메뉴 높이 더 확장 (300px → 400px) */
+  overflow: visible;
+  border-radius: 8px; /* 서브메뉴 모서리를 WORK와 맞춤 */
 }
 
-.nav-pill.active {
-  background: rgba(255,255,255,0.22);
-  border-color: rgba(255,255,255,0.35);
+/* 중복 제거됨 - 위에서 이미 .navigation:has(.submenu:hover) 처리됨 */
+.sub-link{
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 0.9em;
+  padding: 0; /* padding 제거 */
+  transition: all 0.2s ease;
+  border-radius: 0; /* border-radius 제거 */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important; /* 명시적으로 투명 배경 */
+}
+.sub-link:hover{ 
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 1);
+  border: none !important;
+  outline: none !important;
+}
+.sub-link:focus,
+.sub-link:active,
+.sub-link:visited {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.navigation { position: sticky; top:16px; margin-inline:auto; width:min(920px, calc(100% - 32px)); border-radius:28px; overflow:hidden; isolation:isolate; }
-.nav-overlay { position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit; overflow:hidden; }
-.nav-refract-svg { position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none; }
-.navigation > *:not(.nav-overlay) { position:relative; z-index:1; }
+/* 네비가 sub-open일 때 서브 표시 */
+.navigation.sub-open .submenu{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 서브메뉴 li와 링크들의 모든 배경과 테두리 완전 제거 - NavLink active 상태 포함 */
+.submenu li,
+.submenu li:first-child,
+.submenu li:hover,
+.submenu .sub-link,
+.submenu .sub-link:hover,
+.submenu .sub-link:focus,
+.submenu .sub-link:active,
+.submenu .sub-link:visited,
+.submenu .sub-link.active,
+.submenu li a,
+.submenu li a.active,
+.submenu a,
+.submenu a.active,
+.submenu li:first-child a,
+.submenu li:first-child .sub-link {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* 중복 규칙 제거됨 */
+
+/* 렌즈 오버레이는 네비 높이 변화에도 꽉 채우도록 이미 absolute inset:0 상태여야 함 */
+.nav-overlay{ position:absolute; inset:0; border-radius:inherit; pointer-events:none; }
+.nav-refract-svg{ position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none; }
+.navigation > *:not(.nav-overlay){ position: relative; z-index: 1; }
+
+/* 터치: hover가 없으니 탭으로 연 상태 유지 */
+@media (hover: none){
+  .navigation{ cursor: pointer; }
+}
+/* 전역 여백 제거 및 스크롤 방지 */
+html, body{ 
+  overflow-x:hidden; 
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============ 페이지 기타 ============ */
+.App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content { flex: 1; padding: 0; max-width: none; margin: 0; width: 100%; }
+
+.home-page { 
+  padding: 0; 
+  background-color: #000; 
+  margin: 0; 
+  position: relative; 
+  z-index: 1; 
+  overflow: hidden;
+  min-height: 100vh; /* 전체 화면 높이 */
+  margin-top: 0; /* 상단 여백 제거 */
+}
+.home-hero, .home-section, .home-video-section, .home-footer {
+  width: 100%; margin: 0; padding: 0; position: relative; z-index: 1; display: block;
+}
+
+.home-hero {
+  margin-top: 0; /* 첫 번째 이미지가 상단까지 올라오도록 */
+}
+.home-hero::before{
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255,255,255,0.15) 15px, rgba(255,255,255,0.15) 30px),
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(200,200,200,0.1) 20px, rgba(200,200,200,0.1) 40px);
+}
+.home-hero{ position: relative; overflow: hidden; }
+
+.home-image, .home-video, .footer-video, .rive-animation-section{
+  width: 100%; height: auto; display: block; margin: 0; padding: 0; vertical-align: top;
+}
+
+/* Rive 애니메이션 스타일 - 좌우 여백 없이 풀스크린 */
+.rive-animation-section {
+  width: 100vw; /* 뷰포트 전체 너비 */
+  margin: 0; 
+  padding: 0; 
+  position: relative; 
+  z-index: 1; 
+  display: block;
+  /* 부모 컨테이너의 제약을 벗어나기 위한 설정 */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  /* 적절한 높이 설정 */
+  height: 600px; /* 고정 높이로 설정 */
+}
+
+.rive-animation {
+  width: 100% !important; 
+  height: 100% !important; /* 부모 컨테이너 높이에 맞춤 */
+  display: block !important; 
+  margin: 0 !important; 
+  padding: 0 !important; 
+  background: transparent !important;
+  /* 픽셀 깨짐 방지 */
+  image-rendering: auto !important;
+  /* 리사이징 시 부드러운 처리 */
+  transition: none !important;
+}
+
+/* Canvas 요소 최적화 */
+.rive-animation canvas,
+.rive-animation-section canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  /* 픽셀 깨짐 방지 설정 */
+  image-rendering: auto !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  /* 비율 유지하며 리사이징 */
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.about-page, .aqua-page, .froma-page, .libra-page, .work-page,
+.archive-page, .archive1-page, .archive2-page, .archive3-page, .archive4-page,
+.archive5-page, .archive6-page, .archive7-page, .archive8-page{
+  padding: 2rem; background-color: #f8f9fa; border-radius: 8px; margin: 1rem 0;
+}
+.archive-links{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.archive-links a{ display: block; padding: 1rem; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; transition: background-color .3s ease; }
+.archive-links a:hover{ background-color: #0056b3; }
+
+h1 { color: #333; margin-bottom: 1rem; }
+p  { color: #666; line-height: 1.6; }
+
+.home-text1 {
+  background-color: #fff;
+  margin: 0;
+  padding: 200px 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.text-container {
+  max-width: 1200px;
+  margin: 0 ;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: center;
+}
+
+.home-text1 .main-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: right;
+  color: #000 !important;
+  margin: 0 0 40px 0 !important;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.home-text1 .sub-text {
+  letter-spacing: 3px;
+  font-size: 1.7rem;
+  color: #333 !important;
+  text-align: left;
+  line-height: 1.6 !important;
+  margin: 0 0 150px auto !important;
+  max-width: 996px;
+  font-weight: 400;
+}
+
+.two-column-section {
+  width: 65%;
+  margin-left: auto;
+  margin-right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 100px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.two-column-section hr {
+  grid-column: 1 / -1; /* 전체 너비로 확장 */
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0 0 1px 0; /* 간격 줄임 */
+  width: 100%;
+}
+
+.home-text1 .column h3 {
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: #000 !important;
+  margin: 0 0 15px 0 !important;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.home-text1 .column p {
+  font-size: 0.8rem;
+  color: #666 !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .home-text1 {
+    padding: 60px 20px;
+  }
+  
+  .home-text1 .main-heading {
+    font-size: 2.5rem !important;
+    margin-bottom: 30px !important;
+  }
+  
+  .home-text1 .sub-text {
+    font-size: 1.1rem !important;
+    margin-bottom: 0px !important;
+  }
+  
+  .home-text1 .two-column-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .home-text1 .two-column-section hr {
+    margin: 0 0 15px 0; /* 모바일에서도 간격 줄임 */
+  }
+  
+  .home-text1 .column h3 {
+    font-size: 1.05rem !important;
+    margin: 0 0 12px 0 !important;
+  }
+  
+  .home-text1 .column p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-text1 .main-heading {
+    font-size: 2rem !important;
+  }
+  
+  .home-text1 .sub-text {
+    font-size: 1rem !important;
+  }
+}

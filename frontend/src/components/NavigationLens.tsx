@@ -25,6 +25,12 @@ const NavigationLens: React.FC<Props> = ({
   enableBlurFallback = true,
 }) => {
   const navRef = useRef<HTMLElement>(null);
+
+  //하위메뉴 추가하기
+  const [open, setOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState(false);
+  const closeTimerRef = useRef<number | null>(null);
+
   const [navRect, setNavRect] = useState<DOMRect | null>(null);
   const [sample, setSample] = useState<Sample | null>(null);
   const overlapRef = useRef(0);           // 현재 샘플과의 겹침 면적(히스테리시스용)
@@ -148,79 +154,145 @@ const NavigationLens: React.FC<Props> = ({
     raf = requestAnimationFrame(sync);
     return () => cancelAnimationFrame(raf);
   }, [sample]);
+  const toggleOpen = () => setOpen(o => !o);
+
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <nav className="navigation ios-glass" aria-label="Primary navigation" ref={navRef}>
-      {/* ▼ 네비 전체 렌즈 오버레이 */}
-      <div className="nav-overlay" aria-hidden="true">
-        {imgBox && navRect && sample ? (
-          sample.kind === "video" ? (
-            // ▶ 비디오 소스: HTML <video>에 SVG 필터 적용 (CSS filter url(#...))
-            <video
-              ref={videoRef}
-              src={imgBox.src}
-              muted
-              playsInline
-              autoPlay
-              loop
-              style={{
-                position: "absolute",
-                left: `${imgBox.x}px`,
-                top:  `${imgBox.y}px`,
-                width: `${imgBox.w}px`,
-                height:`${imgBox.h}px`,
-                objectFit: "cover",
-                transformOrigin: "center",
-                transform: `translateZ(0)`,
-                filter: `url(#nav-refract-${uid})`,
-                WebkitFilter: `url(#nav-refract-${uid})`,
-                pointerEvents: "none",
-              }}
-            />
-          ) : (
-            // 🖼️ 이미지/백그라운드: SVG <image> + 필터
-            <svg className="nav-refract-svg" viewBox={`0 0 ${navRect.width} ${navRect.height}`} preserveAspectRatio="none">
-              <defs>
-                <filter id={`nav-refract-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves={2} seed={4} result="noise" />
-                  <feGaussianBlur in="noise" stdDeviation="0.5" result="map" />
-                  <feDisplacementMap in="SourceGraphic" in2="map" scale={refractScale} xChannelSelector="R" yChannelSelector="G" />
-                </filter>
-              </defs>
-              <image
-                href={imgBox.src}
-                x={imgBox.x}
-                y={imgBox.y}
-                width={imgBox.w}
-                height={imgBox.h}
-                transform={navScaleTransform}
-                filter={`url(#nav-refract-${uid})`}
-                style={{ pointerEvents: "none" }}
-              />
-            </svg>
-          )
-        ) : (
-          enableBlurFallback && (
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                backdropFilter: "blur(18px) saturate(140%) contrast(108%)",
-                WebkitBackdropFilter: "blur(18px) saturate(140%) contrast(108%)",
-              }}
-            />
-          )
-        )}
-      </div>
+    <div 
+        className="nav-shell"
+        onMouseEnter={() => {
+            // 닫기 타이머 취소
+            if (closeTimerRef.current) {
+                clearTimeout(closeTimerRef.current);
+                closeTimerRef.current = null;
+            }
+            setOpen(true);
+        }}
+        onMouseLeave={() => {
+            // 500ms 지연 후 닫기 (충분한 시간)
+            closeTimerRef.current = setTimeout(() => {
+                setOpen(false);
+                setSubOpen(false);
+            }, 500);
+        }}
+    >
+        <nav
+            ref={navRef}
+            aria-label="Primary navigation"
+            className={`navigation ios-glass ${open ? "open" : ""} ${subOpen ? "sub-open" : ""}`}
+            onFocus={() => setOpen(true)}
+            onBlur={() => { setOpen(false); setSubOpen(false); }}
+            onClick={toggleOpen} // 모바일 탭용 (원치 않으면 빼세요)
+        >
+        {/* ▼ 네비 전체 렌즈 오버레이 */}
+            <div className="nav-overlay" aria-hidden="true">
+                {imgBox && navRect && sample ? (
+                sample.kind === "video" ? (
+                    // ▶ 비디오 소스: HTML <video>에 SVG 필터 적용 (CSS filter url(#...))
+                    <video
+                    ref={videoRef}
+                    src={imgBox.src}
+                    muted
+                    playsInline
+                    autoPlay
+                    loop
+                    style={{
+                        position: "absolute",
+                        left: `${imgBox.x}px`,
+                        top:  `${imgBox.y}px`,
+                        width: `${imgBox.w}px`,
+                        height:`${imgBox.h}px`,
+                        objectFit: "cover",
+                        transformOrigin: "center",
+                        transform: `translateZ(0)`,
+                        filter: `url(#nav-refract-${uid})`,
+                        WebkitFilter: `url(#nav-refract-${uid})`,
+                        pointerEvents: "none",
+                    }}
+                    />
+                ) : (
+                    // 🖼️ 이미지/백그라운드: SVG <image> + 필터
+                    <svg className="nav-refract-svg" viewBox={`0 0 ${navRect.width} ${navRect.height}`} preserveAspectRatio="none">
+                    <defs>
+                        <filter id={`nav-refract-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves={2} seed={4} result="noise" />
+                        <feGaussianBlur in="noise" stdDeviation="0.5" result="map" />
+                        <feDisplacementMap in="SourceGraphic" in2="map" scale={refractScale} xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                    </defs>
+                    <image
+                        href={imgBox.src}
+                        x={imgBox.x}
+                        y={imgBox.y}
+                        width={imgBox.w}
+                        height={imgBox.h}
+                        transform={navScaleTransform}
+                        filter={`url(#nav-refract-${uid})`}
+                        style={{ pointerEvents: "none" }}
+                    />
+                    </svg>
+                )
+                ) : (
+                enableBlurFallback && (
+                    <div
+                    style={{
+                        position: "absolute",
+                        inset: 0,
+                        backdropFilter: "blur(18px) saturate(140%) contrast(108%)",
+                        WebkitBackdropFilter: "blur(18px) saturate(140%) contrast(108%)",
+                    }}
+                    />
+                        )
+                        )}
+                    </div>
+                    <div className="nav-left-icon" />
+            {/* ▼ 실제 네비 콘텐츠 */}
+            <ul className="nav-list">
+                <li className="home"><NavLink to="/" end       className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>HOME</NavLink></li>
+                <li><NavLink to="/about"      className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ABOUT</NavLink></li>
+                <li
+                    className="has-sub"
+                    onMouseEnter={() => {
+                        // 닫기 타이머 취소 (안정성 확보)
+                        if (closeTimerRef.current) {
+                            clearTimeout(closeTimerRef.current);
+                            closeTimerRef.current = null;
+                        }
+                        setSubOpen(true);
+                    }}
+                >
+                    <NavLink to="/work" className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>WORK</NavLink>
 
-      {/* ▼ 실제 네비 콘텐츠 */}
-      <ul className="nav-list">
-        <li><NavLink to="/" end       className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>HOME</NavLink></li>
-        <li><NavLink to="/about"      className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ABOUT</NavLink></li>
-        <li><NavLink to="/work"       className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>WORK</NavLink></li>
-        <li><NavLink to="/archive"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ARCHIVE</NavLink></li>
-      </ul>
-    </nav>
+                    {/* 하위 메뉴 (네비 안쪽 아래로 펼쳐짐) */}
+                    <ul 
+                        className="submenu"
+                        onMouseEnter={() => {
+                            // 서브메뉴에서도 타이머 취소 (추가 안전장치)
+                            if (closeTimerRef.current) {
+                                clearTimeout(closeTimerRef.current);
+                                closeTimerRef.current = null;
+                            }
+                        }}
+                    >
+                        <li><NavLink to="/libra"   className="sub-link">LIBRA</NavLink></li>
+                        <li><NavLink to="/aqua"    className="sub-link">AQUARIUS</NavLink></li>
+                        <li><NavLink to="/froma"   className="sub-link">FRØMA</NavLink></li>
+                    </ul>
+                </li>
+                <li><NavLink to="/archive"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ARCHIVE</NavLink></li>
+                <li><NavLink to="/contact"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>CONTACT</NavLink></li>
+                <li><NavLink to="/cart"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>CART</NavLink></li>
+            </ul>
+        </nav>
+    </div>
   );
 };
 

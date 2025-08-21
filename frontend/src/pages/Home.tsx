@@ -71,6 +71,44 @@ const Home: React.FC = () => {
         />
       </div>
       
+      {/* ABOUT 섹션 */}
+      <div className="home-about-section">
+        <div className="about-container">
+          <div className="about-left">
+            <p className="about-subtitle">Technics work in process</p>
+            <h2 className="about-title">ABOUT</h2>
+            <div className="about-purpose">
+              <h3>Our purpose</h3>
+              <p>Where creativity meets cutting edge tech.</p>
+            </div>
+            <div className="about-image">
+              <img src="/홈페이지 소스정리/ABOUT/2.png" alt="About 이미지" />
+            </div>
+          </div>
+          
+          <div className="about-right">
+            <div className="about-mission">
+              <p className="mission-text">
+                Our mission is to provide innovative and high-performance technical fabrics that elevate 
+                everyday life. We are committed to developing and exporting textiles that combine exceptional 
+                durability, breathability, and comfort—designed to withstand the demands of daily use across 
+                diverse climates and environments.
+              </p>
+              
+              <p className="mission-subtitle">
+                With a strong focus on sustainability, advanced material 
+                engineering, and consistent quality, we aim to be a trusted global 
+                partner to brands.
+              </p>
+              
+              <Link to="/about" className="about-button">
+                ABOUT
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div className="home-section">
         <img src="/홈페이지 소스정리/홈메인/4.png" alt="홈메인 이미지 4" className="home-image" />
       </div>

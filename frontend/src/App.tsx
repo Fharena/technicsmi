@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'; // ← NavLink import
 import NavigationLens from "./components/NavigationLens";
-import './App.css';
+import './styles/global.css';
+import './styles/navigation.css';
+import './styles/home.css';
+import './styles/pages.css';
 
 // 페이지 컴포넌트들 import
 import Home from './pages/Home';

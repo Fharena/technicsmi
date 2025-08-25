@@ -1,0 +1,33 @@
+/* ============ 기타 페이지 스타일 ============ */
+
+/* 공통 페이지 스타일 */
+.about-page, .aqua-page, .froma-page, .libra-page, .work-page,
+.archive-page, .archive1-page, .archive2-page, .archive3-page, .archive4-page,
+.archive5-page, .archive6-page, .archive7-page, .archive8-page{
+  padding: 2rem; 
+  background-color: #f8f9fa; 
+  border-radius: 8px; 
+  margin: 1rem 0;
+}
+
+/* 아카이브 링크 그리드 */
+.archive-links{ 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 1rem; 
+  margin-top: 2rem; 
+}
+
+.archive-links a{ 
+  display: block; 
+  padding: 1rem; 
+  background-color: #007bff; 
+  color: white; 
+  text-decoration: none; 
+  border-radius: 4px; 
+  transition: background-color .3s ease; 
+}
+
+.archive-links a:hover{ 
+  background-color: #0056b3; 
+}

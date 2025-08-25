@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useRive } from '@rive-app/react-canvas';
 
 const Home: React.FC = () => {
+  // 실시간 시계 상태
+  const [currentTime, setCurrentTime] = useState(new Date());
+
   // Rive 애니메이션 설정 - 리사이징 최적화
   const { RiveComponent } = useRive({
     src: '/홈페이지 소스정리/홈메인/technicsanime.riv',
@@ -11,6 +14,51 @@ const Home: React.FC = () => {
     fit: 'contain', // 전체 애니메이션 보이기 (여백 생길 수 있음)
     alignment: 'center', // 중앙 정렬
   });
+
+  // 실시간 시계 업데이트
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // 시간 포맷 함수
+  const formatTime = (date: Date, timezone: string) => {
+    return date.toLocaleTimeString('en-US', {
+      timeZone: timezone,
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  // 시간대별 상태 메시지
+  const getStatusMessage = (date: Date, timezone: string) => {
+    const hour = parseInt(date.toLocaleTimeString('en-US', {
+      timeZone: timezone,
+      hour12: false,
+      hour: '2-digit'
+    }));
+    
+    if (hour >= 6 && hour < 12) return 'Good morning';
+    if (hour >= 12 && hour < 18) return 'Getting ready to work';
+    if (hour >= 18 && hour < 22) return 'Good evening';
+    return 'Good night';
+  };
+
+  // 메시지 버튼 클릭 핸들러
+  const handleMessageClick = () => {
+    // 실제 메신저나 채팅 시스템으로 연결
+    console.log('Opening message system...');
+    // 예: 카카오톡, 텔레그램 등 연결
+  };
+
+  // 이메일 버튼 클릭 핸들러  
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:contact@technics.com?subject=Inquiry about Technics&body=Hello, I would like to inquire about...';
+  };
 
   return (
     <div className="home-page">
@@ -82,7 +130,7 @@ const Home: React.FC = () => {
               <p>Where creativity meets cutting edge tech.</p>
             </div>
             <div className="about-image">
-              <img src="/홈페이지 소스정리/ABOUT/2.png" alt="About 이미지" />
+              <img src="/홈페이지 소스정리/홈메인/4.png" alt="About 이미지" />
             </div>
           </div>
           
@@ -109,12 +157,115 @@ const Home: React.FC = () => {
         </div>
       </div>
       
-      <div className="home-section">
-        <img src="/홈페이지 소스정리/홈메인/4.png" alt="홈메인 이미지 4" className="home-image" />
+      {/* 제품 쇼케이스 섹션 - Rive 애니메이션과 스크롤 효과 연동용 */}
+      <div className="products-showcase-section" data-scroll-section>
+        <div className="showcase-container">
+          <div className="showcase-grid">
+            {/* FRÖMA 블록 - 왼쪽 상단 세로 */}
+            <div className="showcase-item showcase-froma" data-scroll data-scroll-speed="0.5">
+              <div className="showcase-content">
+                <h3 className="showcase-title">FRÖMA</h3>
+              </div>
+            </div>
+            
+            {/* 하늘색 블록 - 가운데 상단 */}
+            <div className="showcase-item showcase-sky" data-scroll data-scroll-speed="0.4">
+              <div className="showcase-content">
+                {/* 이미지 없이 컬러만 */}
+              </div>
+            </div>
+            
+            {/* 오렌지색 블록 - 오른쪽 세로 */}
+            <div className="showcase-item showcase-orange" data-scroll data-scroll-speed="0.6">
+              <div className="showcase-content">
+                {/* 이미지 없이 컬러만 */}
+              </div>
+            </div>
+            
+            {/* AQUARIUS 블록 - 왼쪽 하단 */}
+            <div className="showcase-item showcase-aquarius" data-scroll data-scroll-speed="0.3">
+              <div className="showcase-content">
+                <h3 className="showcase-title">AQUARIUS</h3>
+              </div>
+            </div>
+            
+            {/* 파란색 블록 - 가운데 중간 */}
+            <div className="showcase-item showcase-blue" data-scroll data-scroll-speed="0.4">
+              <div className="showcase-content">
+                {/* 이미지 없이 컬러만 */}
+              </div>
+            </div>
+            
+            {/* LIBRA 블록 - 파란색 아래 */}
+            <div className="showcase-item showcase-libra" data-scroll data-scroll-speed="0.7">
+              <div className="showcase-content">
+                <h3 className="showcase-title">LIBRA</h3>
+              </div>
+            </div>
+            
+            {/* 연보라색 블록 - 주황색 아래 */}
+            <div className="showcase-item showcase-purple" data-scroll data-scroll-speed="0.5">
+              <div className="showcase-content">
+                {/* 이미지 없이 컬러만 */}
+              </div>
+            </div>
+          </div>
+          
+          {/* Rive 애니메이션 연동 영역 */}
+          <div className="rive-integration-area" data-scroll data-scroll-speed="0.1">
+            <div className="rive-placeholder">
+              {/* 나중에 Rive 애니메이션이 들어갈 자리 */}
+              <div className="rive-content">
+                <p>Interactive Animation Area</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       
-      <div className="home-section">
-        <img src="/홈페이지 소스정리/홈메인/5메인1 영상2(대체예정).png" alt="홈메인 이미지 5" className="home-image" />
+      {/* Always On 섹션 */}
+      <div className="always-on-section">
+        <div className="always-on-background">
+          <img src="/홈페이지 소스정리/홈메인/5메인1 영상2(대체예정).png" alt="Always On Background" className="always-on-bg-image" />
+        </div>
+        
+        <div className="always-on-content">
+          <div className="always-on-header">
+            <h1 className="always-on-title">Always on</h1>
+            
+            <div className="timezone-info">
+              <div className="timezone-row">
+                <div className="time-display">{formatTime(currentTime, 'Asia/Seoul')}</div>
+                <span className="timezone-separator">/</span>
+                <div className="time-display">{formatTime(currentTime, 'Asia/Shanghai')}</div>
+              </div>
+              
+              <div className="timezone-labels">
+                <div className="timezone-item">
+                  <span className="gmt-label">GMT</span>
+                  <span className="location">KOREA</span>
+                  <span className="status">{getStatusMessage(currentTime, 'Asia/Seoul')}</span>
+                </div>
+                <div className="timezone-item">
+                  <span className="gmt-label">GMT</span>
+                  <span className="location">CHINA</span>
+                  <span className="status">{getStatusMessage(currentTime, 'Asia/Shanghai')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="always-on-description">
+            <p>
+              At Technic, precision meets purpose. Every fabric begins with a vision refined 
+              through skilled hands, advanced techniques, and a relentless pursuit of quality. 
+              From fiber to finish, we craft suiting materials that embody structure, movement, 
+              and character. Designed to elevate, built to endure, made to be worn.
+            </p>
+          </div>
+        
+        </div>
       </div>
       
       <div className="home-footer">

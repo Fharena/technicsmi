@@ -1,0 +1,40 @@
+/* ============ 전역 스타일 ============ */
+/* 전역 여백 제거 및 스크롤 방지 */
+html, body{ 
+  overflow-x:hidden; 
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ 앱 기본 구조 ============ */
+.App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content { 
+  flex: 1; 
+  padding: 0; 
+  max-width: none; 
+  margin: 0; 
+  width: 100%; 
+}
+
+/* ============ 기본 텍스트 스타일 ============ */
+h1 { 
+  color: #333; 
+  margin-bottom: 1rem; 
+}
+
+p { 
+  color: #666; 
+  line-height: 1.6; 
+}
+
+/* ============ 터치 디바이스 대응 ============ */
+/* 터치: hover가 없으니 탭으로 연 상태 유지 */
+@media (hover: none){
+  .navigation{ cursor: pointer; }
+}

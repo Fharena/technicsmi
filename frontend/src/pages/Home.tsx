@@ -5,6 +5,19 @@ import { useRive } from '@rive-app/react-canvas';
 const Home: React.FC = () => {
   // 실시간 시계 상태
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
+
+  // 순환할 나라들 (한국 제외)
+  const rotatableCountries = [
+    { key: 'china', zone: 'Asia/Shanghai', label: 'CHINA', gmt: 'GMT+8' },
+    { key: 'japan', zone: 'Asia/Tokyo', label: 'JAPAN', gmt: 'GMT+9' },
+    { key: 'usa', zone: 'America/New_York', label: 'USA', gmt: 'GMT-5' },
+    { key: 'uk', zone: 'Europe/London', label: 'UK', gmt: 'GMT+0' },
+    { key: 'france', zone: 'Europe/Paris', label: 'FRANCE', gmt: 'GMT+1' }
+  ];
+
+  // 한국은 고정
+  const koreaTimezone = { key: 'korea', zone: 'Asia/Seoul', label: 'KOREA', gmt: 'GMT+9' };
 
   // Rive 애니메이션 설정 - 리사이징 최적화
   const { RiveComponent } = useRive({
@@ -23,6 +36,47 @@ const Home: React.FC = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  // 나라 순환 타이머
+  useEffect(() => {
+    const countryRotationTimer = setInterval(() => {
+      // 플립 아웃 애니메이션 시작
+      const rightTimeDisplay = document.querySelector('.time-display.right');
+      const rightTimezoneItem = document.querySelector('.timezone-item.right');
+      
+      if (rightTimeDisplay && rightTimezoneItem) {
+        // 기존 클래스 제거
+        rightTimeDisplay.classList.remove('flip-in', 'flip-out');
+        rightTimezoneItem.classList.remove('flip-in', 'flip-out');
+        
+        // 플립 아웃 시작
+        rightTimeDisplay.classList.add('flip-out');
+        rightTimezoneItem.classList.add('flip-out');
+        
+        // 200ms 후 내용 변경 및 플립 인 시작
+        setTimeout(() => {
+          setCurrentCountryIndex((prevIndex) => {
+            return (prevIndex + 1) % rotatableCountries.length;
+          });
+          
+          // 플립 아웃 제거 및 플립 인 시작
+          rightTimeDisplay.classList.remove('flip-out');
+          rightTimezoneItem.classList.remove('flip-out');
+          rightTimeDisplay.classList.add('flip-in');
+          rightTimezoneItem.classList.add('flip-in');
+          
+          // 플립 인 완료 후 클래스 제거
+          setTimeout(() => {
+            rightTimeDisplay.classList.remove('flip-in');
+            rightTimezoneItem.classList.remove('flip-in');
+          }, 400);
+          
+        }, 200);
+      }
+    }, 3000);
+
+    return () => clearInterval(countryRotationTimer);
+  }, [rotatableCountries.length]);
 
   // 시간 포맷 함수
   const formatTime = (date: Date, timezone: string) => {
@@ -59,6 +113,8 @@ const Home: React.FC = () => {
   const handleEmailClick = () => {
     window.location.href = 'mailto:contact@technics.com?subject=Inquiry about Technics&body=Hello, I would like to inquire about...';
   };
+
+  const currentRotatingCountry = rotatableCountries[currentCountryIndex];
 
   return (
     <div className="home-page">
@@ -236,21 +292,21 @@ const Home: React.FC = () => {
             
             <div className="timezone-info">
               <div className="timezone-row">
-                <div className="time-display">{formatTime(currentTime, 'Asia/Seoul')}</div>
+                <div className="time-display left">{formatTime(currentTime, koreaTimezone.zone)}</div>
                 <span className="timezone-separator">/</span>
-                <div className="time-display">{formatTime(currentTime, 'Asia/Shanghai')}</div>
+                <div className="time-display right">{formatTime(currentTime, currentRotatingCountry.zone)}</div>
               </div>
               
               <div className="timezone-labels">
-                <div className="timezone-item">
-                  <span className="gmt-label">GMT</span>
-                  <span className="location">KOREA</span>
-                  <span className="status">{getStatusMessage(currentTime, 'Asia/Seoul')}</span>
+                <div className="timezone-item left">
+                  <span className="gmt-label">{koreaTimezone.gmt}</span>
+                  <span className="location">{koreaTimezone.label}</span>
+                  <span className="status">{getStatusMessage(currentTime, koreaTimezone.zone)}</span>
                 </div>
-                <div className="timezone-item">
-                  <span className="gmt-label">GMT</span>
-                  <span className="location">CHINA</span>
-                  <span className="status">{getStatusMessage(currentTime, 'Asia/Shanghai')}</span>
+                <div className="timezone-item right">
+                  <span className="gmt-label">{currentRotatingCountry.gmt}</span>
+                  <span className="location">{currentRotatingCountry.label}</span>
+                  <span className="status">{getStatusMessage(currentTime, currentRotatingCountry.zone)}</span>
                 </div>
               </div>
             </div>

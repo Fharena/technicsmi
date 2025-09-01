@@ -671,6 +671,300 @@
   border-color: rgba(255, 255, 255, 0.6);
 }
 
+/* ============ Contact Form Section ============ */
+.contact-form-section {
+  background: #ffffff;
+  padding: 150px 150px;
+  /* border-bottom: 1px solid #e0e0e0; */
+}
+
+.contact-form-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #333;
+  background: transparent;
+  padding: 12px 0;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.form-input {
+  height: 1.5em;
+}
+
+.form-textarea {
+  height: 1.5em;
+  line-height: 1.5em;
+  resize: none;
+  min-height: 1.5em;
+  overflow: hidden;
+  vertical-align: top;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-bottom-color: #000;
+}
+
+.submit-btn {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+.submit-btn:hover {
+  background: #333;
+}
+
+/* ============ Main Footer Section ============ */
+.main-footer-section {
+  background: #ffffff;
+  padding: 60px 60px 80px;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.footer-motto {
+  font-size: 3.8rem;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.2;
+  margin: 0 0 80px 0;
+  letter-spacing: -0.02em;
+  text-align: left;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.footer-logo {
+  justify-self: start;
+  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.logo-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.footer-right-section {
+  display: flex;
+  flex-direction: column;
+  justify-self: stretch;
+  align-self: flex-start;
+  width: 100%;
+  max-width: none;
+}
+
+.footer-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 20px 80px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.contact-row-1-col-1,
+.contact-row-1-col-2,
+.contact-row-2-col-1,
+.contact-row-2-col-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-divider {
+  grid-column: 1 / -1;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 0;
+  width: 100%;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-label {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+}
+
+.contact-value {
+  font-size: 0.8rem;
+  color: #000;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* Instagram 스타일 */
+.contact-row-1-col-2 .contact-item .contact-value {
+  color: #333;
+  font-weight: 400;
+}
+
+/* 전화번호 스타일 */
+.contact-row-2-col-2 .contact-item:nth-child(1) .contact-value,
+.contact-row-2-col-2 .contact-item:nth-child(2) .contact-value {
+  font-weight: 600;
+}
+
+/* 2025 연도 스타일 */
+.contact-row-2-col-2 .contact-item:last-child .contact-value {
+  font-size: 0.75rem;
+  color: #000000;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Contact Form 반응형 */
+@media (max-width: 768px) {
+  .contact-form-section {
+    padding: 40px 20px;
+  }
+  
+  .contact-form {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .main-footer-section {
+    padding: 40px 20px 60px;
+  }
+  
+  .footer-content {
+    margin-bottom: 60px;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-right-section {
+    justify-self: center;
+    max-width: none;
+    align-items: center;
+  }
+  
+  .footer-motto {
+    font-size: 2.8rem;
+    line-height: 1.3;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+    .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .contact-divider {
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+  }
+
+  .logo-video {
+    width: 200px;
+  }
+
+  .contact-row-1-col-1,
+  .contact-row-1-col-2,
+  .contact-row-2-col-1,
+  .contact-row-2-col-2 {
+    gap: 8px;
+    text-align: center;
+  }
+
+  .contact-item {
+    margin-bottom: 12px;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+  }
+
+  .contact-value {
+    font-size: 0.8rem;
+  }
+}
+
 /* Always On 섹션 반응형 */
 @media (max-width: 768px) {
   .always-on-section {

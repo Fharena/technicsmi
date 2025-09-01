@@ -1,0 +1,479 @@
+/* ============ About 페이지 스타일 ============ */
+
+.about-page {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  background-color: #2c3e50 !important; /* 단일 배경색으로 통일 */
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* ============ Hero Section ============ */
+.about-hero {
+  position: relative !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background-color: #2c3e50 !important; /* 단일 배경색으로 통일 */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* 배경색 제거 - 부모 요소에서 이미 설정됨 */
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+.hero-nav {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.nav-dot.active {
+  background: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.nav-text {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-left: 8px;
+}
+
+/* Hero Content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  align-self: flex-end;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  letter-spacing: 0.5px;
+}
+
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ============ 반응형 디자인 ============ */
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-overlay {
+    padding: 30px;
+  }
+  
+  .hero-buttons {
+    gap: 12px;
+  }
+  
+  .hero-btn {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.3;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-overlay {
+    padding: 25px 20px;
+  }
+  
+  .hero-buttons {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .nav-text {
+    font-size: 0.8rem;
+  }
+  
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* 소형 모바일 */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .hero-overlay {
+    padding: 20px 15px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 8px;
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  
+  .hero-btn {
+    padding: 8px 16px;
+    width: 120px;
+  }
+}
+
+/* ============ New Zealand Wool Section ============ */
+.wool-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+
+.wool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.header-item {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333333;
+  letter-spacing: 1px;
+}
+
+.wool-content {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wool-title {
+  font-size: clamp(28px, 4.4vw, 48px);
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.wool-description {
+  font-size: 1.1rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+.wool-image {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.wool-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Wool Section 반응형 */
+@media (max-width: 768px) {
+  .wool-section {
+    padding: 40px 20px;
+  }
+  
+  .wool-header {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .wool-title {
+    font-size: 2.2rem;
+  }
+  
+  .wool-description {
+    font-size: 1rem;
+  }
+}
+
+/* ============ The brief Section ============ */
+.brief-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 60px 40px 100px 40px;
+  box-sizing: border-box;
+}
+
+.brief-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.brief-left {
+  color: #222222;
+}
+
+.brief-eyebrow {
+  font-size: 0.95rem;
+  color: #111111;
+  margin: 0 0 12px 0;
+}
+
+.brief-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.brief-body {
+  font-size: 0.95rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0 0 14px 0;
+}
+
+.brief-right {
+  width: 100%;
+}
+
+.brief-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* 반응형 */
+@media (max-width: 992px) {
+  .brief-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ Crafted Media + Text Section ============ */
+.crafted-section {
+  background: #ffffff;
+  padding: 0 0 80px 0;
+}
+
+.crafted-media {
+  width: 100%;
+}
+
+.crafted-video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.crafted-text {
+  padding: 36px 40px 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #111111; /* 전역 흰색 텍스트 기본값 무효화 */
+}
+
+.crafted-title {
+  font-size: clamp(24px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px 0;
+  color: #000000; /* 제목 가독성 보장 */
+}
+
+.crafted-desc {
+  font-size: 0.96rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  max-width: 520px;
+}
+
+@media (max-width: 768px) {
+  .crafted-text {
+    padding: 24px 20px 0 20px;
+  }
+
+  .crafted-title {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+}
+
+/* ============ Image Collage Section ============ */
+.collage-section {
+  background: #ffffff;
+  padding: 0;
+}
+
+.collage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  height: 130vh;
+  min-height: 900px;
+}
+
+.collage-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.collage-top-left {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.collage-top-right {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.collage-bottom {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .collage-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: auto;
+  }
+  
+  .collage-top-left,
+  .collage-top-right,
+  .collage-bottom {
+    grid-column: 1;
+    grid-row: auto;
+    height: 350px;
+  }
+}

@@ -5,6 +5,7 @@ import './styles/global.css';
 import './styles/navigation.css';
 import './styles/home.css';
 import './styles/pages.css';
+import './styles/about.css';
 
 // 페이지 컴포넌트들 import
 import Home from './pages/Home';

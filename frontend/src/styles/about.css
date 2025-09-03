@@ -477,3 +477,379 @@
     height: 350px;
   }
 }
+
+/* ============ Two Images Section ============ */
+.two-images-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 0;
+}
+
+.images-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  height: 65vh;
+  min-height: 450px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.image-item {
+  overflow: hidden;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3행 그리드 전체 높이 조정 */
+.collage-section,
+.two-images-section {
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .images-container {
+    gap: 30px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .images-container {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .image-item {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .images-container {
+    gap: 15px;
+    padding: 0 5px;
+  }
+}
+
+/* ============ Woven with Intention Section ============ */
+
+.woven-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 0px;
+  box-sizing: border-box;
+}
+
+.woven-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.woven-text-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.woven-left,
+.woven-right {
+  color: #222222;
+}
+
+.woven-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.woven-description {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+.woven-main-headline {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.woven-headline {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+  margin: 0;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: -0.015em;
+}
+
+.woven-image {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.fabric-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .woven-section {
+    padding: 60px 30px;
+  }
+  
+  .woven-text-top {
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  .woven-title {
+    font-size: 1.6rem;
+  }
+  
+  .woven-headline {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .woven-section {
+    padding: 50px 20px;
+  }
+  
+  .woven-text-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .woven-title {
+    font-size: 1.5rem;
+  }
+  
+  .woven-description {
+    font-size: 0.95rem;
+  }
+  
+  .woven-headline {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+  
+  .woven-main-headline {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .woven-section {
+    padding: 40px 15px;
+  }
+  
+  .woven-text-top {
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .woven-title {
+    font-size: 1.4rem;
+  }
+  
+  .woven-description {
+    font-size: 0.9rem;
+  }
+  
+  .woven-headline {
+    font-size: clamp(1.4rem, 7vw, 1.8rem);
+  }
+}
+
+/* ============ Tailored Style Section ============ */
+.tailored-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 0;
+}
+
+.tailored-images {
+  width: 100%;
+}
+
+.tailored-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  height: 130vh;
+  min-height: 900px;
+}
+
+.tailored-image-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.tailored-image-item:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.tailored-image-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.tailored-image-item.full-width {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.tailored-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tailored-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.tailored-main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #000000;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0 0 60px 0;
+  letter-spacing: -0.02em;
+}
+
+.tailored-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.tailored-text-column {
+  color: #222222;
+}
+
+.tailored-subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.tailored-description {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .tailored-content {
+    padding: 60px 30px;
+  }
+  
+  .tailored-text-grid {
+    gap: 40px;
+  }
+  
+  .tailored-main-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 50px;
+  }
+  
+  .tailored-subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tailored-image-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: auto;
+  }
+  
+  .tailored-image-item:first-child,
+  .tailored-image-item:nth-child(2),
+  .tailored-image-item.full-width {
+    grid-column: 1;
+    grid-row: auto;
+    height: 350px;
+  }
+  
+  .tailored-content {
+    padding: 50px 20px;
+  }
+  
+  .tailored-text-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .tailored-main-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+    margin-bottom: 40px;
+  }
+  
+  .tailored-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .tailored-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tailored-content {
+    padding: 40px 15px;
+  }
+  
+  .tailored-main-title {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+    margin-bottom: 30px;
+  }
+  
+  .tailored-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .tailored-description {
+    font-size: 0.9rem;
+  }
+}

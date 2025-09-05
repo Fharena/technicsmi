@@ -995,6 +995,7 @@
 .quality-text {
   display: grid;
   grid-template-columns: 1fr 1px 1fr;
+  grid-template-rows: 1fr 0.3fr;
   gap: 0 40px;
   align-items: start;
   margin: 40px 0;
@@ -1008,6 +1009,13 @@
 .quality-tagline-left,
 .quality-tagline-right {
   color: #000000;
+}
+
+.quality-tagline-divider {
+  width: 1px;
+  height: 20px;
+  background: #e0e0e0;
+  margin: 0 auto;
 }
 
 
@@ -1114,10 +1122,12 @@
   
   .quality-text {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
     gap: 20px;
   }
   
-  .quality-divider {
+  .quality-divider,
+  .quality-tagline-divider {
     width: 100%;
     height: 1px;
     margin: 10px 0;

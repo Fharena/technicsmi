@@ -1,4 +1,6 @@
 import React from 'react';
+import ContactForm from '../components/ContactForm';
+import MainFooter from '../components/MainFooter';
 import '../styles/about.css';
 
 const About: React.FC = () => {
@@ -337,7 +339,6 @@ const About: React.FC = () => {
             <p className="quality-description">
               Our fabrics are carefully engineered to transform ordinary clothing into refined expressions of sophistication.
             </p>
-            <p className="quality-tagline">More than Appearance</p>
           </div>
           
           <div className="quality-divider"></div>
@@ -347,6 +348,15 @@ const About: React.FC = () => {
               Quality fabric goes far beyond mere visual appeal. It is truly felt in its softness against the skin, 
               the gentle drape, and the comfort it provides throughout the day.
             </p>
+          </div>
+          
+          <div className="quality-tagline-left">
+            <p className="quality-tagline">More than Appearance</p>
+          </div>
+          
+          <div className="quality-tagline-divider"></div>
+          
+          <div className="quality-tagline-right">
             <p className="quality-tagline">More than Appearance</p>
           </div>
         </div>
@@ -379,6 +389,12 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      {/* Contact Form Section */}
+      <ContactForm />
+      
+      {/* Main Footer Section */}
+      <MainFooter />
     </div>
   );
 };

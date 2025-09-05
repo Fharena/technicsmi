@@ -148,6 +148,237 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Two Images Section */}
+      <section className="two-images-section">
+        <div className="images-container">
+          <div className="image-item">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/e.png" 
+              alt="Fabric swatches" 
+              className="about-image"
+              onError={(e) => {
+                console.log('Image e failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+          <div className="image-item">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/f.png" 
+              alt="Dark fabric texture" 
+              className="about-image"
+              onError={(e) => {
+                console.log('Image f failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Woven with Intention Section */}
+      <section className="woven-section">
+        <div className="woven-content">
+          <div className="woven-text-top">
+            <div className="woven-left">
+              <h3 className="woven-title">Woven with Intention</h3>
+              <p className="woven-description">
+                At Technics, we believe that how we source, design, and weave matters just as much as the wool itself. 
+                Every decision we make is shaped by integrity, tradition, and a quiet pursuit of excellence. 
+                These principles are woven into every thread—silently, but with intention.
+              </p>
+            </div>
+            <div className="woven-right">
+              <h3 className="woven-title">Values You Can Feel</h3>
+              <p className="woven-description">
+                We don't just make wool fabrics—we build long-standing relationships through trust, transparency, and care. 
+                Whether it's the farm, the mill, or the final garment, our values stay present in every step. 
+                Not for show, but for meaning. Not for image, but for alignment.
+              </p>
+            </div>
+          </div>
+          
+          <div className="woven-main-headline">
+            <h2 className="woven-headline">
+              Wool doesn't become fabric on its own. It takes thoughtful hands, honest work, and a shared belief in quality—that's how Technics weaves meaning into every thread.
+            </h2>
+          </div>
+        </div>
+        
+        <div className="woven-image">
+          <img 
+            src="/홈페이지 소스정리/ABOUT/d.png" 
+            alt="Technics wool fabric with selvedge" 
+            className="fabric-image"
+            onError={(e) => {
+              console.log('Fabric image failed to load');
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
+      </section>
+
+      {/* Tailored Style Section */}
+      <section className="tailored-section">
+        <div className="tailored-images">
+          <div className="tailored-image-grid">
+            <div className="tailored-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/e.png" 
+                alt="Fabric swatches" 
+                className="tailored-img"
+                onError={(e) => {
+                  console.log('Tailored image e failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="tailored-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/f.png" 
+                alt="Dark tailored fabric" 
+                className="tailored-img"
+                onError={(e) => {
+                  console.log('Tailored image f failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="tailored-image-item full-width">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/g.png" 
+                alt="Fabric rolls and bolts" 
+                className="tailored-img"
+                onError={(e) => {
+                  console.log('Tailored image g failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="tailored-content">
+          <h2 className="tailored-main-title">Tailored Style for Business and Everyday Life</h2>
+          
+          <div className="tailored-text-grid">
+            <div className="tailored-text-column">
+              <h3 className="tailored-subtitle">Polished Professionalism, Redefined</h3>
+              <p className="tailored-description">
+                Experience refined tailoring that elevates your presence in any business setting. 
+                Our pieces are designed to reflect confidence, clarity, and modern sophistication 
+                empowering you to perform your best while looking the part.
+              </p>
+            </div>
+            
+            <div className="tailored-text-column">
+              <h3 className="tailored-subtitle">Effortless Comfort for Everyday Moments</h3>
+              <p className="tailored-description">
+                Beyond the office, our garments transition seamlessly into your daily life. 
+                Soft, breathable fabrics and functional design ensure you stay comfortable 
+                throughout the day, without compromising on style.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two Panel Section */}
+      <section className="two-panel-section">
+        <div className="two-panel-grid">
+          <div className="panel-item panel-left">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/11.png" 
+              alt="Professional suit detail" 
+              className="panel-img"
+              onError={(e) => {
+                console.log('Panel image 11 failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+          <div className="panel-item panel-right">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/12.png" 
+              alt="Fabric texture detail" 
+              className="panel-img"
+              onError={(e) => {
+                console.log('Panel image 12 failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom Full Width Image */}
+      <section className="bottom-image-section">
+        <img 
+          src="/홈페이지 소스정리/ABOUT/13.png" 
+          alt="Suit jacket detail" 
+          className="bottom-img"
+          onError={(e) => {
+            console.log('Bottom image 13 failed to load');
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      </section>
+
+      {/* Quality Fabric Section */}
+      <section className="quality-fabric-section">
+        <div className="quality-content">
+          <div className="quality-title-section">
+            <h2 className="quality-main-title">Quality Fabric is Felt, Offering Comfort and Elegance</h2>
+          </div>
+          
+                  <div className="quality-text">
+          <div className="quality-left">
+            <p className="quality-description">
+              Our fabrics are carefully engineered to transform ordinary clothing into refined expressions of sophistication.
+            </p>
+            <p className="quality-tagline">More than Appearance</p>
+          </div>
+          
+          <div className="quality-divider"></div>
+          
+          <div className="quality-right">
+            <p className="quality-description">
+              Quality fabric goes far beyond mere visual appeal. It is truly felt in its softness against the skin, 
+              the gentle drape, and the comfort it provides throughout the day.
+            </p>
+            <p className="quality-tagline">More than Appearance</p>
+          </div>
+        </div>
+        </div>
+        
+        <div className="quality-images">
+          <div className="quality-image-grid">
+            <div className="quality-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/14.png" 
+                alt="Hands sewing fabric with needle and thread" 
+                className="quality-img"
+                onError={(e) => {
+                  console.log('Quality image 14 failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="quality-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/15.png" 
+                alt="White soft flowing fabric texture" 
+                className="quality-img"
+                onError={(e) => {
+                  console.log('Quality image 15 failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -283,6 +283,102 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Two Panel Section */}
+      <section className="two-panel-section">
+        <div className="two-panel-grid">
+          <div className="panel-item panel-left">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/11.png" 
+              alt="Professional suit detail" 
+              className="panel-img"
+              onError={(e) => {
+                console.log('Panel image 11 failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+          <div className="panel-item panel-right">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/12.png" 
+              alt="Fabric texture detail" 
+              className="panel-img"
+              onError={(e) => {
+                console.log('Panel image 12 failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom Full Width Image */}
+      <section className="bottom-image-section">
+        <img 
+          src="/홈페이지 소스정리/ABOUT/13.png" 
+          alt="Suit jacket detail" 
+          className="bottom-img"
+          onError={(e) => {
+            console.log('Bottom image 13 failed to load');
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+      </section>
+
+      {/* Quality Fabric Section */}
+      <section className="quality-fabric-section">
+        <div className="quality-content">
+          <div className="quality-title-section">
+            <h2 className="quality-main-title">Quality Fabric is Felt, Offering Comfort and Elegance</h2>
+          </div>
+          
+                  <div className="quality-text">
+          <div className="quality-left">
+            <p className="quality-description">
+              Our fabrics are carefully engineered to transform ordinary clothing into refined expressions of sophistication.
+            </p>
+            <p className="quality-tagline">More than Appearance</p>
+          </div>
+          
+          <div className="quality-divider"></div>
+          
+          <div className="quality-right">
+            <p className="quality-description">
+              Quality fabric goes far beyond mere visual appeal. It is truly felt in its softness against the skin, 
+              the gentle drape, and the comfort it provides throughout the day.
+            </p>
+            <p className="quality-tagline">More than Appearance</p>
+          </div>
+        </div>
+        </div>
+        
+        <div className="quality-images">
+          <div className="quality-image-grid">
+            <div className="quality-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/14.png" 
+                alt="Hands sewing fabric with needle and thread" 
+                className="quality-img"
+                onError={(e) => {
+                  console.log('Quality image 14 failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="quality-image-item">
+              <img 
+                src="/홈페이지 소스정리/ABOUT/15.png" 
+                alt="White soft flowing fabric texture" 
+                className="quality-img"
+                onError={(e) => {
+                  console.log('Quality image 15 failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,0 +1,616 @@
+/* ============ 아카이브1 페이지 스타일 ============ */
+
+.archive1-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive1-header {
+  padding: 80px 60px 60px 60px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.description-english p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.details-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+
+/* ============ Images Section ============ */
+.archive1-images {
+  padding: 0 60px 80px 60px;
+  background: #ffffff;
+}
+
+.images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.image-top,
+.image-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image-middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.image-left,
+.image-right {
+  width: 100%;
+}
+
+.right-aligned-image {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+
+}
+
+.half-width-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  aspect-ratio: 4/3;
+}
+
+/* ============ Text Section ============ */
+.archive1-text {
+  padding: 60px 60px 80px 60px;
+  background: #ffffff;
+}
+
+/* ============ Installation Art Section ============ */
+.archive1-installation-section {
+  padding: 0 60px 80px 60px;
+  background: #ffffff;
+}
+
+/* ============ Next Section ============ */
+.archive1-next-section {
+  padding: 0 60px 80px 60px;
+  background: #ffffff;
+}
+
+/* ============ Text and Fashion Section ============ */
+.archive1-text-fashion-section {
+  padding: 60px 60px 80px 60px;
+  background: #ffffff;
+}
+
+/* ============ Next Image Section ============ */
+.archive1-next-image-section {
+  padding: 0 60px 80px 60px;
+  background: #ffffff;
+}
+
+.next-image-container {
+  width: 100%;
+}
+
+.text-fashion-text {
+  margin-bottom: 40px;
+}
+
+.text-fashion-text .text-container {
+  width: 70%;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.fashion-images-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  min-height: 600px;
+}
+
+.fashion-image-left,
+.fashion-image-right {
+  width: 100%;
+  height: 100%;
+}
+
+.fashion-image-left img,
+.fashion-image-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.next-images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.next-image-top,
+.next-image-bottom {
+  width: 100%;
+}
+
+.installation-images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.installation-image-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.installation-image-bottom {
+  width: 100%;
+}
+
+.full-width-image {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+.next-image-top {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 100%;
+}
+
+.text-english p {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.text-korean p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+/* ============ 반응형 디자인 ============ */
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .archive1-header {
+    padding: 60px 40px 40px 40px;
+  }
+  
+  .header-container {
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+  }
+  
+  .logo-image {
+    max-height: 40px;
+  }
+  
+  .description-section {
+    gap: 22px;
+    margin-bottom: 35px;
+  }
+  
+  .description-english p {
+    font-size: 1.05rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.9rem;
+  }
+  
+  .details-section {
+    grid-template-columns: 1fr 1fr 0.5fr;
+    gap: 30px;
+  }
+  
+  .detail-item {
+    margin-bottom: 16px;
+  }
+  
+  .detail-label {
+    font-size: 0.9rem;
+  }
+  
+  .detail-value {
+    font-size: 0.8rem;
+  }
+  
+  .archive1-images {
+    padding: 0 40px 60px 40px;
+  }
+  
+  .archive1-installation-section {
+    padding: 0 40px 60px 40px;
+  }
+  
+  .archive1-next-section {
+    padding: 0 40px 60px 40px;
+  }
+  
+  .archive1-text-fashion-section {
+    padding: 50px 40px 60px 40px;
+  }
+  
+  .archive1-next-image-section {
+    padding: 0 40px 60px 40px;
+  }
+  
+  .text-container {
+    width: 70%;
+  }
+  
+  .fashion-images-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .right-aligned-image {
+    width: 70%;
+  }
+  
+  .half-width-image {
+    aspect-ratio: 4/3;
+  }
+  
+  .archive1-text {
+    padding: 50px 40px 60px 40px;
+  }
+  
+  .text-container {
+    gap: 35px;
+  }
+  
+  .text-english p {
+    font-size: 1.3rem;
+  }
+  
+  .text-korean p {
+    font-size: 0.9rem;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .archive1-header {
+    padding: 40px 30px 30px 30px;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .logo-image {
+    max-height: 35px;
+  }
+  
+  .description-section {
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .description-english p {
+    font-size: 1rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.85rem;
+  }
+  
+  .details-section {
+    grid-template-columns: 1fr 1fr 0.5fr;
+    gap: 25px;
+  }
+  
+  .detail-item {
+    margin-bottom: 14px;
+  }
+  
+  .detail-label {
+    font-size: 0.85rem;
+  }
+  
+  .detail-value {
+    font-size: 0.75rem;
+  }
+  
+  .archive1-images {
+    padding: 0 30px 40px 30px;
+  }
+  
+  .archive1-installation-section {
+    padding: 0 30px 40px 30px;
+  }
+  
+  .archive1-next-section {
+    padding: 0 30px 40px 30px;
+  }
+  
+  .archive1-text-fashion-section {
+    padding: 40px 30px 50px 30px;
+  }
+  
+  .archive1-next-image-section {
+    padding: 0 30px 40px 30px;
+  }
+  
+  .text-fashion-text .text-container {
+    width: 80%;
+  }
+  
+  .fashion-images-layout {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .image-middle {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .installation-image-top {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .right-aligned-image {
+    width: 80%;
+  }
+  
+  .half-width-image {
+    aspect-ratio: 4/3;
+  }
+  
+  .archive1-text {
+    padding: 40px 30px 50px 30px;
+  }
+  
+  .text-container {
+    gap: 30px;
+  }
+  
+  .text-english p {
+    font-size: 1.2rem;
+  }
+  
+  .text-korean p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 소형 모바일 */
+@media (max-width: 480px) {
+  .archive1-header {
+    padding: 30px 20px 20px 20px;
+  }
+  
+  .header-container {
+    gap: 30px;
+  }
+  
+  .logo-image {
+    max-height: 30px;
+  }
+  
+  .description-section {
+    gap: 18px;
+    margin-bottom: 25px;
+  }
+  
+  .description-english p {
+    font-size: 0.95rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.8rem;
+  }
+  
+  .details-section {
+    grid-template-columns: 1fr 1fr 0.5fr;
+    gap: 20px;
+  }
+  
+  .detail-item {
+    margin-bottom: 12px;
+  }
+  
+  .detail-label {
+    font-size: 0.8rem;
+  }
+  
+  .detail-value {
+    font-size: 0.7rem;
+  }
+  
+  .archive1-images {
+    padding: 0 20px 30px 20px;
+  }
+  
+  .archive1-installation-section {
+    padding: 0 20px 30px 20px;
+  }
+  
+  .archive1-next-section {
+    padding: 0 20px 30px 20px;
+  }
+  
+  .archive1-text-fashion-section {
+    padding: 30px 20px 40px 20px;
+  }
+  
+  .archive1-next-image-section {
+    padding: 0 20px 30px 20px;
+  }
+  
+  .text-fashion-text .text-container {
+    width: 90%;
+  }
+  
+  .fashion-images-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .images-layout {
+    gap: 15px;
+  }
+  
+  .next-images-layout {
+    gap: 15px;
+  }
+  
+  .installation-images-layout {
+    gap: 15px;
+  }
+  
+  .image-middle {
+    gap: 12px;
+  }
+  
+  .additional-image-middle {
+    gap: 12px;
+  }
+  
+  .right-aligned-image {
+    width: 90%;
+  }
+  
+  .half-width-image {
+    aspect-ratio: 4/3;
+  }
+  
+  .archive1-text {
+    padding: 30px 20px 40px 20px;
+  }
+  
+  .text-container {
+    gap: 25px;
+  }
+  
+  .text-english p {
+    font-size: 1.1rem;
+  }
+  
+  .text-korean p {
+    font-size: 0.8rem;
+  }
+}
+

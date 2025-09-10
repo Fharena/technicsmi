@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useRive } from '@rive-app/react-canvas';
+import ContactForm from '../components/ContactForm';
+import MainFooter from '../components/MainFooter';
 
 const Home: React.FC = () => {
   // 실시간 시계 상태
@@ -325,91 +327,10 @@ const Home: React.FC = () => {
       </div>
       
       {/* Contact Form Section */}
-      <div className="contact-form-section">
-        <div className="contact-form-container">
-          <form className="contact-form">
-            <div className="form-group">
-              <input type="text" placeholder="Your name" className="form-input" />
-            </div>
-            <div className="form-group">
-              <input type="email" placeholder="Your email" className="form-input" />
-            </div>
-            <div className="form-group">
-              <textarea 
-                placeholder="Your message" 
-                className="form-textarea" 
-                rows={1}
-                onInput={(e) => {
-                  const target = e.target as HTMLTextAreaElement;
-                  target.style.height = '1.5em';
-                  target.style.height = Math.max(target.scrollHeight, 36) + 'px';
-                }}
-              ></textarea>
-            </div>
-            <button type="submit" className="submit-btn">Submit</button>
-          </form>
-        </div>
-      </div>
+      <ContactForm />
       
       {/* Main Footer Section */}
-      <div className="main-footer-section">
-        <div className="footer-bottom">
-          <div className="footer-logo">
-            <video 
-              src="/홈페이지 소스정리/홈메인/tcs최하단 로고영상.mp4" 
-              autoPlay 
-              muted 
-              loop 
-              className="logo-video"
-            />
-          </div>
-          
-          <div className="footer-right-section">
-            <div className="footer-motto">
-              Rooted in craftsmanship,<br />
-              Crafted with purpose
-            </div>
-            
-            <div className="footer-contact">
-              <div className="contact-row-1-col-1">
-                <div className="contact-item">
-                  <span className="contact-label">Korea, goyang</span>
-                  <span className="contact-label">Isan.</span>
-                </div>
-
-              </div>
-              
-              <div className="contact-row-1-col-2">
-                <div className="contact-item">
-                  <span className="contact-label">Instagram</span>
-                  <span className="contact-value">@tchajsk</span>
-                </div>
-              </div>
-              
-              <hr className="contact-divider" />
-              
-              <div className="contact-row-2-col-1">
-                <div className="contact-item">
-                  <span className="contact-label">Technics e-mail</span>
-                  <span className="contact-value">sanjdnkjsk@gmail.com</span>
-                </div>
-              </div>
-              
-              <div className="contact-row-2-col-2">
-                <div className="contact-item">
-                  <span className="contact-value">+82) 10-2901-3819</span>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-value">+82) 10-2901-3819</span>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-value">2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <MainFooter />
       
 
       

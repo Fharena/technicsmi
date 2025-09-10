@@ -1,11 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'; // ← NavLink import
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavigationLens from "./components/NavigationLens";
 import './styles/global.css';
 import './styles/navigation.css';
 import './styles/home.css';
 import './styles/pages.css';
 import './styles/about.css';
+import './styles/archive.css';
+import './styles/archive1.css';
 
 // 페이지 컴포넌트들 import
 import Home from './pages/Home';
@@ -47,7 +48,7 @@ function App() {
         {/* (권장) SVG 굴절 필터는 컨트롤센터 룩과 거리가 있어 성능상 삭제/주석 처리 */}
         {/* ...필요 없으면 통째로 제거 */}
 
-        <NavigationLens radius={48} magnify={1.1}/>
+        <NavigationLens magnify={1.1}/>
 
         <main className="main-content">
           <Routes>

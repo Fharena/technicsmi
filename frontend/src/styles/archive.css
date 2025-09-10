@@ -1,0 +1,805 @@
+/* ============ Archive 페이지 스타일 ============ */
+
+.archive-page {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  background-color: #2c3e50 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* ============ Hero Section ============ */
+.archive-hero {
+  position: relative !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  background-color: #2c3e50 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Navigation */
+.hero-nav {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.nav-dot.active {
+  background: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.nav-text {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-left: 8px;
+}
+
+/* Hero Content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  align-self: flex-end;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hero-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  letter-spacing: 0.5px;
+}
+
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ============ Text and Image Section ============ */
+.text-image-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.text-image-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.text-top {
+  width: 100%;
+  max-width: 800px;
+}
+
+.section-text {
+  font-size: 1.4rem;
+  color: #333333;
+  line-height: 1.1;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.image-full {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.section-img {
+  width: 100%;
+  height: 400px;
+  display: block;
+  object-fit: cover;
+}
+
+/* ============ Collage and Text Section ============ */
+.collage-text-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.collage-text-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.collage-left {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.collage-img {
+  width: 100%;
+  height: 500px;
+  display: block;
+  object-fit: cover;
+}
+
+.text-right {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.collage-text {
+  font-size: 1.1rem;
+  color: #333333;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* ============ Main Statement Section ============ */
+.statement-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.statement-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main-statement {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ============ Values Section ============ */
+.values-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.values-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.values-left,
+.values-right {
+  color: #333333;
+}
+
+.values-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.values-text {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ Label Section ============ */
+.label-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 40px 100px 40px;
+  box-sizing: border-box;
+}
+
+.label-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.label-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 60px 0;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.label-content {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 60px;
+  align-items: stretch;
+}
+
+.label-divider {
+  width: 1px;
+  background: #000000;
+  height: 100%;
+  margin: 0 30px;
+}
+
+.label-left,
+.label-right {
+  color: #333333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.label-text {
+  font-size: 1.1rem;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  font-weight: 400;
+}
+
+.label-collection {
+  font-size: 0.9rem;
+  color: #888888;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============ Images Section ============ */
+.images-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.images-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 60vh;
+  min-height: 500px;
+}
+
+.image-left,
+.image-right {
+  overflow: hidden;
+  position: relative;
+}
+
+.constellation-img,
+.staircase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ Table Section ============ */
+.table-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr;
+  border-bottom: 1px solid #000000;
+  min-height: 50px;
+  gap: 30px;
+}
+
+.table-row:last-child {
+  border-bottom: 1px solid #000000;
+}
+
+.table-cell {
+  padding: 8px 0px;
+  display: flex;
+  align-items: flex-start;
+  min-height: 30px;
+  font-size: 0.8rem;
+}
+
+.table-cell.year {
+  font-weight: 600;
+  color: #000000;
+  font-size: 0.8rem;
+  justify-content: flex-start;
+}
+
+.table-cell.content {
+  font-size: 0.75rem;
+  color: #000000;
+  line-height: 1.3;
+  font-weight: 400;
+  text-align: left;
+}
+
+
+
+/* ============ 반응형 디자인 ============ */
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-overlay {
+    padding: 30px;
+  }
+  
+  .hero-buttons {
+    gap: 12px;
+  }
+  
+  .hero-btn {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+  
+  .text-image-section {
+    padding: 50px 30px;
+  }
+  
+  .text-image-container {
+    gap: 30px;
+  }
+  
+  .section-img {
+    height: 350px;
+  }
+  
+  .collage-text-section {
+    padding: 50px 30px;
+  }
+  
+  .collage-text-container {
+    gap: 40px;
+  }
+  
+  .collage-img {
+    height: 450px;
+  }
+  
+  .statement-section {
+    padding: 60px 30px;
+  }
+  
+  .values-section {
+    padding: 60px 30px;
+  }
+  
+  .values-container {
+    gap: 40px;
+  }
+  
+  .label-section {
+    padding: 60px 30px 80px 30px;
+  }
+  
+  .label-content {
+    gap: 40px;
+  }
+  
+  .label-divider {
+    margin: 0 20px;
+  }
+  
+  .images-container {
+    height: 50vh;
+    min-height: 400px;
+  }
+  
+  .table-section {
+    padding: 60px 30px;
+  }
+  
+  .table-row {
+    grid-template-columns: 130px 1fr 1fr;
+    min-height: 45px;
+    gap: 25px;
+  }
+  
+  .table-cell {
+    padding: 6px 0px;
+    font-size: 0.75rem;
+  }
+  
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.3;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-overlay {
+    padding: 25px 20px;
+  }
+  
+  .hero-buttons {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .nav-text {
+    font-size: 0.8rem;
+  }
+  
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .text-image-section {
+    padding: 40px 20px;
+  }
+  
+  .text-image-container {
+    gap: 25px;
+  }
+  
+  .section-text {
+    font-size: 1.2rem;
+  }
+  
+  .section-img {
+    height: 300px;
+  }
+  
+  .collage-text-section {
+    padding: 40px 20px;
+  }
+  
+  .collage-text-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .collage-img {
+    height: 400px;
+  }
+  
+  .collage-text {
+    font-size: 1rem;
+  }
+  
+  .statement-section {
+    padding: 50px 20px;
+  }
+  
+  .main-statement {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .values-section {
+    padding: 50px 20px;
+  }
+  
+  .values-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .values-title {
+    font-size: 1.6rem;
+  }
+  
+  .values-text {
+    font-size: 0.95rem;
+  }
+  
+  .label-section {
+    padding: 50px 20px 70px 20px;
+  }
+  
+  .label-title {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    margin-bottom: 40px;
+  }
+  
+  .label-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .label-divider {
+    display: none;
+  }
+  
+  .label-text {
+    font-size: 1rem;
+  }
+  
+  .images-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .image-left,
+  .image-right {
+    height: 350px;
+  }
+  
+  .table-section {
+    padding: 50px 20px;
+  }
+  
+  .table-row {
+    grid-template-columns: 100px 1fr 1fr;
+    min-height: 40px;
+    gap: 20px;
+  }
+  
+  .table-cell {
+    padding: 5px 0px;
+    font-size: 0.7rem;
+  }
+  
+  .table-cell.year {
+    font-size: 0.7rem;
+  }
+  
+}
+
+/* 소형 모바일 */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .hero-overlay {
+    padding: 20px 15px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 8px;
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  
+  .hero-btn {
+    padding: 8px 16px;
+    width: 120px;
+  }
+  
+  .text-image-section {
+    padding: 30px 15px;
+  }
+  
+  .text-image-container {
+    gap: 20px;
+  }
+  
+  .section-text {
+    font-size: 1.1rem;
+  }
+  
+  .section-img {
+    height: 250px;
+  }
+  
+  .collage-text-section {
+    padding: 30px 15px;
+  }
+  
+  .collage-text-container {
+    gap: 20px;
+  }
+  
+  .collage-img {
+    height: 350px;
+  }
+  
+  .collage-text {
+    font-size: 0.95rem;
+  }
+  
+  .statement-section {
+    padding: 40px 15px;
+  }
+  
+  .main-statement {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+  
+  .values-section {
+    padding: 40px 15px;
+  }
+  
+  .values-container {
+    gap: 25px;
+  }
+  
+  .values-title {
+    font-size: 1.5rem;
+  }
+  
+  .values-text {
+    font-size: 0.9rem;
+  }
+  
+  .label-section {
+    padding: 40px 15px 60px 15px;
+  }
+  
+  .label-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 30px;
+  }
+  
+  .label-content {
+    gap: 25px;
+  }
+  
+  .label-divider {
+    display: none;
+  }
+  
+  .label-text {
+    font-size: 0.95rem;
+  }
+  
+  .label-collection {
+    font-size: 0.8rem;
+  }
+  
+  .image-left,
+  .image-right {
+    height: 300px;
+  }
+  
+  .table-section {
+    padding: 40px 15px;
+  }
+  
+  .table-row {
+    grid-template-columns: 80px 1fr 1fr;
+    min-height: 35px;
+    gap: 15px;
+  }
+  
+  .table-cell {
+    padding: 4px 0px;
+    font-size: 0.65rem;
+  }
+  
+  .table-cell.year {
+    font-size: 0.65rem;
+  }
+  
+}

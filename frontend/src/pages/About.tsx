@@ -21,10 +21,6 @@ const About: React.FC = () => {
           />
         </div>
         <div className="hero-overlay">
-          <nav className="hero-nav">
-            <span className="nav-dot active"></span>
-            <span className="nav-text">HOME</span>
-          </nav>
           <div className="hero-content">
             <h1 className="hero-title">
               Effortless style and comfort for<br/>

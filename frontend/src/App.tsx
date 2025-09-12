@@ -7,6 +7,8 @@ import './styles/pages.css';
 import './styles/about.css';
 import './styles/archive.css';
 import './styles/archive1.css';
+import './styles/archive2.css';
+import './styles/archive3.css';
 
 // 페이지 컴포넌트들 import
 import Home from './pages/Home';

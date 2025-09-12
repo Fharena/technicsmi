@@ -1,0 +1,569 @@
+/* ============ 아카이브2 페이지 스타일 ============ */
+
+.archive2-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive2-header {
+  padding: 80px 60px 60px 60px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.archive2-page .description-english p {
+  font-size: 1.5rem; 
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.details-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Images Section ============ */
+.archive2-images {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.image-top {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 700px;
+}
+
+.right-aligned-image {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  min-height: 700px;
+}
+
+.image-left, .image-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+.half-width-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-bottom {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 300px;
+}
+
+/* ============ Text Section ============ */
+.archive2-text {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.archive2-text .text-english p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Installation Art Section ============ */
+.archive2-installation-section {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.installation-images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.installation-image-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.installation-image-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.full-width-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ============ Next Section ============ */
+.archive2-next-section {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.next-images-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.next-image-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next-image-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+/* ============ Text and Fashion Section ============ */
+.archive2-text-fashion-section {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.text-fashion-text {
+  margin-bottom: 40px;
+}
+
+.fashion-images-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.fashion-image-left, .fashion-image-right {
+  display: flex;
+  justify-content: center;
+}
+
+/* ============ ID Cards Section ============ */
+.archive2-id-cards {
+  padding: 0 60px 60px 60px;
+  background: #ffffff;
+}
+
+.id-cards-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.id-card-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.id-card-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.id-card-image {
+  max-width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+.id-cards-mockups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.mockup-left, .mockup-right {
+  display: flex;
+  justify-content: center;
+}
+
+.mockup-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+
+
+/* ============ Abstract Images Section ============ */
+.archive2-abstract {
+  padding: 60px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.abstract-top-section {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.abstract-top-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.abstract-bottom-section {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.abstract-bottom-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ============ Metaball Graphics Section ============ */
+.archive2-metaball {
+  padding: 60px;
+  background: #ffffff;
+}
+
+.metaball-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.metaball-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.metaball-graphics {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 60px;
+  align-items: flex-start;
+}
+
+.metaball-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.metaball-left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.metaball-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.metaball-right img {
+  max-width: 100%;
+  height: auto;
+}
+
+.metaball-pattern {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.metaball-pattern img {
+  max-width: 70%;
+  height: auto;
+}
+
+.metaball-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  margin: 0 auto;
+  text-align: left;
+}
+
+.archive2-metaball .metaball-text .text-english p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.archive2-metaball .metaball-text .text-korean p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .archive2-header,
+  .archive2-images,
+  .archive2-text,
+  .archive2-abstract,
+  .archive2-metaball,
+  .archive2-installation-section,
+  .archive2-next-section,
+  .archive2-text-fashion-section,
+  .archive2-next-image-section,
+  .archive2-id-cards {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  .header-container {
+    gap: 60px;
+  }
+  
+  .text-container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive2-header,
+  .archive2-images,
+  .archive2-text,
+  .archive2-installation-section,
+  .archive2-next-section,
+  .archive2-text-fashion-section,
+  .archive2-next-image-section,
+  .archive2-id-cards,
+  .archive2-abstract,
+  .archive2-metaball {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .metaball-graphics {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .metaball-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .metaball-text {
+    gap: 20px;
+  }
+  
+  .archive2-abstract {
+    gap: 30px;
+  }
+  
+  .abstract-top-section {
+    height: 200px;
+  }
+  
+  .abstract-bottom-section {
+    height: 300px;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .details-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .text-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .image-middle,
+  .installation-image-top,
+  .fashion-images-layout,
+  .id-cards-mockups {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .id-cards-layout {
+    gap: 20px;
+  }
+  
+  .id-card-image {
+    max-width: 80%;
+  }
+  
+  .right-aligned-image {
+    width: 100%;
+  }
+  
+  .description-english p {
+    font-size: 1.2rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.9rem;
+  }
+  
+  .text-english p {
+    font-size: 1rem;
+  }
+  
+  .text-korean p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .archive2-header {
+    padding-top: 60px;
+  }
+  
+  .description-english p {
+    font-size: 1.1rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.85rem;
+  }
+  
+  .detail-label {
+    font-size: 0.9rem;
+  }
+  
+  .detail-value {
+    font-size: 0.8rem;
+  }
+}

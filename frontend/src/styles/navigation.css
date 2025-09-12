@@ -86,16 +86,7 @@
   border-radius: 23px;
 }
 
-/* 포커스가 있을 때 메뉴 유지 */
-.navigation:focus-within .nav-list > li:not(.home) {
-  opacity: 1 !important;
-  max-width: none !important;
-  pointer-events: auto !important;
-  overflow: visible !important;
-  margin: 0 !important;
-  padding: 0 8px !important;
-  flex: none !important;
-}
+/* 포커스가 있을 때 메뉴 유지 - 제거 */
 
 /* 기본 상태: 작게 */
 .navigation {
@@ -146,9 +137,33 @@
     inset 0 0 12px rgba(255,255,255,0.05);
 }
 
+/* 현재 페이지 텍스트 - 디폴트 상태에서만 표시 */
+.nav-list .current-page {
+  opacity: 1 !important;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-list .current-page-text {
+  color: #fff;
+  font-weight: 500;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+/* 확장 상태에서는 현재 페이지 텍스트 숨김 */
+.navigation.open .nav-list .current-page {
+  opacity: 0 !important;
+  max-width: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
 /* 메뉴 리스트 - 위에서 이미 정의됨, 중복 제거 */
 .nav-list .home .nav-link {
-  opacity: 1 !important;
+  opacity: 0;
 }
 .nav-link{
   opacity: 0;
@@ -171,12 +186,12 @@
 
 /* 접힘 상태: React 상태 기반으로만 제어 */
 .navigation:not(.open) .nav-list{ gap:0; } /* 간격도 0으로 */
-.navigation:not(.open) .nav-list > li:not(.home){
+.navigation:not(.open) .nav-list > li:not(.current-page){
   opacity:0; max-width:0; pointer-events:none;
   overflow:hidden; margin:0; padding:0; flex:0 0 auto;
 }
 /* a 내부 패딩도 제거 */
-.navigation:not(.open) .nav-list > li:not(.home) .nav-link{
+.navigation:not(.open) .nav-list > li:not(.current-page) .nav-link{
   padding-left:0; padding-right:0;
 }
 /* ⏬ 서브메뉴: 네비 내부 아래로 펼치기 */
@@ -235,7 +250,6 @@
 
 /* hover 상태에서도 동일한 위치 유지 */
 .navigation:hover .nav-list,
-.navigation:focus-within .nav-list,
 .navigation.open .nav-list {
   justify-content: center; /* 기본과 동일하게 중앙 정렬 유지 */
 }

@@ -37,6 +37,33 @@ const NavigationLens: React.FC<Props> = ({
   const location = useLocation();
   const uid = useId();
 
+  // 현재 페이지 이름 가져오기
+  const getCurrentPageName = () => {
+    const path = location.pathname;
+    switch (path) {
+      case '/':
+        return 'HOME';
+      case '/about':
+        return 'ABOUT';
+      case '/work':
+        return 'WORK';
+      case '/libra':
+        return 'LIBRA';
+      case '/aqua':
+        return 'AQUARIUS';
+      case '/froma':
+        return 'FRØMA';
+      case '/archive':
+        return 'ARCHIVE';
+      case '/contact':
+        return 'CONTACT';
+      case '/cart':
+        return 'CART';
+      default:
+        return 'HOME';
+    }
+  };
+
   // 네비 아래 시각 소스 찾기: <img>, background-image, <video>
   const pickUnderlyingVisual = () => {
     const nav = navRef.current;
@@ -190,7 +217,6 @@ const NavigationLens: React.FC<Props> = ({
             className={`navigation ios-glass ${open ? "open" : ""} ${subOpen ? "sub-open" : ""}`}
             onFocus={() => setOpen(true)}
             onBlur={() => { setOpen(false); setSubOpen(false); }}
-            onClick={toggleOpen} // 모바일 탭용 (원치 않으면 빼세요)
         >
         {/* ▼ 네비 전체 렌즈 오버레이 */}
             <div className="nav-overlay" aria-hidden="true">
@@ -256,8 +282,37 @@ const NavigationLens: React.FC<Props> = ({
                     <div className="nav-left-icon" />
             {/* ▼ 실제 네비 콘텐츠 */}
             <ul className="nav-list">
-                <li className="home"><NavLink to="/" end       className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>HOME</NavLink></li>
-                <li><NavLink to="/about"      className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ABOUT</NavLink></li>
+                {/* 디폴트 상태: 현재 페이지 이름만 표시 */}
+                <li className="current-page">
+                    <span className="current-page-text">{getCurrentPageName()}</span>
+                </li>
+                
+                {/* 확장 상태: 모든 메뉴 표시 */}
+                <li className="home">
+                    <NavLink 
+                        to="/" 
+                        end       
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        HOME
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/about"      
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        ABOUT
+                    </NavLink>
+                </li>
                 <li
                     className="has-sub"
                     onMouseEnter={() => {
@@ -269,7 +324,16 @@ const NavigationLens: React.FC<Props> = ({
                         setSubOpen(true);
                     }}
                 >
-                    <NavLink to="/work" className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>WORK</NavLink>
+                    <NavLink 
+                        to="/work" 
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        WORK
+                    </NavLink>
 
                     {/* 하위 메뉴 (네비 안쪽 아래로 펼쳐짐) */}
                     <ul 
@@ -282,14 +346,80 @@ const NavigationLens: React.FC<Props> = ({
                             }
                         }}
                     >
-                        <li><NavLink to="/libra"   className="sub-link">LIBRA</NavLink></li>
-                        <li><NavLink to="/aqua"    className="sub-link">AQUARIUS</NavLink></li>
-                        <li><NavLink to="/froma"   className="sub-link">FRØMA</NavLink></li>
+                        <li>
+                            <NavLink 
+                                to="/libra"   
+                                className="sub-link"
+                                onClick={() => {
+                                    setOpen(false);
+                                    setSubOpen(false);
+                                }}
+                            >
+                                LIBRA
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to="/aqua"    
+                                className="sub-link"
+                                onClick={() => {
+                                    setOpen(false);
+                                    setSubOpen(false);
+                                }}
+                            >
+                                AQUARIUS
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to="/froma"   
+                                className="sub-link"
+                                onClick={() => {
+                                    setOpen(false);
+                                    setSubOpen(false);
+                                }}
+                            >
+                                FRØMA
+                            </NavLink>
+                        </li>
                     </ul>
                 </li>
-                <li><NavLink to="/archive"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>ARCHIVE</NavLink></li>
-                <li><NavLink to="/contact"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>CONTACT</NavLink></li>
-                <li><NavLink to="/cart"    className={({isActive}) => `nav-link${isActive ? " active" : ""}`}>CART</NavLink></li>
+                <li>
+                    <NavLink 
+                        to="/archive"    
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        ARCHIVE
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/contact"    
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        CONTACT
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        to="/cart"    
+                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
+                        onClick={() => {
+                            setOpen(false);
+                            setSubOpen(false);
+                        }}
+                    >
+                        CART
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     </div>

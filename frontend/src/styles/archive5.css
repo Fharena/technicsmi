@@ -1,0 +1,351 @@
+/* ============ Archive5 Page Styles ============ */
+.archive5-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive5-header {
+  padding: 80px 20px 60px 20px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.archive5-page .description-english p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.archive5-page .description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.details-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Color Philosophy Section ============ */
+.color-philosophy-section {
+  padding: 0;
+  background: #ffffff;
+}
+
+.color-philosophy-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.color-philosophy-image {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.color-philosophy-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.color-philosophy-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.color-philosophy-english {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.color-philosophy-korean {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+/* ============ Next Section ============ */
+.next-section {
+  padding: 30px 0 80px 0;
+  background: #ffffff;
+}
+
+.next-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.next-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.next-image {
+  width: 100%;
+}
+
+.next-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.next-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-left: 40px;
+}
+
+.next-description-english {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.next-description-korean {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+}
+
+/* ============ Images Section ============ */
+.archive5-images {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.images-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.image-top {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right-aligned-image {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+}
+
+.left-image,
+.right-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+.bottom-image {
+  width: 100%;
+}
+
+.bottom-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 0 40px;
+    gap: 60px;
+  }
+  
+  .images-layout {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive5-header {
+    padding: 60px 0;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .logo-section {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .details-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .right-content {
+    gap: 40px;
+  }
+  
+  .archive5-images {
+    padding: 60px 0;
+  }
+  
+  .images-layout {
+    padding: 0 20px;
+    gap: 30px;
+  }
+  
+  .right-aligned-image {
+    width: 100%;
+  }
+  
+  .image-middle {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .image-bottom {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .archive5-header {
+    padding: 40px 0;
+  }
+  
+  .header-container {
+    padding: 0 15px;
+    gap: 30px;
+  }
+  
+  .logo-image {
+    max-width: 250px;
+  }
+  
+  .description-english p {
+    font-size: 1.1rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.95rem;
+  }
+  
+  .archive5-images {
+    padding: 40px 0;
+  }
+  
+  .images-layout {
+    padding: 0 15px;
+    gap: 20px;
+  }
+}

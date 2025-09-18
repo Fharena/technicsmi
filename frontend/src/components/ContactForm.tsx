@@ -18,8 +18,8 @@ const ContactForm: React.FC = () => {
               rows={1}
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
-                target.style.height = '1.5em';
-                target.style.height = Math.max(target.scrollHeight, 36) + 'px';
+                target.style.height = '49px';
+                target.style.height = Math.max(target.scrollHeight, 49) + 'px';
               }}
             ></textarea>
           </div>

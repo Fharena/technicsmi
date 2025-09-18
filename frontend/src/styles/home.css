@@ -714,10 +714,10 @@
 }
 
 .form-textarea {
-  height: 1.5em;
-  line-height: 1.5em;
+  height: 49px;
+  line-height: 1.5;
   resize: none;
-  min-height: 1.5em;
+  min-height: 49px;
   overflow: hidden;
   vertical-align: top;
   box-sizing: border-box;

@@ -315,7 +315,7 @@
 .brief-section {
   width: 100%;
   background: #ffffff;
-  padding: 60px 40px 100px 40px;
+  padding: 60px 60px 100px 60px;
   box-sizing: border-box;
 }
 
@@ -387,7 +387,7 @@
 }
 
 .crafted-text {
-  padding: 36px 40px 0 40px;
+  padding: 36px 60px 0 60px;
   max-width: 1200px;
   margin: 0 auto;
   color: #111111; /* 전역 흰색 텍스트 기본값 무효화 */
@@ -424,6 +424,8 @@
 .collage-section {
   background: #ffffff;
   padding: 0;
+  margin: 0 0 80px 0;
+  box-sizing: border-box;
 }
 
 .collage-grid {
@@ -431,13 +433,24 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0;
-  height: 130vh;
-  min-height: 900px;
+  height: 75vh;
+  min-height: 500px;
+  max-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  box-sizing: border-box;
+  aspect-ratio: 2/1;
 }
 
 .collage-item {
   overflow: hidden;
   position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .collage-top-left {
@@ -460,6 +473,16 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* 반응형 디자인 - 아래 섹션과 동일한 방식 */
+@media (max-width: 1024px) {
+  .collage-grid {
+    padding: 0 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -467,6 +490,8 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     height: auto;
+    aspect-ratio: 1/3;
+    padding: 0 10px;
   }
   
   .collage-top-left,
@@ -475,6 +500,12 @@
     grid-column: 1;
     grid-row: auto;
     height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collage-grid {
+    padding: 0 5px;
   }
 }
 
@@ -495,6 +526,11 @@
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
+}
+
+/* 섹션 외부 가로 여백 통일 */
+.images-container {
+  padding: 0 60px;
 }
 
 .image-item {
@@ -547,7 +583,7 @@
 .woven-section {
   width: 100%;
   background: #ffffff;
-  padding: 80px 0px;
+  padding: 80px 60px;
   box-sizing: border-box;
 }
 
@@ -702,9 +738,14 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0;
-  height: 130vh;
-  min-height: 900px;
+  height: 100vh;
+  min-height: 700px;
 }
+
+/* tailored-section 가로 여백 통일 */
+/* .tailored-images {
+  padding: 0 60px 0 60px;
+} */
 
 .tailored-image-item {
   overflow: hidden;
@@ -858,7 +899,7 @@
 .two-panel-section {
   width: 100%;
   background: #ffffff;
-  padding: 0;
+  padding: 0 60px;
 }
 
 .two-panel-grid {
@@ -903,7 +944,15 @@
 .bottom-image-section {
   width: 100%;
   background: #ffffff;
-  padding: 0;
+  padding: 0 60px;
+  box-sizing: border-box;
+}
+
+.bottom-img-container {
+  width: 100%;
+  max-width: 1460px;
+  margin: 0 auto;
+  padding-right: 0;
 }
 
 .bottom-img {
@@ -931,6 +980,10 @@
     margin: 8px;
   }
   
+  .bottom-image-section {
+    padding: 0 40px;
+  }
+  
   .bottom-img {
     height: 50vh;
     min-height: 400px;
@@ -953,6 +1006,10 @@
     margin: 5px;
   }
   
+  .bottom-image-section {
+    padding: 0 20px;
+  }
+  
   .bottom-img {
     height: 40vh;
     min-height: 300px;
@@ -966,6 +1023,10 @@
   
   .panel-item {
     margin: 3px;
+  }
+  
+  .bottom-image-section {
+    padding: 0 15px;
   }
   
   .bottom-img {
@@ -982,13 +1043,14 @@
 }
 
 .quality-content {
-  padding: 80px 40px;
+  padding: 80px 60px;
   box-sizing: border-box;
 }
 
 .quality-title-section {
   text-align: left;
   width: 50%;
+  max-width: 50%;
   margin-bottom: 60px;
 }
 
@@ -999,6 +1061,8 @@
   gap: 0 40px;
   align-items: start;
   margin: 40px 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .quality-left,
@@ -1065,6 +1129,8 @@
 
 .quality-images {
   width: 100%;
+  padding: 0 60px;
+  box-sizing: border-box;
 }
 
 .quality-image-grid {
@@ -1073,6 +1139,7 @@
   gap: 0;
   height: 60vh;
   min-height: 500px;
+  width: 100%;
 }
 
 .quality-image-item {
@@ -1089,8 +1156,12 @@
 
 /* 반응형 디자인 */
 @media (max-width: 1024px) {
+  .quality-fabric-section {
+    padding: 0 40px;
+  }
+  
   .quality-content {
-    padding: 60px 30px;
+    padding: 60px 0;
   }
   
   .quality-title-section {
@@ -1112,8 +1183,12 @@
 }
 
 @media (max-width: 768px) {
+  .quality-fabric-section {
+    padding: 0 20px;
+  }
+  
   .quality-content {
-    padding: 50px 20px;
+    padding: 50px 0;
   }
   
   .quality-title-section {
@@ -1152,8 +1227,12 @@
 }
 
 @media (max-width: 480px) {
+  .quality-fabric-section {
+    padding: 0 15px;
+  }
+  
   .quality-content {
-    padding: 40px 15px;
+    padding: 40px 0;
   }
   
   .quality-title-section {

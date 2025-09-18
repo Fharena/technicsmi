@@ -86,7 +86,7 @@ const About: React.FC = () => {
               alt="Crafted textiles showroom"
               className="brief-image"
               onError={(e) => { console.log('Brief image failed to load'); e.currentTarget.style.display = 'none'; }}
-            />
+            /> 
           </div>
         </div>
       </section>
@@ -152,7 +152,7 @@ const About: React.FC = () => {
         <div className="images-container">
           <div className="image-item">
             <img 
-              src="/홈페이지 소스정리/ABOUT/e.png" 
+              src="/홈페이지 소스정리/ABOUT/5.png" 
               alt="Fabric swatches" 
               className="about-image"
               onError={(e) => {
@@ -163,7 +163,7 @@ const About: React.FC = () => {
           </div>
           <div className="image-item">
             <img 
-              src="/홈페이지 소스정리/ABOUT/f.png" 
+              src="/홈페이지 소스정리/ABOUT/6.png" 
               alt="Dark fabric texture" 
               className="about-image"
               onError={(e) => {
@@ -312,15 +312,17 @@ const About: React.FC = () => {
 
       {/* Bottom Full Width Image */}
       <section className="bottom-image-section">
-        <img 
-          src="/홈페이지 소스정리/ABOUT/13.png" 
-          alt="Suit jacket detail" 
-          className="bottom-img"
-          onError={(e) => {
-            console.log('Bottom image 13 failed to load');
-            e.currentTarget.style.display = 'none';
-          }}
-        />
+        <div className="bottom-img-container">
+          <img 
+            src="/홈페이지 소스정리/ABOUT/13.png" 
+            alt="Suit jacket detail" 
+            className="bottom-img"
+            onError={(e) => {
+              console.log('Bottom image 13 failed to load');
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
       </section>
 
       {/* Quality Fabric Section */}

@@ -114,6 +114,89 @@ const Archive3: React.FC = () => {
         </div>
       </section>
 
+      {/* QC System Description Section */}
+      <section className="archive3-qc-system">
+        <div className="qc-system-layout">
+          <div className="qc-system-text">
+            <div className="qc-system-english">
+              <p>By using high-saturation colors as a base and organizing detailed check items with clarity, we developed a visually effective and efficient QC label system. The refined layout allows for greater focus on product care while improving consistency in internal processes.</p>
+            </div>
+            <div className="qc-system-korean">
+              <p>채도가 높은 컬러를 기반으로 섬세한 체크 항목을 구조화하여 시각적으로 명확하고 효율적인 QC 라벨 시스템을 구축하였습니다. 완성도 높은 레이아웃은 제품 관리에 대한 집중도를 높이고, 내부 작업의 일관성을 향상시키는 데 기여하고 있습니다.</p>
+            </div>
+            <br></br>
+          </div>
+          <div className="qc-system-images">
+            <div className="qc-image-grid">
+              <div className="qc-image-item qc-image-1">
+                <img src="/홈페이지 소스정리/아카이브3/7.png" alt="Modern Building Facade" />
+              </div>
+              <div className="qc-image-item qc-image-2">
+                <img src="/홈페이지 소스정리/아카이브3/8.png" alt="Vaulted Interior Ceiling" />
+              </div>
+              <div className="qc-image-item qc-image-3">
+                <img src="/홈페이지 소스정리/아카이브3/9.png" alt="Technical Drawing" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Architecture Inspiration Section */}
+      <section className="archive3-architecture">
+        <div className="architecture-layout">
+          <div className="architecture-text">
+            <div className="architecture-english">
+              <p>Technics holds deep respect for contemporary architecture. Its structural reasoning, refined proportions, and material expression offer an ongoing source of inspiration. Within these forms, we observe a balance of order and tension—qualities we seek to reflect in our own design language.</p>
+            </div>
+            <div className="architecture-korean">
+              <p>Jjj자운드의 박스를 처음 마주했을 때, 우리는 단순한 물리적 포장을 넘어 디자인이 어떻게 '태도'를 전달할 수 있는지를 고민하게 되었습니다. Technics의 원단을 담는 박스라면, 그 자체로 기능성과 정제된 인상을 동시에 전달해야 합니다. 단단하지만 과시적이지 않고, 단순하지만 비어 있지 않아야 하며, 열었을 때의 여백과 접힘의 감각이 곧 브랜드의 태도를 말해주어야 합니다. 우리는 이 박스를 단지 보호재가 아닌, Technics의 철학을 시각적으로 정리한 '첫 번째 터치'로 제안하고자 합니다.</p>
+            </div>
+          </div>
+          <div className="architecture-media">
+            <div className="architecture-video">
+              <video 
+                src="/홈페이지 소스정리/아카이브3/10.mp4" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="architecture-video-element"
+                style={{ width: '100%', height: 'auto', minHeight: '300px' }}
+                onLoadStart={() => console.log('Video loading started')}
+                onLoadedData={() => console.log('Video data loaded')}
+                onCanPlay={() => console.log('Video can play')}
+                onError={(e) => {
+                  console.error('Video failed to load:', e);
+                }}
+                onLoadedMetadata={() => console.log('Video metadata loaded')}
+                onSuspend={() => console.log('Video loading suspended')}
+              >
+                <p>영상을 재생할 수 없습니다. 브라우저에서 자동재생이 차단되었을 수 있습니다.</p>
+              </video>
+            </div>
+            <div className="architecture-images">
+              <img src="/홈페이지 소스정리/아카이브3/11.png" alt="Architecture Image 1" />
+              <img src="/홈페이지 소스정리/아카이브3/12.png" alt="Architecture Image 2" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Language Section */}
+      <section className="archive3-visual-language">
+        <div className="visual-language-layout">
+          <div className="visual-language-content">
+            <div className="visual-language-english">
+              <p>We aimed to translate this structural beauty into a visual language. The fabric classification sticker was designed to reflect the sense of order found in architectural drawings, while the placement of key information prioritized legibility through a carefully considered layout.</p>
+            </div>
+            <div className="visual-language-korean">
+              <p>이러한 아름다움의 구조를 시각 언어로 구현하고자 하였습니다. 원단을 분류하는 스티커에는 설계 도면에서 느껴지는 구조적 질서를 반영하고자 했으며, 가장 중요한 정보가 위치하는 영역에는 가독성을 최우선으로 고려하여 레이아웃을 설계하였습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Timeline Table Section */}
       <TimelineTable items={timelineData} />
 

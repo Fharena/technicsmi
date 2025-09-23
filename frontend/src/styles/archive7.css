@@ -1,0 +1,294 @@
+/* ============ Archive7 Page Styles ============ */
+.archive7-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive7-header {
+  padding: 80px 20px 60px 20px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.archive7-page .description-english p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.archive7-page .description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.details-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Project Details ============ */
+.project-details {
+  background: #ffffff;
+  padding: 40px 0;
+}
+
+.details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item h4 {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.detail-item p {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ============ Collage Section ============ */
+.collage-section {
+  padding: 0;
+  background: #ffffff;
+}
+
+.collage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.archive7-collage-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* First Row - Two Images No Gap */
+.collage-row-first {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+.collage-image-no-gap {
+  width: 100%;
+  display: block;
+}
+
+.collage-image-no-gap img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Second Row - Two Images No Gap */
+.collage-row-second {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+/* Third Row - Single Image */
+.collage-row-third {
+  width: 100%;
+}
+
+.collage-row-third img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 0 40px;
+    gap: 60px;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive7-header {
+    padding: 60px 0;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .logo-section {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .details-container {
+    padding: 0 20px;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .right-content {
+    gap: 40px;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+  
+  .collage-row-first,
+  .collage-row-second {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .archive7-header {
+    padding: 40px 0;
+  }
+  
+  .header-container {
+    padding: 0 15px;
+    gap: 30px;
+  }
+  
+  .logo-image {
+    max-width: 250px;
+  }
+  
+  .description-english p {
+    font-size: 1.1rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.95rem;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+  
+}

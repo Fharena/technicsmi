@@ -22,6 +22,15 @@
   min-height: 50px;
   gap: 30px;
   align-items: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+.timeline-table-row.clickable {
+  cursor: pointer;
+}
+
+.timeline-table-row.clickable:hover {
+  background-color: #f5f5f5;
 }
 
 .timeline-table-row:last-child {

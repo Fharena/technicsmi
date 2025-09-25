@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import '../styles/archive4.css';
 
 const Archive4: React.FC = () => {
@@ -12,15 +11,6 @@ const Archive4: React.FC = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "1663", title: "Vitale Barberis Canonico", description: "이탈리아의 전통 울 제조업체로, 350년 이상의 역사를 가진 프리미엄 울 브랜드입니다." },
-    { year: "1772", title: "Fox Brothers", description: "영국에서 설립된 전통 울 제조업체로, 고품질 울 원단 제조의 선구자입니다." },
-    { year: "1896", title: "Dugdale Bros & Co", description: "영국 허더스필드에서 시작된 울 제조업체로, 정장용 울 원단의 전문 제조업체입니다." },
-    { year: "1900s", title: "Huddersfield Fine Worsteds", description: "영국 허더스필드의 전통 울 제조업체로, 최고급 울 원단 제조로 유명합니다." },
-    { year: "1960s", title: "Modern Wool Innovation", description: "1960년대 울 산업의 현대화와 혁신이 시작된 시기입니다." },
-    { year: "2000s", title: "Sustainable Wool", description: "지속가능한 울 생산과 친환경 제조 과정이 주목받기 시작한 시기입니다." }
-  ];
 
   useEffect(() => {
     let ticking = false;
@@ -321,7 +311,7 @@ const Archive4: React.FC = () => {
       </section>
 
       {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

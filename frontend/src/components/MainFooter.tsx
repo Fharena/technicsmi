@@ -24,14 +24,14 @@ const MainFooter: React.FC = () => {
             <div className="contact-row-1-col-1">
               <div className="contact-item">
                 <span className="contact-label">Korea, goyang</span>
-                <span className="contact-label">Isan.</span>
+                <span className="contact-label">23-11, ILSAN-RO 427BEON-GIL, ILSANDONG-GU</span>
               </div>
             </div>
             
             <div className="contact-row-1-col-2">
               <div className="contact-item">
-                <span className="contact-label">Instagram</span>
-                <span className="contact-value">@tchajsk</span>
+                <span className="contact-label">instagram</span>
+                <span className="contact-value">@tcs.textile</span>
               </div>
             </div>
             
@@ -40,16 +40,13 @@ const MainFooter: React.FC = () => {
             <div className="contact-row-2-col-1">
               <div className="contact-item">
                 <span className="contact-label">Technics e-mail</span>
-                <span className="contact-value">sanjdnkjsk@gmail.com</span>
+                <span className="contact-value">sanjdnkjak@gmail.com</span>
               </div>
             </div>
             
             <div className="contact-row-2-col-2">
               <div className="contact-item">
-                <span className="contact-value">+82) 10-2901-3819</span>
-              </div>
-              <div className="contact-item">
-                <span className="contact-value">+82) 10-2901-3819</span>
+                <span className="contact-value">+82) 10-6680-1543</span>
               </div>
               <div className="contact-item">
                 <span className="contact-value">2025</span>

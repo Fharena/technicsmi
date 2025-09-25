@@ -1,20 +1,10 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 import '../styles/archive5.css';
 
 const Archive5: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "Color Archive Development", description: "Technics의 디자인 원칙을 반영한 색상 아카이브 구축 프로젝트가 시작되었습니다." },
-    { year: "2025", title: "Natural Color Research", description: "자연물과 구조물에서 색상 추출 및 분류 시스템을 개발했습니다." },
-    { year: "2025", title: "Palette Classification", description: "색상 팔레트 분류를 위한 시각적 분석 프레임워크를 구축했습니다." },
-    { year: "2025", title: "Naming System", description: "내부 사용 색상 명명 로직 및 문서화 시스템을 완성했습니다." },
-    { year: "2025", title: "Material Interaction", description: "색상-섬유 상호작용 검증을 통한 실용적 색상 시스템을 구축했습니다." }
-  ];
-
   return (
     <div className="archive5-page">
       {/* Header Section */}
@@ -125,8 +115,72 @@ const Archive5: React.FC = () => {
         </div>
       </section>
 
+      {/* New Section */}
+      <section className="new-section">
+        <div className="new-container">
+          <div className="new-content">
+            {/* Top Image - Full Width */}
+            <div className="new-image-top">
+              <img src="/홈페이지 소스정리/아카이브5/4.png" alt="Architecture Study" />
+            </div>
+
+            {/* Second Image - Left Aligned */}
+            <div className="new-image-single-left">
+              <img src="/홈페이지 소스정리/아카이브5/5.png" alt="Fabric Texture" />
+            </div>
+
+            {/* Third and Fourth Images Side by Side */}
+            <div className="new-image-middle">
+              <div className="new-image-left">
+                <img src="/홈페이지 소스정리/아카이브5/6.png" alt="Wood Grain" />
+              </div>
+              <div className="new-image-right">
+                <img src="/홈페이지 소스정리/아카이브5/7.png" alt="Material Study" />
+              </div>
+            </div>
+
+            {/* Last Image - Right Aligned */}
+            <div className="new-image-single-right">
+              <img src="/홈페이지 소스정리/아카이브5/8.png" alt="Surface Detail" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Another Section */}
+      <section className="another-section">
+        <div className="another-container">
+          <div className="another-content">
+            {/* First Row - Two Images No Gap */}
+            <div className="another-row-first">
+              <div className="another-image-no-gap">
+                <img src="/홈페이지 소스정리/아카이브5/9.png" alt="Fabric Detail" />
+              </div>
+              <div className="another-image-no-gap">
+                <img src="/홈페이지 소스정리/아카이브5/10.png" alt="Nature Study" />
+              </div>
+            </div>
+
+            {/* Second Row - Single Image */}
+            <div className="another-row-second">
+              <img src="/홈페이지 소스정리/아카이브5/11.png" alt="Lemon Study" />
+            </div>
+
+            {/* Third Row - Two Images With Gap */}
+            <div className="another-row-third">
+              <div className="another-image-with-gap">
+                <img src="/홈페이지 소스정리/아카이브5/12.png" alt="Vegetable Study" />
+              </div>
+              <div className="another-image-with-gap">
+                <img src="/홈페이지 소스정리/아카이브5/13.png" alt="Additional Study" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

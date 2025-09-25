@@ -1,0 +1,406 @@
+/* ============ Archive8 Page Styles ============ */
+.archive8-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive8-header {
+  padding: 80px 20px 60px 20px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.archive8-page .description-english p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.archive8-page .description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.archive8-page .details-section {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.archive8-page .details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.archive8-page .detail-item {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.archive8-page .detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.archive8-page .detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.archive8-page .detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Gallery Section ============ */
+.gallery-section {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.gallery-row-first,
+.gallery-row-second {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-row-third {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-image-single {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-image-double {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-image-single img,
+.gallery-image-double img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============ Detail Images Section ============ */
+.detail-images-section {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.detail-images-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.detail-image-item {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: fit-content;
+}
+
+.detail-image-item img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+.detail-image-item:nth-child(2) {
+  align-self: flex-end;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+/* ============ Text Section ============ */
+.archive8-text-section {
+  padding: 100px 20px;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.archive8-text-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.archive8-text-content {
+  max-width: 80%;
+  margin: 0;
+  text-align: left;
+}
+
+.archive8-text-content h2 {
+  font-size: 2.2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #000 !important;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+
+.archive8-text-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333 !important;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ Final Gallery Section ============ */
+.final-gallery-section {
+  padding: 80px 20px 120px 20px;
+  background: #ffffff;
+}
+
+.final-gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.final-gallery-item {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: fit-content;
+}
+
+.final-gallery-item img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+.final-gallery-item:nth-child(1) {
+  align-self: flex-start;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+.final-gallery-item:nth-child(2) {
+  align-self: flex-end;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+.final-gallery-item:nth-child(3) {
+  align-self: flex-start;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 0 40px;
+    gap: 60px;
+  }
+  
+  .gallery-container {
+    padding: 0 20px;
+  }
+  
+  .gallery-grid {
+    gap: 30px;
+  }
+  
+  .detail-images-container {
+    gap: 30px;
+  }
+  
+  .archive8-text-content h2 {
+    font-size: 2rem;
+  }
+  
+  .final-gallery-container {
+    gap: 30px;
+  }
+}
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .archive8-page .detail-label {
+    font-size: 0.9rem;
+  }
+  
+  .archive8-page .detail-value {
+    font-size: 0.8rem;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .archive8-header {
+    padding: 60px 0;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .logo-section {
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  .details-section {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .archive8-page .detail-label {
+    font-size: 0.85rem;
+  }
+  
+  .archive8-page .detail-value {
+    font-size: 0.75rem;
+  }
+  
+  .right-content {
+    gap: 40px;
+  }
+  
+  .gallery-section {
+    padding: 60px 20px;
+  }
+  
+  .gallery-grid {
+    gap: 25px;
+  }
+  
+  .detail-images-section {
+    padding: 60px 20px;
+  }
+  
+  .detail-images-container {
+    gap: 25px;
+  }
+  
+  .archive8-text-section {
+    padding: 80px 20px;
+  }
+  
+  .archive8-text-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .archive8-text-content p {
+    font-size: 15px;
+  }
+  
+  .final-gallery-section {
+    padding: 60px 20px 100px 20px;
+  }
+  
+  .final-gallery-container {
+    gap: 25px;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .detail-item {
+    margin-bottom: 25px;
+  }
+}

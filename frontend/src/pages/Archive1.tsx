@@ -1,23 +1,9 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 
 const Archive1: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "가나다라마바사", description: "가나다라마바사아자차카타파하가나다라마바사아자차카파파하하하" },
-    { year: "2025", title: "가나다라마바사아자차", description: "가나다라마바사아자차차차차" },
-    { year: "2025", title: "가나다라마바사아자차카타파", description: "가나다라마바사가나다라마바사아자차카타파하하아자차카차파하하하아자차" },
-    { year: "2025", title: "가나다라마바사아자", description: "가나다라마바사아 아자" },
-    { year: "2025", title: "가나다라마바", description: "가나다라마바사아자차카타파아자카치파파하아자" },
-    { year: "2025", title: "가나다라", description: "가나다라마바사가나다라마바사아자차카차파하" },
-    { year: "2025", title: "가나다라마", description: "가나다라마바사 가나다라마바사아자차카타파하가나다라마바사아자차카" },
-    { year: "2025", title: "가나", description: "가나다라마바사아자아, 가나다라마바사아자차카파하하가나다라마" },
-    { year: "2025", title: "가나다라마바사", description: "가나다라마바사가나다라마아자타카타차파하하하하아" },
-    { year: "2025", title: "가나다라마바사아자차카타파", description: "가나다라마바사가나다라마아자타카타차파하하하하아가나 (가나)" }
-  ];
 
   return (
     <div className="archive1-page">
@@ -193,8 +179,8 @@ const Archive1: React.FC = () => {
         </div>
       </section>
 
-      {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      {/* Timeline Section */}
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

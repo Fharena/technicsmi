@@ -1,0 +1,472 @@
+/* ============ Archive7 Page Styles ============ */
+.archive7-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Header Section ============ */
+.archive7-header {
+  padding: 80px 20px 60px 20px;
+  background: #ffffff;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.logo-section {
+  display: flex;
+  align-items: flex-start;
+  background: transparent;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 45px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.archive7-page .description-english p {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: #000000;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.archive7-page .description-korean p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.details-section {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 35px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* ============ Text Section ============ */
+.archive7-text-section {
+  padding: 80px 20px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.archive7-text-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.archive7-text-content {
+  max-width: 700px;
+  margin: 0;
+  text-align: left;
+}
+
+.archive7-text-content h2 {
+  font-size: 2.2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #000 !important;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+}
+
+.archive7-text-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333 !important;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ Charts Section ============ */
+.charts-section {
+  padding: 80px 20px;
+  background: white;
+}
+
+.charts-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  justify-items: center;
+  background: transparent;
+  border: none;
+}
+
+.chart-item {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  overflow: hidden;
+}
+
+.chart-item video {
+  width: calc(100% + 4px);
+  height: auto;
+  max-width: calc(100% + 4px);
+  object-fit: cover;
+  object-position: left center;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-right: -4px;
+}
+
+/* ============ Images Section ============ */
+.images-section {
+  padding: 80px 20px 120px 20px;
+  background: white;
+  min-height: fit-content;
+  overflow: visible;
+}
+
+.images-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
+  min-height: fit-content;
+  padding-bottom: 40px;
+}
+
+.image-item {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: fit-content;
+}
+
+.image-item img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+}
+
+.image-item:nth-child(1) {
+  align-self: flex-start;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+.image-item:nth-child(3) {
+  align-self: flex-end;
+  max-width: 960px; /* 80% of 1200px */
+}
+
+/* ============ Final Text Section ============ */
+.final-text-section {
+  padding: 100px 20px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.final-text-container {
+
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.final-text-content {
+  padding: 0 60px;
+  max-width: 1000px;
+  margin: 0;
+  text-align: left;
+}
+
+.final-text-content h2 {
+  font-size: 2.2rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #000 !important;
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+
+.final-text-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333 !important;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ Collage Section ============ */
+.collage-section {
+  padding: 0;
+  background: #ffffff;
+}
+
+.collage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.archive7-collage-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* First Row - Two Images No Gap */
+.collage-row-first {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+.collage-image-no-gap {
+  width: 100%;
+  display: block;
+}
+
+.collage-image-no-gap img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Second Row - Two Images No Gap */
+.collage-row-second {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+/* Third Row - Single Image */
+.collage-row-third {
+  width: 100%;
+}
+
+.collage-row-third img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 0 40px;
+    gap: 60px;
+  }
+  
+  .archive7-text-content h2 {
+    font-size: 22px;
+  }
+  
+  .charts-container {
+    gap: 30px;
+  }
+  
+  .images-container {
+    gap: 30px;
+  }
+  
+  .final-text-content h2 {
+    font-size: 2rem;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive7-header {
+    padding: 60px 0;
+  }
+  
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+  
+  .logo-section {
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  .details-section {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .right-content {
+    gap: 40px;
+  }
+  
+  .archive7-text-section {
+    padding: 60px 20px;
+  }
+  
+  .archive7-text-content h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  
+  .archive7-text-content p {
+    font-size: 15px;
+  }
+  
+  .charts-section {
+    padding: 60px 20px;
+  }
+  
+  .charts-container {
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .images-section {
+    padding: 60px 20px 100px 20px;
+  }
+  
+  .images-container {
+    gap: 25px;
+  }
+  
+  .image-item {
+    max-width: 350px;
+  }
+  
+  .final-text-section {
+    padding: 80px 20px;
+  }
+  
+  .final-text-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .final-text-content p {
+    font-size: 15px;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+  
+  .collage-row-first,
+  .collage-row-second {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .archive7-header {
+    padding: 40px 0;
+  }
+  
+  .header-container {
+    padding: 0 15px;
+    gap: 30px;
+  }
+  
+  
+  .logo-image {
+    max-width: 250px;
+  }
+  
+  .description-english p {
+    font-size: 1.1rem;
+  }
+  
+  .description-korean p {
+    font-size: 0.95rem;
+  }
+  
+  .collage-container {
+    padding: 0;
+  }
+  
+}

@@ -1,24 +1,9 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 
 const Archive2: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "스태프 명찰 시스템", description: "테크닉스 브랜드의 전문성과 세련됨을 표현하는 내부 ID 시스템" },
-    { year: "2025", title: "브랜드 정체성 강화", description: "스태프를 단순한 직원이 아닌 브랜드 가치를 대표하는 핵심 멤버로 표현" },
-    { year: "2025", title: "시각적 계층 구조", description: "명확성, 계층, 구조를 바탕으로 한 디자인 철학 구현" },
-    { year: "2025", title: "내부 문화 커뮤니케이션", description: "브랜드의 핵심 가치를 내부 문화에서도 일관되게 전달" },
-    { year: "2025", title: "역할별 구조화", description: "각 역할에 맞는 명찰 디자인과 타이포그래피 표준 수립" },
-    { year: "2025", title: "재사용성 연구", description: "지속 가능한 재료와 내구성 테스트를 통한 실용성 확보" },
-    { year: "2025", title: "NFC 기술 적용", description: "디지털 연동을 통한 현대적이고 효율적인 ID 시스템" },
-    { year: "2025", title: "색상 매핑", description: "브랜드 컬러 시스템을 활용한 직관적인 역할 구분" },
-    { year: "2025", title: "프린팅 기술", description: "단색 플렉소그래픽 프린팅을 통한 정밀한 타이포그래피 구현" },
-    { year: "2025", title: "재료 혁신", description: "라미네이션 PVC와 쓰기 가능한 코팅을 활용한 내구성 확보" }
-  ];
-
   return (
     <div className="archive2-page">
       {/* Header Section */}
@@ -194,7 +179,7 @@ const Archive2: React.FC = () => {
       </section>
 
       {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

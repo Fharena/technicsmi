@@ -63,45 +63,43 @@
   letter-spacing: -0.01em;
 }
 
-.details-section {
+.archive8-page .details-section {
   margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr;
   gap: 35px;
 }
 
-.details-column {
+.archive8-page .details-column {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.detail-item {
-  margin-bottom: 35px;
+.archive8-page .detail-item {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 
-.detail-item:last-child {
+.archive8-page .detail-item:last-child {
   margin-bottom: 0;
 }
 
-.detail-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 5px;
+.archive8-page .detail-label {
+  font-size: 0.95rem;
+  color: #000000;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
-.detail-value {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #333;
-  margin: 0;
+.archive8-page .detail-value {
+  font-size: 0.85rem;
+  color: #000000;
   font-weight: 400;
+  line-height: 1.4;
   letter-spacing: -0.01em;
 }
 
@@ -316,6 +314,18 @@
   }
 }
 
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .archive8-page .detail-label {
+    font-size: 0.9rem;
+  }
+  
+  .archive8-page .detail-value {
+    font-size: 0.8rem;
+  }
+}
+
+/* 모바일 */
 @media (max-width: 768px) {
   .archive8-header {
     padding: 60px 0;
@@ -336,6 +346,14 @@
   .details-section {
     grid-template-columns: 1fr;
     gap: 25px;
+  }
+  
+  .archive8-page .detail-label {
+    font-size: 0.85rem;
+  }
+  
+  .archive8-page .detail-value {
+    font-size: 0.75rem;
   }
   
   .right-content {

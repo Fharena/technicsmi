@@ -1,18 +1,9 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 
 const Archive3: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "라벨링 시스템 연구", description: "현재 라벨링 시스템과 워크플로우 요구사항 분석" },
-    { year: "2025", title: "디자인 개발", description: "그리드 기반 레이아웃과 컬러 코딩 시스템 구축" },
-    { year: "2025", title: "프로토타입 테스트", description: "QC팀과의 현장 테스트 및 피드백 통합" },
-    { year: "2025", title: "최종 구현", description: "프로덕션 준비 완료된 라벨과 분류 스티커" }
-  ];
-
   return (
     <div className="archive3-page">
       {/* Header Section */}
@@ -198,7 +189,7 @@ const Archive3: React.FC = () => {
       </section>
 
       {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

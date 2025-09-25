@@ -117,15 +117,16 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Image Collage Section */}
+      {/* Image Collage Section - 3행 구조 */}
       <section className="collage-section">
         <div className="collage-grid">
+          {/* 1행: 2장 */}
           <div className="collage-item collage-top-left">
             <img 
               src="/홈페이지 소스정리/ABOUT/a.png" 
               alt="Textile crafting process" 
               className="collage-img"
-              onError={(e) => { console.log('Collage image 5 failed to load'); e.currentTarget.style.display = 'none'; }}
+              onError={(e) => { console.log('Collage image a failed to load'); e.currentTarget.style.display = 'none'; }}
             />
           </div>
           <div className="collage-item collage-top-right">
@@ -133,47 +134,40 @@ const About: React.FC = () => {
               src="/홈페이지 소스정리/ABOUT/b.png" 
               alt="Pastoral landscape with sheep" 
               className="collage-img"
-              onError={(e) => { console.log('Collage image 6 failed to load'); e.currentTarget.style.display = 'none'; }}
+              onError={(e) => { console.log('Collage image b failed to load'); e.currentTarget.style.display = 'none'; }}
             />
           </div>
-          <div className="collage-item collage-bottom">
+          
+          {/* 2행: 1장 */}
+          <div className="collage-item collage-middle">
             <img 
               src="/홈페이지 소스정리/ABOUT/c.png" 
               alt="Golden field landscape" 
               className="collage-img"
-              onError={(e) => { console.log('Collage image 7 failed to load'); e.currentTarget.style.display = 'none'; }}
+              onError={(e) => { console.log('Collage image c failed to load'); e.currentTarget.style.display = 'none'; }}
+            />
+          </div>
+          
+          {/* 3행: 2장 */}
+          <div className="collage-item collage-bottom-left">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/5.png" 
+              alt="Professional suit detail" 
+              className="collage-img"
+              onError={(e) => { console.log('Collage image 5 failed to load'); e.currentTarget.style.display = 'none'; }}
+            />
+          </div>
+          <div className="collage-item collage-bottom-right">
+            <img 
+              src="/홈페이지 소스정리/ABOUT/6.png" 
+              alt="Fabric texture detail" 
+              className="collage-img"
+              onError={(e) => { console.log('Collage image 6 failed to load'); e.currentTarget.style.display = 'none'; }}
             />
           </div>
         </div>
       </section>
 
-      {/* Two Images Section */}
-      <section className="two-images-section">
-        <div className="images-container">
-          <div className="image-item">
-            <img 
-              src="/홈페이지 소스정리/ABOUT/5.png" 
-              alt="Fabric swatches" 
-              className="about-image"
-              onError={(e) => {
-                console.log('Image e failed to load');
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          </div>
-          <div className="image-item">
-            <img 
-              src="/홈페이지 소스정리/ABOUT/6.png" 
-              alt="Dark fabric texture" 
-              className="about-image"
-              onError={(e) => {
-                console.log('Image f failed to load');
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          </div>
-        </div>
-      </section>
 
       {/* Woven with Intention Section */}
       <section className="woven-section">

@@ -79,19 +79,19 @@
   gap: 8px;
 }
 
-.detail-label {
-  font-size: 0.9rem;
-  font-weight: 600;
+.archive3-page .detail-label {
+  font-size: 0.95rem;
   color: #000000;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
-.detail-value {
-  font-size: 0.95rem;
-  line-height: 1.5;
+.archive3-page .detail-value {
+  font-size: 0.85rem;
   color: #000000;
   font-weight: 400;
+  line-height: 1.4;
   letter-spacing: -0.01em;
 }
 
@@ -448,7 +448,46 @@
   }
 }
 
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .archive3-page .header-container {
+    gap: 60px;
+  }
+  
+  .archive3-page .details-section {
+    grid-template-columns: 1fr 1fr 0.5fr;
+    gap: 30px;
+  }
+  
+  .archive3-page .detail-label {
+    font-size: 0.9rem;
+  }
+  
+  .archive3-page .detail-value {
+    font-size: 0.8rem;
+  }
+}
+
+/* 모바일 */
 @media (max-width: 768px) {
+  .archive3-page .header-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .archive3-page .details-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .archive3-page .detail-label {
+    font-size: 0.85rem;
+  }
+  
+  .archive3-page .detail-value {
+    font-size: 0.75rem;
+  }
+  
   .archive3-header,
   .archive3-qc-tags,
   .archive3-qc-system,

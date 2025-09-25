@@ -1,20 +1,10 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 import '../styles/archive5.css';
 
 const Archive5: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "Color Archive Development", description: "Technics의 디자인 원칙을 반영한 색상 아카이브 구축 프로젝트가 시작되었습니다." },
-    { year: "2025", title: "Natural Color Research", description: "자연물과 구조물에서 색상 추출 및 분류 시스템을 개발했습니다." },
-    { year: "2025", title: "Palette Classification", description: "색상 팔레트 분류를 위한 시각적 분석 프레임워크를 구축했습니다." },
-    { year: "2025", title: "Naming System", description: "내부 사용 색상 명명 로직 및 문서화 시스템을 완성했습니다." },
-    { year: "2025", title: "Material Interaction", description: "색상-섬유 상호작용 검증을 통한 실용적 색상 시스템을 구축했습니다." }
-  ];
-
   return (
     <div className="archive5-page">
       {/* Header Section */}
@@ -190,7 +180,7 @@ const Archive5: React.FC = () => {
       </section>
 
       {/* Timeline Table Section */}
-      <TimelineTable items={timelineData} />
+      <ArchiveTimelineSection />
 
       {/* Contact Form */}
       <ContactForm />

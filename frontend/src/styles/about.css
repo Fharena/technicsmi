@@ -11,7 +11,7 @@
 }
 
 /* ============ Hero Section ============ */
-.about-hero {
+.about-page .about-hero {
   position: relative !important;
   width: 100vw !important;
   height: 100vh !important;
@@ -21,7 +21,7 @@
   padding: 0 !important;
 }
 
-.hero-background {
+.about-page .hero-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,14 +31,14 @@
   /* 배경색 제거 - 부모 요소에서 이미 설정됨 */
 }
 
-.hero-bg-img {
+.about-page .hero-bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.hero-overlay {
+.about-page .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -55,14 +55,14 @@
 }
 
 /* Navigation */
-.hero-nav {
+.about-page .hero-nav {
   align-self: flex-end;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.nav-dot {
+.about-page .nav-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -70,12 +70,12 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
-.nav-dot.active {
+.about-page .nav-dot.active {
   background: #ffffff;
   border: 2px solid #ffffff;
 }
 
-.nav-text {
+.about-page .nav-text {
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;
@@ -84,7 +84,7 @@
 }
 
 /* Hero Content */
-.hero-content {
+.about-page .hero-content {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@
   max-width: 800px;
 }
 
-.hero-title {
+.about-page .hero-title {
   font-size: 3.5rem;
   font-weight: 400;
   color: #ffffff;
@@ -104,7 +104,7 @@
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
-.hero-subtitle {
+.about-page .hero-subtitle {
   font-size: 1.1rem;
   color: #ffffff;
   font-weight: 300;
@@ -115,14 +115,14 @@
 }
 
 /* Hero Buttons */
-.hero-buttons {
+.about-page .hero-buttons {
   align-self: flex-end;
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-.hero-btn {
+.about-page .hero-btn {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
@@ -136,7 +136,7 @@
   letter-spacing: 0.5px;
 }
 
-.hero-btn:hover {
+.about-page .hero-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-1px);
@@ -146,19 +146,19 @@
 
 /* 태블릿 */
 @media (max-width: 1024px) {
-  .hero-title {
+  .about-page .hero-title {
     font-size: 3rem;
   }
   
-  .hero-overlay {
+  .about-page .hero-overlay {
     padding: 30px;
   }
   
-  .hero-buttons {
+  .about-page .hero-buttons {
     gap: 12px;
   }
   
-  .hero-btn {
+  .about-page .hero-btn {
     padding: 7px 14px;
     font-size: 0.8rem;
   }
@@ -166,34 +166,34 @@
 
 /* 모바일 */
 @media (max-width: 768px) {
-  .hero-title {
+  .about-page .hero-title {
     font-size: 2.2rem;
     line-height: 1.3;
   }
   
-  .hero-subtitle {
+  .about-page .hero-subtitle {
     font-size: 1rem;
   }
   
-  .hero-overlay {
+  .about-page .hero-overlay {
     padding: 25px 20px;
   }
   
-  .hero-buttons {
+  .about-page .hero-buttons {
     gap: 10px;
     margin-bottom: 15px;
   }
   
-  .hero-btn {
+  .about-page .hero-btn {
     padding: 6px 12px;
     font-size: 0.75rem;
   }
   
-  .nav-text {
+  .about-page .nav-text {
     font-size: 0.8rem;
   }
   
-  .nav-dot {
+  .about-page .nav-dot {
     width: 10px;
     height: 10px;
   }
@@ -201,40 +201,40 @@
 
 /* 소형 모바일 */
 @media (max-width: 480px) {
-  .hero-title {
+  .about-page .hero-title {
     font-size: 1.8rem;
   }
   
-  .hero-subtitle {
+  .about-page .hero-subtitle {
     font-size: 0.9rem;
   }
   
-  .hero-overlay {
+  .about-page .hero-overlay {
     padding: 20px 15px;
   }
   
-  .hero-buttons {
+  .about-page .hero-buttons {
     flex-direction: column;
     gap: 8px;
     align-self: center;
     margin-bottom: 10px;
   }
   
-  .hero-btn {
+  .about-page .hero-btn {
     padding: 8px 16px;
     width: 120px;
   }
 }
 
 /* ============ New Zealand Wool Section ============ */
-.wool-section {
+.about-page .wool-section {
   width: 100%;
   background-color: #ffffff;
   padding: 60px 40px;
   box-sizing: border-box;
 }
 
-.wool-header {
+.about-page .wool-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,14 +242,14 @@
   padding: 0 20px;
 }
 
-.header-item {
+.about-page .header-item {
   font-size: 1.2rem;
   font-weight: 500;
   color: #333333;
   letter-spacing: 1px;
 }
 
-.wool-content {
+.about-page .wool-content {
   text-align: center;
   margin-bottom: 50px;
   max-width: 800px;
@@ -257,7 +257,7 @@
   margin-right: auto;
 }
 
-.wool-title {
+.about-page .wool-title {
   font-size: clamp(28px, 4.4vw, 48px);
   font-weight: 800;
   color: #000000;
@@ -266,7 +266,7 @@
   line-height: 1.15;
 }
 
-.wool-description {
+.about-page .wool-description {
   font-size: 1.1rem;
   color: #666666;
   line-height: 1.6;
@@ -274,7 +274,7 @@
   font-weight: 300;
 }
 
-.wool-image {
+.about-page .wool-image {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -283,7 +283,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.wool-bg-img {
+.about-page .wool-bg-img {
   width: 100%;
   height: auto;
   display: block;
@@ -292,27 +292,27 @@
 
 /* Wool Section 반응형 */
 @media (max-width: 768px) {
-  .wool-section {
+  .about-page .wool-section {
     padding: 40px 20px;
   }
   
-  .wool-header {
+  .about-page .wool-header {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
   }
   
-  .wool-title {
+  .about-page .wool-title {
     font-size: 2.2rem;
   }
   
-  .wool-description {
+  .about-page .wool-description {
     font-size: 1rem;
   }
 }
 
 /* ============ The brief Section ============ */
-.brief-section {
+.about-page .brief-section {
   width: 100%;
   background: #ffffff;
   padding: 60px 60px 100px 60px;
@@ -428,95 +428,135 @@
   box-sizing: border-box;
 }
 
-.collage-grid {
+.about-page .collage-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto auto;
   gap: 0;
-  height: 75vh;
-  min-height: 500px;
-  max-height: 100vh;
-  overflow: hidden;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0;
   box-sizing: border-box;
-  aspect-ratio: 2/1;
+  align-items: stretch;
 }
 
-.collage-item {
+.about-page .collage-item {
   overflow: hidden;
   position: relative;
   margin: 0;
   padding: 0;
   border: none;
+  display: flex;
 }
 
-.collage-top-left {
+.about-page .collage-top-left {
   grid-column: 1;
   grid-row: 1;
+  min-height: 400px;
 }
 
-.collage-top-right {
+.about-page .collage-top-right {
   grid-column: 2;
   grid-row: 1;
+  min-height: 400px;
 }
 
-.collage-bottom {
+.about-page .collage-middle {
   grid-column: 1 / -1;
   grid-row: 2;
 }
 
-.collage-img {
+.about-page .collage-bottom-left {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.about-page .collage-bottom-right {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.about-page .collage-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
   margin: 0;
   padding: 0;
   border: none;
 }
 
-/* 반응형 디자인 - 아래 섹션과 동일한 방식 */
+/* a 이미지 (첫 번째 행 왼쪽) - 컨테이너 가득 채우기 */
+.about-page .collage-top-left .collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* b 이미지 (첫 번째 행 오른쪽) - a 이미지 높이에 맞춰 조절 */
+.about-page .collage-top-right .collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 반응형 디자인 - 3행 구조 */
 @media (max-width: 1024px) {
-  .collage-grid {
-    padding: 0 15px;
+  .about-page .collage-grid {
+    max-width: 900px;
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .collage-grid {
+  .about-page .collage-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    height: auto;
-    aspect-ratio: 1/3;
-    padding: 0 10px;
+    grid-template-rows: auto auto auto auto auto;
+    max-width: 100%;
+    padding: 0 20px;
   }
   
-  .collage-top-left,
-  .collage-top-right,
-  .collage-bottom {
+  .about-page .collage-top-left {
     grid-column: 1;
-    grid-row: auto;
-    height: 350px;
+    grid-row: 1;
+  }
+  
+  .about-page .collage-top-right {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .about-page .collage-middle {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  
+  .about-page .collage-bottom-left {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  
+  .about-page .collage-bottom-right {
+    grid-column: 1;
+    grid-row: 5;
   }
 }
 
 @media (max-width: 480px) {
-  .collage-grid {
-    padding: 0 5px;
+  .about-page .collage-grid {
+    padding: 0 15px;
   }
 }
 
 /* ============ Two Images Section ============ */
-.two-images-section {
+.about-page .two-images-section {
   width: 100%;
   background: #ffffff;
   padding: 0;
 }
 
-.images-container {
+.about-page .images-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -529,15 +569,15 @@
 }
 
 /* 섹션 외부 가로 여백 통일 */
-.images-container {
+.about-page .images-container {
   padding: 0 60px;
 }
 
-.image-item {
+.about-page .image-item {
   overflow: hidden;
 }
 
-.about-image {
+.about-page .about-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -545,34 +585,34 @@
 }
 
 /* 3행 그리드 전체 높이 조정 */
-.collage-section,
-.two-images-section {
+.about-page .collage-section,
+.about-page .two-images-section {
   margin: 0;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 1024px) {
-  .images-container {
+  .about-page .images-container {
     gap: 30px;
     padding: 0 15px;
   }
 }
 
 @media (max-width: 768px) {
-  .images-container {
+  .about-page .images-container {
     grid-template-columns: 1fr;
     height: auto;
     gap: 20px;
     padding: 0 10px;
   }
   
-  .image-item {
+  .about-page .image-item {
     height: 350px;
   }
 }
 
 @media (max-width: 480px) {
-  .images-container {
+  .about-page .images-container {
     gap: 15px;
     padding: 0 5px;
   }

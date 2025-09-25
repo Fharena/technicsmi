@@ -1,19 +1,10 @@
 import React from 'react';
-import TimelineTable from '../components/TimelineTable';
-import type { TimelineItem } from '../components/TimelineTable';
+import ArchiveTimelineSection from '../components/ArchiveTimelineSection';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 import '../styles/archive7.css';
 
 const Archive7: React.FC = () => {
-  // 타임라인 데이터 정의
-  const timelineData: TimelineItem[] = [
-    { year: "2025", title: "Archive 7 Development", description: "Technics의 새로운 아카이브 프로젝트가 시작되었습니다." },
-    { year: "2025", title: "Research Phase", description: "프로젝트의 연구 단계가 진행되었습니다." },
-    { year: "2025", title: "Design Implementation", description: "디자인 구현 단계가 완료되었습니다." },
-    { year: "2025", title: "Final Documentation", description: "최종 문서화 작업이 완료되었습니다." }
-  ];
-
   return (
     <div className="archive7-page">
       {/* Header Section */}
@@ -181,7 +172,7 @@ const Archive7: React.FC = () => {
       {/* Timeline Section */}
       <section className="timeline-section">
         <div className="timeline-container">
-          <TimelineTable items={timelineData} />
+          <ArchiveTimelineSection />
         </div>
       </section>
 

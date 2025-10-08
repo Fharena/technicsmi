@@ -3,11 +3,23 @@ const router = express.Router();
 const path = require("path");
 const { db } = require("../database");
 
-// GET - 모든 제품 조회
+// GET - 모든 제품 조회 (라인업 필터링 지원)
 router.get("/", (req, res) => {
   try {
-    const stmt = db.prepare("SELECT * FROM products ORDER BY created_at DESC");
-    const rows = stmt.all();
+    const { lineup } = req.query;
+
+    let query = "SELECT * FROM products";
+    let params = [];
+
+    if (lineup && lineup !== "전체") {
+      query += " WHERE lineup = ?";
+      params.push(lineup);
+    }
+
+    query += " ORDER BY created_at DESC";
+
+    const stmt = db.prepare(query);
+    const rows = params.length > 0 ? stmt.all(...params) : stmt.all();
 
     // 프론트엔드 형식에 맞게 변환
     const products = rows.map((row) => ({

@@ -8,7 +8,7 @@ import '../styles/stock.css';
 
 const Stock: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedLineup] = useState<string>('전체');
+  const [selectedLineup, setSelectedLineup] = useState<string>('전체');
   const [adminPassword, setAdminPassword] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -17,13 +17,28 @@ const Stock: React.FC = () => {
 
   // API에서 제품 데이터 불러오기
   useEffect(() => {
+    loadAllProducts();
     loadProducts();
   }, []);
+
+  // 라인업 변경 시 제품 데이터 다시 불러오기
+  useEffect(() => {
+    loadProducts();
+  }, [selectedLineup]);
+
+  const loadAllProducts = async () => {
+    try {
+      const data = await fetchProducts(); // 라인업 필터 없이 모든 제품 가져오기
+      setAllProducts(data);
+    } catch (err) {
+      console.error('Failed to load all products:', err);
+    }
+  };
 
   const loadProducts = async () => {
     try {
       setLoading(true);
-      const data = await fetchProducts();
+      const data = await fetchProducts(selectedLineup);
       setProducts(data);
       setError(null);
     } catch (err) {
@@ -42,8 +57,9 @@ const Stock: React.FC = () => {
     return '#333333';
   };
 
-  // 라인업 목록 추출
-  // const lineups = ['전체', ...Array.from(new Set(products.map(p => p.lineup)))];
+  // 라인업 목록 추출 (모든 제품에서)
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const lineups = ['전체', ...Array.from(new Set(allProducts.map(p => p.lineup)))];
 
   // 필터된 제품 목록
   const filteredProducts = selectedLineup === '전체' 
@@ -79,11 +95,19 @@ const Stock: React.FC = () => {
           <img src="/홈페이지 소스정리/재고현황/Frame 391.png" alt="Center Logo" className="center-logo-img" />
         </div>
 
-        {/* 라인업 버튼 */}
+        {/* 라인업 필터 */}
         <div className="lineup-selector">
-          <button className="lineup-badge">
-            LIBRA({filteredProducts.length})
-          </button>
+          <select 
+            value={selectedLineup} 
+            onChange={(e) => setSelectedLineup(e.target.value)}
+            className="lineup-dropdown"
+          >
+            {lineups.map(lineup => (
+              <option key={lineup} value={lineup}>
+                {lineup === '전체' ? `전체 (${allProducts.length})` : `${lineup} (${allProducts.filter(p => p.lineup === lineup).length})`}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* 재고 범례 */}

@@ -21,9 +21,13 @@ export interface Product {
   stock: number;
 }
 
-// 모든 제품 조회
-export const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch(`${API_BASE_URL}/products`);
+// 모든 제품 조회 (라인업 필터링 지원)
+export const fetchProducts = async (lineup?: string): Promise<Product[]> => {
+  const url = lineup && lineup !== '전체' 
+    ? `${API_BASE_URL}/products?lineup=${encodeURIComponent(lineup)}`
+    : `${API_BASE_URL}/products`;
+    
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Failed to fetch products');
   }

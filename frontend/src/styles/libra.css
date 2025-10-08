@@ -1,0 +1,229 @@
+/* ============ Libra 페이지 스타일 ============ */
+
+.libra-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Top Image Section ============ */
+.libra-top-image {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.libra-top-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ Hero Section with Video Background ============ */
+.libra-hero {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: #e8dfd0;
+  aspect-ratio: 14 / 10;
+  padding-bottom: 100px;
+}
+
+.libra-hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.libra-hero-overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.libra-hero-content {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.libra-hero-left {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+}
+
+.libra-hero-text h2 {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.libra-description {
+  font-size: clamp(0.75rem, 1.3vw, 1rem);
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+
+.libra-hero-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-top: -20px;
+}
+
+.libra-number {
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+
+.libra-hero-bottom {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  right: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.libra-feature h3 {
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.libra-feature p {
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ 반응형 디자인 ============ */
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .libra-hero-overlay {
+    padding: 60px 40px;
+  }
+
+  .libra-number {
+    font-size: 12rem;
+  }
+
+  .libra-hero-bottom {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 60px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .libra-hero-overlay {
+    padding: 40px 20px;
+  }
+
+  .libra-hero-content {
+    margin: 0 auto 0 50px;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .libra-hero-left {
+    max-width: 100%;
+  }
+
+  .libra-hero-text h2 {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .libra-description {
+    font-size: 0.8rem;
+  }
+
+  .libra-number {
+    font-size: 8rem;
+  }
+
+  .libra-hero-bottom {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-top: 40px;
+  }
+
+  .libra-feature h3 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .libra-feature p {
+    font-size: 0.8rem;
+  }
+}
+
+/* 소형 모바일 */
+@media (max-width: 480px) {
+  .libra-hero-overlay {
+    padding: 30px 15px;
+  }
+
+  .libra-hero-text h2 {
+    font-size: 0.85rem;
+  }
+
+  .libra-description {
+    font-size: 0.75rem;
+  }
+
+  .libra-number {
+    font-size: 6rem;
+  }
+
+  .libra-hero-bottom {
+    gap: 20px;
+    padding-top: 30px;
+  }
+
+  .libra-feature h3 {
+    font-size: 0.85rem;
+  }
+
+  .libra-feature p {
+    font-size: 0.75rem;
+  }
+}
+

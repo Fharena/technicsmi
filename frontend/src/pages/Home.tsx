@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useRive } from '@rive-app/react-canvas';
+// import { useRive } from '@rive-app/react-canvas';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 
@@ -22,13 +22,13 @@ const Home: React.FC = () => {
   const koreaTimezone = { key: 'korea', zone: 'Asia/Seoul', label: 'KOREA', gmt: 'GMT+9' };
 
   // Rive 애니메이션 설정 - 리사이징 최적화
-  const { RiveComponent } = useRive({
-    src: '/홈페이지 소스정리/홈메인/technicsanime.riv',
-    autoplay: true, // 자동재생 활성화
-    // 안전한 layout 설정
-    fit: 'contain', // 전체 애니메이션 보이기 (여백 생길 수 있음)
-    alignment: 'center', // 중앙 정렬
-  });
+  // const { RiveComponent } = useRive({
+  //   src: '/홈페이지 소스정리/홈메인/technicsanime.riv',
+  //   autoplay: true, // 자동재생 활성화
+  //   // 안전한 layout 설정
+  //   // fit: 'contain', // 전체 애니메이션 보이기 (여백 생길 수 있음) - 제거됨
+  //   // alignment: 'center', // 중앙 정렬 - 제거됨
+  // });
 
   // 실시간 시계 업데이트
   useEffect(() => {
@@ -105,16 +105,16 @@ const Home: React.FC = () => {
   };
 
   // 메시지 버튼 클릭 핸들러
-  const handleMessageClick = () => {
-    // 실제 메신저나 채팅 시스템으로 연결
-    console.log('Opening message system...');
-    // 예: 카카오톡, 텔레그램 등 연결
-  };
+  // const handleMessageClick = () => { // 사용하지 않는 함수 주석 처리
+  //   // 실제 메신저나 채팅 시스템으로 연결
+  //   console.log('Opening message system...');
+  //   // 예: 카카오톡, 텔레그램 등 연결
+  // };
 
   // 이메일 버튼 클릭 핸들러  
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:contact@technics.com?subject=Inquiry about Technics&body=Hello, I would like to inquire about...';
-  };
+  // const handleEmailClick = () => { // 사용하지 않는 함수 주석 처리
+  //   window.location.href = 'mailto:contact@technics.com?subject=Inquiry about Technics&body=Hello, I would like to inquire about...';
+  // };
 
   const currentRotatingCountry = rotatableCountries[currentCountryIndex];
 
@@ -269,15 +269,7 @@ const Home: React.FC = () => {
             </div>
           </div>
           
-          {/* Rive 애니메이션 연동 영역 */}
-          <div className="rive-integration-area" data-scroll data-scroll-speed="0.1">
-            <div className="rive-placeholder">
-              {/* 나중에 Rive 애니메이션이 들어갈 자리 */}
-              <div className="rive-content">
-                <p>Interactive Animation Area</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
 
@@ -334,10 +326,7 @@ const Home: React.FC = () => {
       
 
       
-      {/* Rive 애니메이션 */}
-      <div className="rive-animation-section">
-        <RiveComponent className="rive-animation" />
-      </div>
+    
     </div>
   );
 };

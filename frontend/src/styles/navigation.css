@@ -318,8 +318,8 @@
   -webkit-backdrop-filter: none; /* 블러 효과 제거 */
   box-shadow: none; /* 그림자 제거 */
   opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
+  /* pointer-events: none; 제거 - 항상 클릭 가능하게 */
+  transition: opacity 0.15s ease, max-height 0.15s ease; /* 더 빠른 전환 */
   z-index: 20; /* nav-list(10), nav-left-icon(15)보다 위에 표시 */
   /* 기본 상태에서 완전히 숨김 */
   max-height: 0;
@@ -345,11 +345,12 @@
 /* React 상태가 열린 상태일 때만 서브메뉴 표시 */
 .navigation.sub-open .submenu {
   opacity: 1;
-  pointer-events: auto !important; /* 강제로 pointer-events 활성화 */
+  /* pointer-events: auto !important; 제거 - 이미 항상 활성화됨 */
   visibility: visible;
   max-height: 400px; /* 서브메뉴 높이 더 확장 (300px → 400px) */
   overflow: visible;
   border-radius: 8px; /* 서브메뉴 모서리를 WORK와 맞춤 */
+  transition: opacity 0.15s ease, max-height 0.15s ease; /* 더 빠른 전환 */
 }
 
 /* 중복 제거됨 - 위에서 이미 .navigation:has(.submenu:hover) 처리됨 */
@@ -359,16 +360,20 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   font-size: 0.9em;
-  padding: 0; /* padding 제거 */
+  padding: 8px 12px; /* 클릭 영역 확보 */
   transition: all 0.2s ease;
-  border-radius: 0; /* border-radius 제거 */
+  border-radius: 4px; /* 약간의 둥근 모서리 */
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
   background: transparent !important; /* 명시적으로 투명 배경 */
+  cursor: pointer; /* 포인터 커서 */
+  display: block; /* 블록 요소로 */
+  width: 100%; /* 전체 너비 */
+  text-align: left; /* 왼쪽 정렬 */
 }
 .sub-link:hover{ 
-  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.1) !important; /* hover 시 배경색 */
   color: rgba(255, 255, 255, 1);
   border: none !important;
   outline: none !important;

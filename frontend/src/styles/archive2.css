@@ -113,6 +113,8 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .image-top {
@@ -169,6 +171,8 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .archive2-text .text-english p {
@@ -271,6 +275,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -318,6 +323,8 @@
   display: flex;
   flex-direction: column;
   gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .abstract-top-section {
@@ -351,6 +358,8 @@
 .archive2-metaball {
   padding: 60px;
   background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .metaball-header {

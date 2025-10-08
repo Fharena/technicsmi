@@ -5,10 +5,12 @@ import './styles/navigation.css';
 import './styles/home.css';
 import './styles/pages.css';
 import './styles/about.css';
+import './styles/work.css';
 import './styles/archive.css';
 import './styles/archive1.css';
 import './styles/archive2.css';
 import './styles/archive3.css';
+import './styles/stock.css';
 
 // 페이지 컴포넌트들 import
 import Home from './pages/Home';
@@ -26,9 +28,8 @@ import Archive5 from './pages/Archive5';
 import Archive6 from './pages/Archive6';
 import Archive7 from './pages/Archive7';
 import Archive8 from './pages/Archive8';
-// (선택) Contact/Cart가 없다면 링크를 지우거나 더미 페이지를 만들어요.
-// import Contact from './pages/Contact';
-// import Cart from './pages/Cart';
+import Stock from './pages/Stock';
+import StockAdmin from './pages/StockAdmin';
 
 function App() {
   return (
@@ -69,9 +70,8 @@ function App() {
             <Route path="/archive6" element={<Archive6 />} />
             <Route path="/archive7" element={<Archive7 />} />
             <Route path="/archive8" element={<Archive8 />} />
-            {/* 라우트가 있다면 추가
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} /> */}
+            <Route path="/stock" element={<Stock />} />
+            <Route path="/stock/admin" element={<StockAdmin />} />
           </Routes>
         </main>
       </div>

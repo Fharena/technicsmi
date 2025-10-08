@@ -115,6 +115,8 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .archive1-page .image-top,
@@ -284,6 +286,8 @@
 .archive1-text {
   padding: 60px 60px 80px 60px;
   background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* ============ Installation Art Section ============ */
@@ -292,16 +296,28 @@
   background: #ffffff;
 }
 
+.archive1-installation-section .installation-images-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* ============ Next Section ============ */
 .archive1-next-section {
   padding: 0 60px 80px 60px;
   background: #ffffff;
 }
 
+.archive1-next-section .next-images-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* ============ Text and Fashion Section ============ */
 .archive1-text-fashion-section {
   padding: 60px 60px 80px 60px;
   background: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* ============ Next Image Section ============ */
@@ -312,6 +328,8 @@
 
 .next-image-container {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .text-fashion-text {

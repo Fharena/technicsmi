@@ -77,7 +77,29 @@ const StockAdmin: React.FC = () => {
   // 제품 수정
   const handleUpdateProduct = async (id: string, updates: Partial<Product>) => {
     try {
+      // 수정 전 제품 정보 가져오기 (이미지 변경 확인용)
+      const originalProduct = products.find(p => p.id === id);
+      
       await updateProduct(id, updates);
+      
+      // 이미지가 변경된 경우 이전 이미지 캐시 정리
+      if (originalProduct?.image && updates.image && originalProduct.image !== updates.image) {
+        try {
+          const oldImageFilename = originalProduct.image.replace('/uploads/', '');
+          
+          // 로컬 스토리지에서 이전 이미지 캐시 삭제
+          const cacheKeys = Object.keys(localStorage);
+          cacheKeys.forEach(key => {
+            if (key.includes(oldImageFilename) || key.includes(originalProduct.image)) {
+              localStorage.removeItem(key);
+              console.log(`Removed old cached image from localStorage: ${key}`);
+            }
+          });
+        } catch (cacheError) {
+          console.warn('Failed to clear old image cache:', cacheError);
+        }
+      }
+      
       await loadProducts();
     } catch (err) {
       console.error('Failed to update product:', err);
@@ -89,7 +111,41 @@ const StockAdmin: React.FC = () => {
   const handleDeleteProduct = async (id: string) => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       try {
+        // 삭제할 제품의 이미지 정보 가져오기
+        const productToDelete = products.find(p => p.id === id);
+        
         await deleteProduct(id);
+        
+        // 로컬 스토리지에서 이미지 캐시 정리
+        if (productToDelete?.image) {
+          try {
+            // 이미지 파일명 추출
+            const imageFilename = productToDelete.image.replace('/uploads/', '');
+            
+            // 로컬 스토리지에서 해당 이미지 캐시 삭제
+            const cacheKeys = Object.keys(localStorage);
+            cacheKeys.forEach(key => {
+              if (key.includes(imageFilename) || key.includes(productToDelete.image)) {
+                localStorage.removeItem(key);
+                console.log(`Removed cached image from localStorage: ${key}`);
+              }
+            });
+            
+            // 브라우저 캐시도 정리 (선택적)
+            if ('caches' in window) {
+              caches.keys().then(cacheNames => {
+                cacheNames.forEach(cacheName => {
+                  caches.open(cacheName).then(cache => {
+                    cache.delete(productToDelete.image);
+                  });
+                });
+              });
+            }
+          } catch (cacheError) {
+            console.warn('Failed to clear image cache:', cacheError);
+          }
+        }
+        
         await loadProducts();
         alert('제품이 삭제되었습니다.');
       } catch (err) {
@@ -181,6 +237,38 @@ const StockAdmin: React.FC = () => {
     setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
   };
 
+  // 로컬 스토리지 이미지 캐시 전체 정리
+  const handleClearImageCache = () => {
+    if (window.confirm('모든 이미지 캐시를 정리하시겠습니까?')) {
+      try {
+        const cacheKeys = Object.keys(localStorage);
+        let clearedCount = 0;
+        
+        cacheKeys.forEach(key => {
+          // 이미지 관련 캐시 키들 정리
+          if (key.includes('/uploads/') || key.includes('image') || key.includes('cache')) {
+            localStorage.removeItem(key);
+            clearedCount++;
+          }
+        });
+        
+        // 브라우저 캐시도 정리
+        if ('caches' in window) {
+          caches.keys().then(cacheNames => {
+            cacheNames.forEach(cacheName => {
+              caches.delete(cacheName);
+            });
+          });
+        }
+        
+        alert(`이미지 캐시 ${clearedCount}개가 정리되었습니다.`);
+      } catch (error) {
+        console.error('Failed to clear image cache:', error);
+        alert('캐시 정리 중 오류가 발생했습니다.');
+      }
+    }
+  };
+
   return (
     <div className="admin-page">
       <div className="admin-content-wrapper">
@@ -189,6 +277,9 @@ const StockAdmin: React.FC = () => {
         <div className="admin-actions">
           <button className="btn-add" onClick={() => setShowAddForm(true)}>
             + 제품 추가
+          </button>
+          <button className="btn-cache" onClick={handleClearImageCache}>
+            🗑️ 캐시 정리
           </button>
           <button className="btn-password" onClick={() => setShowPasswordModal(true)}>
             🔒 비밀번호 변경

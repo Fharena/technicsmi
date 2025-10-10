@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState, useId } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 type Sample =
   | { kind: "img"; el: HTMLImageElement; src: string }
@@ -35,7 +35,6 @@ const NavigationLens: React.FC<Props> = ({
   const [sample, setSample] = useState<Sample | null>(null);
   const overlapRef = useRef(0);           // 현재 샘플과의 겹침 면적(히스테리시스용)
   const location = useLocation();
-  const navigate = useNavigate();
   const uid = useId();
 
   // 현재 페이지 이름 가져오기
@@ -43,23 +42,11 @@ const NavigationLens: React.FC<Props> = ({
     const path = location.pathname;
     switch (path) {
       case '/':
-        return 'HOME';
-      case '/about':
-        return 'ABOUT';
-      case '/work':
-        return 'WORK';
-      case '/libra':
-        return 'LIBRA';
-      case '/aqua':
-        return 'AQUARIUS';
-      case '/froma':
-        return 'FRØMA';
-      case '/archive':
-        return 'ARCHIVE';
+        return 'STOCK';
       case '/stock':
         return 'STOCK';
       default:
-        return 'HOME';
+        return 'STOCK';
     }
   };
 
@@ -286,154 +273,11 @@ const NavigationLens: React.FC<Props> = ({
                     <span className="current-page-text">{getCurrentPageName()}</span>
                 </li>
                 
-                {/* 확장 상태: 모든 메뉴 표시 */}
-                <li className="home">
+                {/* 확장 상태: stock 메뉴만 표시 */}
+                <li>
                     <NavLink 
                         to="/" 
                         end       
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        HOME
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/about"      
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        ABOUT
-                    </NavLink>
-                </li>
-                <li
-                    className="has-sub"
-                    onMouseEnter={() => {
-                        // 닫기 타이머 취소 (안정성 확보)
-                        if (closeTimerRef.current) {
-                            clearTimeout(closeTimerRef.current);
-                            closeTimerRef.current = null;
-                        }
-                        setSubOpen(true);
-                    }}
-                >
-                    <NavLink 
-                        to="/work" 
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        WORK
-                    </NavLink>
-
-                    {/* 하위 메뉴 (네비 안쪽 아래로 펼쳐짐) */}
-                    <ul 
-                        className="submenu"
-                        onMouseEnter={() => {
-                            // 서브메뉴에서도 타이머 취소 (추가 안전장치)
-                            if (closeTimerRef.current) {
-                                clearTimeout(closeTimerRef.current);
-                                closeTimerRef.current = null;
-                            }
-                        }}
-                    >
-                        <li>
-                            <button 
-                                className="sub-link"
-                                onMouseDown={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    
-                                    // 즉시 상태 초기화
-                                    setOpen(false);
-                                    setSubOpen(false);
-                                    
-                                    // 타이머 정리
-                                    if (closeTimerRef.current) {
-                                        clearTimeout(closeTimerRef.current);
-                                        closeTimerRef.current = null;
-                                    }
-                                    
-                                    // 네비게이션 실행
-                                    navigate('/libra');
-                                }}
-                            >
-                                LIBRA
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                className="sub-link"
-                                onMouseDown={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    
-                                    // 즉시 상태 초기화
-                                    setOpen(false);
-                                    setSubOpen(false);
-                                    
-                                    // 타이머 정리
-                                    if (closeTimerRef.current) {
-                                        clearTimeout(closeTimerRef.current);
-                                        closeTimerRef.current = null;
-                                    }
-                                    
-                                    // 네비게이션 실행
-                                    navigate('/aqua');
-                                }}
-                            >
-                                AQUARIUS
-                            </button>
-                        </li>
-                        <li>
-                            <button 
-                                className="sub-link"
-                                onMouseDown={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    
-                                    // 즉시 상태 초기화
-                                    setOpen(false);
-                                    setSubOpen(false);
-                                    
-                                    // 타이머 정리
-                                    if (closeTimerRef.current) {
-                                        clearTimeout(closeTimerRef.current);
-                                        closeTimerRef.current = null;
-                                    }
-                                    
-                                    // 네비게이션 실행
-                                    navigate('/froma');
-                                }}
-                            >
-                                FRØMA
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/archive"    
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        ARCHIVE
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/stock"    
                         className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
                         onClick={() => {
                             setOpen(false);

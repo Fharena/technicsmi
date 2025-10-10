@@ -3,31 +3,9 @@ import NavigationLens from "./components/NavigationLens";
 import './styles/global.css';
 import './styles/navigation.css';
 import './styles/home.css';
-import './styles/pages.css';
-import './styles/about.css';
-import './styles/work.css';
-import './styles/archive.css';
-import './styles/archive1.css';
-import './styles/archive2.css';
-import './styles/archive3.css';
 import './styles/stock.css';
 
-// 페이지 컴포넌트들 import
-import Home from './pages/Home';
-import About from './pages/About';
-import Aqua from './pages/Aqua';
-import Froma from './pages/Froma';
-import Libra from './pages/Libra';
-import Work from './pages/Work';
-import Archive from './pages/Archive';
-import Archive1 from './pages/Archive1';
-import Archive2 from './pages/Archive2';
-import Archive3 from './pages/Archive3';
-import Archive4 from './pages/Archive4';
-import Archive5 from './pages/Archive5';
-import Archive6 from './pages/Archive6';
-import Archive7 from './pages/Archive7';
-import Archive8 from './pages/Archive8';
+// 페이지 컴포넌트들 import (stock 페이지만)
 import Stock from './pages/Stock';
 import StockAdmin from './pages/StockAdmin';
 
@@ -55,21 +33,7 @@ function App() {
 
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/aqua" element={<Aqua />} />
-            <Route path="/froma" element={<Froma />} />
-            <Route path="/libra" element={<Libra />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/archive1" element={<Archive1 />} />
-            <Route path="/archive2" element={<Archive2 />} />
-            <Route path="/archive3" element={<Archive3 />} />
-            <Route path="/archive4" element={<Archive4 />} />
-            <Route path="/archive5" element={<Archive5 />} />
-            <Route path="/archive6" element={<Archive6 />} />
-            <Route path="/archive7" element={<Archive7 />} />
-            <Route path="/archive8" element={<Archive8 />} />
+            <Route path="/" element={<Stock />} />
             <Route path="/stock" element={<Stock />} />
             <Route path="/stock/admin" element={<StockAdmin />} />
           </Routes>

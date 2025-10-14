@@ -103,20 +103,20 @@ const StockAdmin: React.FC = () => {
   const handleStockChange = async (id: string, stockStatus: string) => {
     let stockValue = 0;
     switch(stockStatus) {
-      case '품절': stockValue = 0; break;
-      case '입고예정': stockValue = 3; break;
-      case '재고있음': stockValue = 8; break;
-      case '재고많음': stockValue = 15; break;
+      case '일시품절': stockValue = 0; break;
+      case '소량': stockValue = 3; break;
+      case '재고많음': stockValue = 8; break;
+      case '영구품절': stockValue = 15; break;
     }
     await handleUpdateProduct(id, { stock: stockValue });
   };
 
   // 재고 값을 상태 문자열로 변환
   const getStockStatus = (stock: number): string => {
-    if (stock === 0) return '품절';
-    if (stock <= 5) return '입고예정';
-    if (stock <= 10) return '재고있음';
-    return '재고많음';
+    if (stock === 0) return '일시품절';
+    if (stock <= 5) return '소량';
+    if (stock <= 10) return '재고많음';
+    return '영구품절';
   };
 
   // 이미지 파일 업로드 처리
@@ -280,19 +280,19 @@ const StockAdmin: React.FC = () => {
                   const status = e.target.value;
                   let stockValue = 0;
                   switch(status) {
-                    case '품절': stockValue = 0; break;
-                    case '입고예정': stockValue = 3; break;
-                    case '재고있음': stockValue = 8; break;
-                    case '재고많음': stockValue = 15; break;
+                    case '일시품절': stockValue = 0; break;
+                    case '소량': stockValue = 3; break;
+                    case '재고많음': stockValue = 8; break;
+                    case '영구품절': stockValue = 15; break;
                   }
                   setNewProduct({...newProduct, stock: stockValue});
                 }}
                 className="stock-status-select"
               >
-                <option value="품절">🔴 품절</option>
-                <option value="입고예정">🟡 입고예정</option>
-                <option value="재고있음">🟢 재고있음</option>
-                <option value="재고많음">⚫ 재고많음</option>
+                <option value="재고많음">🟢 재고많음</option>
+                <option value="소량">🟡 소량</option>
+                <option value="일시품절">🔴 일시품절</option>
+                <option value="영구품절">⚫ 영구품절</option>
               </select>
             </div>
             <div className="modal-buttons">
@@ -420,10 +420,10 @@ const StockAdmin: React.FC = () => {
                     onChange={(e) => handleStockChange(product.id, e.target.value)}
                     className="stock-status-select"
                   >
-                    <option value="품절">🔴 품절</option>
-                    <option value="입고예정">🟡 입고예정</option>
-                    <option value="재고있음">🟢 재고있음</option>
-                    <option value="재고많음">⚫ 재고많음</option>
+                    <option value="재고많음">🟢 재고많음</option>
+                    <option value="소량">🟡 소량</option>
+                    <option value="일시품절">🔴 일시품절</option>
+                    <option value="영구품절">⚫ 영구품절</option>
                   </select>
                 </td>
                 <td>

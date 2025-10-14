@@ -51,10 +51,10 @@ const Stock: React.FC = () => {
 
   // 재고 상태에 따른 색상 반환
   const getStockColor = (stock: number) => {
-    if (stock === 0) return '#ff4444';
-    if (stock <= 5) return '#ffcc00';
-    if (stock <= 10) return '#44ff44';
-    return '#333333';
+    if (stock === 0) return '#ff4444'; // 일시품절 (빨강)
+    if (stock <= 5) return '#ffcc00'; // 소량 (노랑)
+    if (stock <= 10) return '#22c55e'; // 재고많음 (초록)
+    return '#000000'; // 영구품절 (검정)
   };
 
   // 라인업 목록 추출 (모든 제품에서)
@@ -113,20 +113,20 @@ const Stock: React.FC = () => {
         {/* 재고 범례 */}
         <div className="stock-legend">
           <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#ff4444' }}></span>
-            <span>재고 없음</span>
+            <span className="legend-dot" style={{ backgroundColor: '#22c55e' }}></span>
+            <span>재고많음</span>
           </div>
           <div className="legend-item">
             <span className="legend-dot" style={{ backgroundColor: '#ffcc00' }}></span>
-            <span>입고 예정</span>
+            <span>소량</span>
           </div>
           <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#44ff44' }}></span>
-            <span>입고 완료</span>
+            <span className="legend-dot" style={{ backgroundColor: '#ff4444' }}></span>
+            <span>일시품절</span>
           </div>
           <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#333333' }}></span>
-            <span>재고 현황</span>
+            <span className="legend-dot" style={{ backgroundColor: '#000000' }}></span>
+            <span>영구품절</span>
           </div>
         </div>
 

@@ -108,8 +108,8 @@
 /* 제품 그리드 */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 16px;
 }
 
 .product-item {
@@ -179,7 +179,7 @@
   width: 30px;
   height: 3px;
   display: inline-block;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* 로딩 및 에러 */
@@ -784,7 +784,7 @@
   }
   
   .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -798,8 +798,8 @@
   }
   
   .products-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
   
   .product-image-wrapper {
@@ -821,6 +821,11 @@
 @media (max-width: 480px) {
   .tcs-logo {
     height: 20px;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
   .product-image-wrapper {

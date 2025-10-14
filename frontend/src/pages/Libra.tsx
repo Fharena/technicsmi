@@ -53,6 +53,38 @@ const Libra: React.FC = () => {
         </div>
       </section>
 
+      {/* LIBRA Collection Section */}
+      <div className="libra-collection-section">
+        <img 
+          src="/홈페이지 소스정리/libra/LIBRA섹션.png" 
+          alt="LIBRA Section Background" 
+          className="libra-section-bg"
+        />
+      </div>
+
+      {/* Pure Wool Section */}
+      <div className="pure-wool-section">
+        <img 
+          src="/홈페이지 소스정리/libra/PURE섹션.png" 
+          alt=" Pure Wool Section Background" 
+          className="pure-wool-bg"
+        />
+        <div className="pure-wool-content">
+          <div className="main-quote">
+            <span className="quote-mark">"</span>
+            <h2 className="quote-text">Pure Wool.<br />&nbsp;&nbsp;Pure Confidence."</h2>
+          </div>
+          <div className="sub-quotes">
+            <div className="left-quote">
+              <p>Tailored for the<br />Everyday Gentleman</p>
+            </div>
+            <div className="right-quote">
+              <p>Equally at Home in Boardrooms<br />and Weekends</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Form */}
       <ContactForm />
 

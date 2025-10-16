@@ -18,6 +18,8 @@ const Work: React.FC = () => {
   
   // 디폴트 모델 경로
   const defaultModelPath = "/홈페이지 소스정리/work/lqm12.glb";
+
+  // 프리로딩 제거 - 필요할 때 로드하도록 변경
   
   // 리브라 컬러 팔레트 데이터
   const libraColors = [

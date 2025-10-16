@@ -8,26 +8,12 @@ interface ModelProps {
   selectedColor?: string;
 }
 
-function Model({ modelPath, selectedColor, defaultModelPath }: ModelProps & { defaultModelPath: string }) {
+function Model({ modelPath, selectedColor }: ModelProps) {
   const sceneRef = useRef<THREE.Group>(null);
   
-  // 항상 Hook을 먼저 호출
-  let scene;
-  try {
-    console.log('Attempting to load model:', modelPath);
-    scene = useGLTF(modelPath);
-    console.log('Successfully loaded model:', modelPath);
-  } catch (error) {
-    console.warn(`Failed to load model ${modelPath}, using default model:`, error);
-    try {
-      console.log('Attempting to load default model:', defaultModelPath);
-      scene = useGLTF(defaultModelPath);
-      console.log('Successfully loaded default model:', defaultModelPath);
-    } catch (defaultError) {
-      console.error('Failed to load default model as well:', defaultError);
-      scene = null;
-    }
-  }
+  // useGLTF는 항상 호출되어야 하므로 기본 모델을 먼저 로드
+  console.log('Loading model:', modelPath);
+  const scene = useGLTF(modelPath);
 
   useEffect(() => {
     if (sceneRef.current && selectedColor && sceneRef.current.traverse) {
@@ -47,11 +33,6 @@ function Model({ modelPath, selectedColor, defaultModelPath }: ModelProps & { de
     }
   }, [selectedColor]);
 
-  // scene이 유효하지 않으면 빈 그룹 반환
-  if (!scene) {
-    return <group />;
-  }
-
   // GLTF 객체인지 확인하고 적절한 객체 반환
   const sceneObject = 'scene' in scene ? scene.scene : scene;
   
@@ -65,7 +46,7 @@ interface Model3DProps {
   defaultModelPath?: string;
 }
 
-const Model3D: React.FC<Model3DProps> = ({ modelPath, className, selectedColor, defaultModelPath = "/홈페이지 소스정리/work/lqm12.glb" }) => {
+const Model3D: React.FC<Model3DProps> = ({ modelPath, className, selectedColor }) => {
   const [key, setKey] = React.useState(0);
   const [hasError, setHasError] = React.useState(false);
 
@@ -84,6 +65,14 @@ const Model3D: React.FC<Model3DProps> = ({ modelPath, className, selectedColor, 
       };
     }
   }, []);
+
+  // Three.js 호환 로딩 컴포넌트
+  const LoadingSpinner = () => (
+    <mesh>
+      <boxGeometry args={[0.1, 0.1, 0.1]} />
+      <meshBasicMaterial color="#666" />
+    </mesh>
+  );
 
   // 에러 바운더리 컴포넌트
   const ErrorFallback = () => (
@@ -110,6 +99,11 @@ const Model3D: React.FC<Model3DProps> = ({ modelPath, className, selectedColor, 
       <Canvas 
         key={key}
         camera={{ position: [0, 0, 5], fov: 50 }}
+        gl={{ 
+          antialias: false, // 안티앨리어싱 비활성화로 성능 향상
+          powerPreference: "high-performance" // 고성능 GPU 사용
+        }}
+        dpr={[1, 2]} // 디스플레이 픽셀 비율 제한
         onCreated={({ gl }) => {
           // WebGL 컨텍스트 설정
           gl.domElement.addEventListener('webglcontextlost', (event) => {
@@ -121,11 +115,11 @@ const Model3D: React.FC<Model3DProps> = ({ modelPath, className, selectedColor, 
           setHasError(true);
         }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingSpinner />}>
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
           <pointLight position={[-10, -10, -10]} />
-          <Model modelPath={modelPath} selectedColor={selectedColor} defaultModelPath={defaultModelPath} />
+          <Model modelPath={modelPath} selectedColor={selectedColor} />
           <OrbitControls 
             enableZoom={true}
             enablePan={true}

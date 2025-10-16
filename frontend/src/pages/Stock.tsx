@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 import { fetchProducts, adminLogin, getImageUrl } from '../services/api';
@@ -13,7 +12,6 @@ const Stock: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   // API에서 제품 데이터 불러오기
   useEffect(() => {
@@ -66,12 +64,13 @@ const Stock: React.FC = () => {
     ? products 
     : products.filter(p => p.lineup === selectedLineup);
 
-  // 관리자 페이지 접근
+  // 관리자 페이지 접근 (새창으로 열기)
   const handleAdminAccess = async () => {
     try {
       const success = await adminLogin(adminPassword);
       if (success) {
-        navigate('/stock/admin');
+        // 새창으로 관리자 페이지 열기
+        window.open('/stock/admin', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
         setShowPasswordModal(false);
         setAdminPassword('');
       } else {

@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import NavigationLens from "./components/NavigationLens";
 import './styles/global.css';
 import './styles/navigation.css';
@@ -12,24 +14,51 @@ import './styles/archive2.css';
 import './styles/archive3.css';
 import './styles/stock.css';
 
-// 페이지 컴포넌트들 import
+// 홈 페이지만 즉시 로드 (가장 중요한 페이지)
 import Home from './pages/Home';
-import About from './pages/About';
-import Aqua from './pages/Aqua';
-import Froma from './pages/Froma';
-import Libra from './pages/Libra';
-import Work from './pages/Work';
-import Archive from './pages/Archive';
-import Archive1 from './pages/Archive1';
-import Archive2 from './pages/Archive2';
-import Archive3 from './pages/Archive3';
-import Archive4 from './pages/Archive4';
-import Archive5 from './pages/Archive5';
-import Archive6 from './pages/Archive6';
-import Archive7 from './pages/Archive7';
-import Archive8 from './pages/Archive8';
-import Stock from './pages/Stock';
-import StockAdmin from './pages/StockAdmin';
+
+// 나머지 페이지들은 지연 로딩
+const About = lazy(() => import('./pages/About'));
+const Aqua = lazy(() => import('./pages/Aqua'));
+const Froma = lazy(() => import('./pages/Froma'));
+const Libra = lazy(() => import('./pages/Libra'));
+const Work = lazy(() => import('./pages/Work'));
+const Archive = lazy(() => import('./pages/Archive'));
+const Archive1 = lazy(() => import('./pages/Archive1'));
+const Archive2 = lazy(() => import('./pages/Archive2'));
+const Archive3 = lazy(() => import('./pages/Archive3'));
+const Archive4 = lazy(() => import('./pages/Archive4'));
+const Archive5 = lazy(() => import('./pages/Archive5'));
+const Archive6 = lazy(() => import('./pages/Archive6'));
+const Archive7 = lazy(() => import('./pages/Archive7'));
+const Archive8 = lazy(() => import('./pages/Archive8'));
+const Stock = lazy(() => import('./pages/Stock'));
+const StockAdmin = lazy(() => import('./pages/StockAdmin'));
+
+// 로딩 컴포넌트
+const LoadingSpinner = () => (
+  <div style={{ 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    height: '100vh',
+    fontSize: '18px',
+    color: '#666'
+  }}>
+    로딩 중...
+  </div>
+);
+
+// 페이지 이동 시 맨 위로 스크롤하는 컴포넌트
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 function App() {
   return (
@@ -51,28 +80,31 @@ function App() {
         {/* (권장) SVG 굴절 필터는 컨트롤센터 룩과 거리가 있어 성능상 삭제/주석 처리 */}
         {/* ...필요 없으면 통째로 제거 */}
 
+        <ScrollToTop />
         <NavigationLens magnify={1.1}/>
 
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/aqua" element={<Aqua />} />
-            <Route path="/froma" element={<Froma />} />
-            <Route path="/libra" element={<Libra />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/archive1" element={<Archive1 />} />
-            <Route path="/archive2" element={<Archive2 />} />
-            <Route path="/archive3" element={<Archive3 />} />
-            <Route path="/archive4" element={<Archive4 />} />
-            <Route path="/archive5" element={<Archive5 />} />
-            <Route path="/archive6" element={<Archive6 />} />
-            <Route path="/archive7" element={<Archive7 />} />
-            <Route path="/archive8" element={<Archive8 />} />
-            <Route path="/stock" element={<Stock />} />
-            <Route path="/stock/admin" element={<StockAdmin />} />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/aqua" element={<Aqua />} />
+              <Route path="/froma" element={<Froma />} />
+              <Route path="/libra" element={<Libra />} />
+              <Route path="/work" element={<Work />} />
+              <Route path="/archive" element={<Archive />} />
+              <Route path="/archive1" element={<Archive1 />} />
+              <Route path="/archive2" element={<Archive2 />} />
+              <Route path="/archive3" element={<Archive3 />} />
+              <Route path="/archive4" element={<Archive4 />} />
+              <Route path="/archive5" element={<Archive5 />} />
+              <Route path="/archive6" element={<Archive6 />} />
+              <Route path="/archive7" element={<Archive7 />} />
+              <Route path="/archive8" element={<Archive8 />} />
+              <Route path="/stock" element={<Stock />} />
+              <Route path="/stock/admin" element={<StockAdmin />} />
+            </Routes>
+          </Suspense>
         </main>
       </div>
     </Router>

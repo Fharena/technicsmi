@@ -13,6 +13,14 @@ const StockAdmin: React.FC = () => {
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  
+  // 이미지 수정을 위한 상태
+  const [editingImage, setEditingImage] = useState<string | null>(null);
+  const [imageUploading, setImageUploading] = useState<string | null>(null);
+  
+  // 검색 및 필터 상태
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLineup, setSelectedLineup] = useState('전체');
 
   // 새 제품 폼 상태
   const [newProduct, setNewProduct] = useState({
@@ -21,6 +29,8 @@ const StockAdmin: React.FC = () => {
     color: '',
     image: '',
     stock: 0,
+    restockMessage: '',
+    remarks: '',
   });
 
   // 비밀번호 변경 상태
@@ -65,6 +75,8 @@ const StockAdmin: React.FC = () => {
         color: '',
         image: '',
         stock: 0,
+        restockMessage: '',
+        remarks: '',
       });
       setShowAddForm(false);
       alert('제품이 추가되었습니다.');
@@ -77,11 +89,18 @@ const StockAdmin: React.FC = () => {
   // 제품 수정
   const handleUpdateProduct = async (id: string, updates: Partial<Product>) => {
     try {
-      await updateProduct(id, updates);
-      await loadProducts();
+      console.log('Updating product:', id, updates);
+      const updatedProduct = await updateProduct(id, updates);
+      
+      // 전체 새로고침 대신 해당 제품만 업데이트
+      setProducts(prevProducts => 
+        prevProducts.map(p => p.id === id ? updatedProduct : p)
+      );
+      
+      alert('제품이 수정되었습니다.');
     } catch (err) {
       console.error('Failed to update product:', err);
-      alert('제품 수정에 실패했습니다.');
+      alert(`제품 수정에 실패했습니다: ${err instanceof Error ? err.message : 'Unknown error'}`);
     }
   };
 
@@ -108,7 +127,20 @@ const StockAdmin: React.FC = () => {
       case '재고많음': stockValue = 8; break;
       case '영구품절': stockValue = 15; break;
     }
-    await handleUpdateProduct(id, { stock: stockValue });
+    
+    // 해당 제품의 전체 정보를 찾아서 함께 전송
+    const product = products.find(p => p.id === id);
+    if (product) {
+      await handleUpdateProduct(id, { 
+        lineup: product.lineup,
+        productCode: product.productCode,
+        color: product.color,
+        image: product.image,
+        stock: stockValue,
+        restockMessage: product.restockMessage || '',
+        remarks: product.remarks || ''
+      });
+    }
   };
 
   // 재고 값을 상태 문자열로 변환
@@ -119,7 +151,63 @@ const StockAdmin: React.FC = () => {
     return '영구품절';
   };
 
-  // 이미지 파일 업로드 처리
+  // 필터링 및 검색된 제품 목록
+  const filteredProducts = products.filter(product => {
+    const matchesLineup = selectedLineup === '전체' || product.lineup === selectedLineup;
+    const matchesSearch = searchTerm === '' || 
+      product.productCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.color.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.lineup.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesLineup && matchesSearch;
+  });
+
+  // 라인업 목록 추출
+  const lineups = ['전체', ...Array.from(new Set(products.map(p => p.lineup)))];
+
+
+  // 기존 제품 이미지 수정
+  const handleProductImageUpdate = async (productId: string, file: File) => {
+    if (file && file.type.startsWith('image/')) {
+      try {
+        setImageUploading(productId);
+        
+        // 파일 크기 체크 (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+          alert('파일 크기는 5MB 이하여야 합니다.');
+          return;
+        }
+        
+        // 서버에 업로드
+        const imageUrl = await uploadImage(file);
+        
+        // 제품 정보 업데이트
+        const product = products.find(p => p.id === productId);
+        if (product) {
+          await handleUpdateProduct(productId, { 
+            lineup: product.lineup,
+            productCode: product.productCode,
+            color: product.color,
+            image: imageUrl,
+            stock: product.stock,
+            restockMessage: product.restockMessage || '',
+            remarks: product.remarks || ''
+          });
+        }
+        
+        setEditingImage(null);
+        alert('이미지가 업데이트되었습니다.');
+      } catch (error) {
+        console.error('Image update failed:', error);
+        alert('이미지 업데이트에 실패했습니다.');
+      } finally {
+        setImageUploading(null);
+      }
+    } else {
+      alert('이미지 파일만 업로드 가능합니다.');
+    }
+  };
+
+  // 새 제품용 이미지 파일 업로드 처리
   const handleImageUpload = async (file: File) => {
     if (file && file.type.startsWith('image/')) {
       try {
@@ -141,14 +229,13 @@ const StockAdmin: React.FC = () => {
     }
   };
 
-  // 드래그 앤 드롭 이벤트
+  const handleDragLeave = () => {
+    setDragOver(false);
+  };
+
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setDragOver(true);
-  };
-
-  const handleDragLeave = () => {
-    setDragOver(false);
   };
 
   const handleDrop = async (e: React.DragEvent) => {
@@ -295,6 +382,26 @@ const StockAdmin: React.FC = () => {
                 <option value="영구품절">⚫ 영구품절</option>
               </select>
             </div>
+            <div className="form-group">
+              <label>재입고 메시지</label>
+              <textarea
+                value={newProduct.restockMessage}
+                onChange={(e) => setNewProduct({...newProduct, restockMessage: e.target.value})}
+                placeholder="예: 9/17일 재입고 예정"
+                rows={2}
+                style={{ resize: 'vertical', minHeight: '60px' }}
+              />
+            </div>
+            <div className="form-group">
+              <label>비고</label>
+              <textarea
+                value={newProduct.remarks}
+                onChange={(e) => setNewProduct({...newProduct, remarks: e.target.value})}
+                placeholder="비고 메시지 입력"
+                rows={2}
+                style={{ resize: 'vertical', minHeight: '60px' }}
+              />
+            </div>
             <div className="modal-buttons">
               <button className="btn-primary" onClick={handleAddProduct}>추가</button>
               <button className="btn-secondary" onClick={() => {
@@ -305,6 +412,8 @@ const StockAdmin: React.FC = () => {
                   color: '',
                   image: '',
                   stock: 0,
+                  restockMessage: '',
+                  remarks: '',
                 });
               }}>취소</button>
             </div>
@@ -359,6 +468,44 @@ const StockAdmin: React.FC = () => {
       {loading ? (
         <div className="loading">제품 목록을 불러오는 중...</div>
       ) : (
+        <>
+        {/* 검색 및 필터 */}
+        <div className="admin-filter-section">
+          <div className="filter-controls">
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="제품코드, 컬러, 라인업 검색..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+              {searchTerm && (
+                <button 
+                  className="clear-search"
+                  onClick={() => setSearchTerm('')}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="lineup-filter">
+              <select 
+                value={selectedLineup}
+                onChange={(e) => setSelectedLineup(e.target.value)}
+                className="lineup-select"
+              >
+                {lineups.map(lineup => (
+                  <option key={lineup} value={lineup}>{lineup}</option>
+                ))}
+              </select>
+            </div>
+            <div className="filter-info">
+              총 {filteredProducts.length}개 제품
+            </div>
+          </div>
+        </div>
+
         <div className="admin-table-container">
         <table className="admin-table">
           <thead>
@@ -368,18 +515,68 @@ const StockAdmin: React.FC = () => {
               <th>제품코드</th>
               <th>컬러</th>
               <th>재고</th>
+              <th>재입고 메시지</th>
+              <th>비고</th>
               <th>관리</th>
             </tr>
           </thead>
           <tbody>
-            {products.map(product => (
+            {filteredProducts.map(product => (
               <tr key={product.id}>
                 <td>
-                  {product.image ? (
-                    <img src={getImageUrl(product.image)} alt={product.productCode} className="table-image" />
-                  ) : (
-                    <div className="table-no-image">No Image</div>
-                  )}
+                  <div className="table-image-cell">
+                    {editingImage === product.id ? (
+                      <div className="image-edit-area">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) await handleProductImageUpdate(product.id, file);
+                          }}
+                          style={{ marginBottom: '8px' }}
+                        />
+                        <div className="image-edit-actions">
+                          <button 
+                            className="btn-cancel"
+                            onClick={() => setEditingImage(null)}
+                            style={{ fontSize: '12px', padding: '4px 8px' }}
+                          >
+                            취소
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="image-display-area">
+                        {product.image ? (
+                          <img src={getImageUrl(product.image)} alt={product.productCode} className="table-image" />
+                        ) : (
+                          <div className="table-no-image">No Image</div>
+                        )}
+                        <button 
+                          className="btn-edit-image"
+                          onClick={() => setEditingImage(product.id)}
+                          style={{ 
+                            fontSize: '10px', 
+                            padding: '2px 6px', 
+                            marginTop: '4px',
+                            backgroundColor: '#007bff',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '3px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          이미지 수정
+                        </button>
+                        {imageUploading === product.id && (
+                          <div style={{ fontSize: '10px', color: '#666', marginTop: '2px' }}>
+                            업로드 중...
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </td>
                 <td>
                   {editingProduct?.id === product.id ? (
@@ -427,13 +624,77 @@ const StockAdmin: React.FC = () => {
                   </select>
                 </td>
                 <td>
+                  {editingProduct?.id === product.id ? (
+                    <textarea
+                      value={editingProduct.restockMessage || ''}
+                      onChange={(e) => setEditingProduct({...editingProduct, restockMessage: e.target.value})}
+                      placeholder="재입고 메시지 입력"
+                      rows={2}
+                      style={{ width: '100%', minHeight: '40px', resize: 'vertical' }}
+                    />
+                  ) : (
+                    <div style={{ 
+                      fontSize: '12px', 
+                      color: product.restockMessage ? '#ff4444' : '#999',
+                      wordWrap: 'break-word',
+                      maxWidth: '150px'
+                    }}>
+                      {product.restockMessage || '-'}
+                    </div>
+                  )}
+                </td>
+                <td>
+                  {editingProduct?.id === product.id ? (
+                    <textarea
+                      value={editingProduct.remarks || ''}
+                      onChange={(e) => setEditingProduct({...editingProduct, remarks: e.target.value})}
+                      placeholder="비고 입력"
+                      rows={2}
+                      style={{ width: '100%', minHeight: '40px', resize: 'vertical' }}
+                    />
+                  ) : (
+                    <div style={{ 
+                      fontSize: '12px', 
+                      color: product.remarks ? '#666' : '#999',
+                      wordWrap: 'break-word',
+                      maxWidth: '150px'
+                    }}>
+                      {product.remarks || '-'}
+                    </div>
+                  )}
+                </td>
+                <td>
                   <div className="table-actions">
                     {editingProduct?.id === product.id ? (
                       <>
                         <button 
                           className="btn-save"
                           onClick={() => {
-                            handleUpdateProduct(editingProduct.id, editingProduct);
+                            const { id, ...updateData } = editingProduct;
+                            
+                            // 필수 필드 검증
+                            if (!updateData.lineup || !updateData.productCode || !updateData.color) {
+                              alert('라인업, 제품코드, 컬러는 필수 입력 항목입니다.');
+                              return;
+                            }
+                            
+                            // 빈 문자열 검증
+                            if (updateData.lineup.trim() === '' || updateData.productCode.trim() === '' || updateData.color.trim() === '') {
+                              alert('라인업, 제품코드, 컬러는 빈 값으로 저장할 수 없습니다.');
+                              return;
+                            }
+                            
+                            // 강제로 기본값 설정 (디버깅용)
+                            const safeUpdateData = {
+                              ...updateData,
+                              lineup: updateData.lineup || 'UNKNOWN',
+                              productCode: updateData.productCode || 'UNKNOWN',
+                              color: updateData.color || 'UNKNOWN'
+                            };
+                            
+                            console.log('Sending update data:', safeUpdateData);
+                            
+                            handleUpdateProduct(editingProduct.id, safeUpdateData);
                             setEditingProduct(null);
                           }}
                         >
@@ -469,6 +730,7 @@ const StockAdmin: React.FC = () => {
           </tbody>
         </table>
         </div>
+        </>
       )}
       </div>
     </div>

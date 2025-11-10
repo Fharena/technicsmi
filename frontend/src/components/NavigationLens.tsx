@@ -56,8 +56,6 @@ const NavigationLens: React.FC<Props> = ({
         return 'FRØMA';
       case '/archive':
         return 'ARCHIVE';
-      case '/stock':
-        return 'STOCK';
       default:
         return 'HOME';
     }
@@ -429,18 +427,6 @@ const NavigationLens: React.FC<Props> = ({
                         }}
                     >
                         ARCHIVE
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/stock"    
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        STOCK
                     </NavLink>
                 </li>
             </ul>

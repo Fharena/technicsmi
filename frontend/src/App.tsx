@@ -76,37 +76,40 @@ function App() {
 
 
 
-      <div className="App">
-        {/* (권장) SVG 굴절 필터는 컨트롤센터 룩과 거리가 있어 성능상 삭제/주석 처리 */}
-        {/* ...필요 없으면 통째로 제거 */}
-
-        <ScrollToTop />
-        <NavigationLens magnify={1.1}/>
-
-        <main className="main-content">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/aqua" element={<Aqua />} />
-              <Route path="/froma" element={<Froma />} />
-              <Route path="/libra" element={<Libra />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/archive" element={<Archive />} />
-              <Route path="/archive1" element={<Archive1 />} />
-              <Route path="/archive2" element={<Archive2 />} />
-              <Route path="/archive3" element={<Archive3 />} />
-              <Route path="/archive4" element={<Archive4 />} />
-              <Route path="/archive5" element={<Archive5 />} />
-              <Route path="/archive6" element={<Archive6 />} />
-              <Route path="/archive7" element={<Archive7 />} />
-              <Route path="/archive8" element={<Archive8 />} />
-              <Route path="/stock" element={<Stock />} />
-              <Route path="/stock/admin" element={<StockAdmin />} />
-            </Routes>
-          </Suspense>
-        </main>
-      </div>
+      <Routes>
+        {/* 스톡 페이지는 네비게이션 바 없이 완전 격리 */}
+        <Route path="/stock" element={<Stock />} />
+        <Route path="/stock/admin" element={<StockAdmin />} />
+        
+        {/* 나머지 페이지들은 네비게이션 바와 함께 */}
+        <Route path="/*" element={
+          <div className="App">
+            <ScrollToTop />
+            <NavigationLens magnify={1.1}/>
+            <main className="main-content">
+              <Suspense fallback={<LoadingSpinner />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/aqua" element={<Aqua />} />
+                  <Route path="/froma" element={<Froma />} />
+                  <Route path="/libra" element={<Libra />} />
+                  <Route path="/work" element={<Work />} />
+                  <Route path="/archive" element={<Archive />} />
+                  <Route path="/archive1" element={<Archive1 />} />
+                  <Route path="/archive2" element={<Archive2 />} />
+                  <Route path="/archive3" element={<Archive3 />} />
+                  <Route path="/archive4" element={<Archive4 />} />
+                  <Route path="/archive5" element={<Archive5 />} />
+                  <Route path="/archive6" element={<Archive6 />} />
+                  <Route path="/archive7" element={<Archive7 />} />
+                  <Route path="/archive8" element={<Archive8 />} />
+                </Routes>
+              </Suspense>
+            </main>
+          </div>
+        } />
+      </Routes>
     </Router>
   );
 }

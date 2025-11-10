@@ -12,6 +12,8 @@ const Stock: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // API에서 제품 데이터 불러오기
   useEffect(() => {
@@ -64,6 +66,30 @@ const Stock: React.FC = () => {
     ? products 
     : products.filter(p => p.lineup === selectedLineup);
 
+  // 검색어로 필터링
+  const searchFilteredProducts = filteredProducts.filter(product => {
+    if (!searchTerm) return true;
+    const search = searchTerm.toLowerCase();
+    return (
+      product.productCode.toLowerCase().includes(search) ||
+      product.color.toLowerCase().includes(search) ||
+      product.lineup.toLowerCase().includes(search)
+    );
+  });
+
+  // 페이지네이션 로직
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const itemsPerPage = isMobile ? 10 : 40; // 모바일: 10개, 데스크톱: 40개 (4열 x 10행)
+  const totalPages = Math.ceil(searchFilteredProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = searchFilteredProducts.slice(startIndex, endIndex);
+
+  // 라인업 변경 시 페이지를 1로 리셋
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedLineup]);
+
   // 관리자 페이지 접근 (새창으로 열기)
   const handleAdminAccess = async () => {
     try {
@@ -83,23 +109,28 @@ const Stock: React.FC = () => {
 
   return (
     <div className="stock-page">
-      <div className="stock-content-wrapper">
-        {/* 로고 */}
-        <div className="stock-logo-section">
-          <img src="/홈페이지 소스정리/재고현황/대지 1 1.png" alt="TCS Logo" className="tcs-logo" />
+      {/* 상단 이미지 섹션 */}
+      <div className="stock-hero-section">
+        <div className="stock-background-image">
+          <img src="/홈페이지 소스정리/재고현황/배너.png" alt="Stock Background" />
         </div>
-
-        {/* 중앙 로고 */}
-        <div className="stock-center-logo">
-          <img src="/홈페이지 소스정리/재고현황/Frame 391.png" alt="Center Logo" className="center-logo-img" />
+        <div className="stock-text-overlay">
+          <div className="stock-title-container">
+            <h1 className="stock-title">
+              TCS TEXTILE
+            </h1>
+            <div className="stock-small-text">
+              CRAFTED WITH PURPOSE
+            </div>
+          </div>
         </div>
-
-        {/* 라인업 필터 */}
-        <div className="lineup-selector">
+        
+        {/* 드롭다운을 별도로 분리 */}
+        <div className="stock-dropdown-container">
           <select 
             value={selectedLineup} 
             onChange={(e) => setSelectedLineup(e.target.value)}
-            className="lineup-dropdown"
+            className="stock-dropdown"
           >
             {lineups.map(lineup => (
               <option key={lineup} value={lineup}>
@@ -108,54 +139,125 @@ const Stock: React.FC = () => {
             ))}
           </select>
         </div>
+      </div>
 
-        {/* 재고 범례 */}
-        <div className="stock-legend">
-          <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#22c55e' }}></span>
-            <span>재고많음</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#ffcc00' }}></span>
-            <span>소량</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#ff4444' }}></span>
-            <span>일시품절</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-dot" style={{ backgroundColor: '#000000' }}></span>
-            <span>영구품절</span>
-          </div>
-        </div>
+      {/* 하단 재고 섹션 */}
+      <div className="stock-content-section">
+        <div className="stock-content-wrapper">
 
-        {/* 제품 그리드 */}
-        <div className="products-container">
-          {loading && <div className="loading">로딩 중...</div>}
-          {error && <div className="error">{error}</div>}
-          <div className="products-grid">
-            {!loading && filteredProducts.map(product => (
-              <div key={product.id} className="product-item">
-                <div className="product-image-wrapper">
+          {/* 재고 범례 */}
+          <div className="stock-legend">
+            <div className="legend-item">
+              <span className="legend-dot" style={{ backgroundColor: '#22c55e' }}></span>
+              <span>재고많음</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-dot" style={{ backgroundColor: '#ffcc00' }}></span>
+              <span>소량</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-dot" style={{ backgroundColor: '#ff4444' }}></span>
+              <span>일시품절</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-dot" style={{ backgroundColor: '#000000' }}></span>
+              <span>영구품절</span>
+            </div>
+          </div>
+
+          {/* 검색창 */}
+          <div className="stock-search-container">
+            <div className="stock-search-box">
+              <input 
+                type="text" 
+                placeholder="Search(검색)" 
+                className="stock-search-input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <div className="stock-search-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* 제품 그리드 */}
+          <div className="products-container">
+            {loading && <div className="loading">로딩 중...</div>}
+            {error && <div className="error">{error}</div>}
+            <div className="products-grid">
+              {!loading && currentProducts.map(product => (
+                <div key={product.id} className="product-item">
+                <div className={`product-image-wrapper ${product.restockMessage ? 'blurred' : ''}`}>
                   {product.image ? (
                     <img src={getImageUrl(product.image)} alt={product.productCode} />
                   ) : (
                     <div className="no-image"></div>
                   )}
+                  {product.restockMessage && (
+                    <div className="restock-overlay">
+                      <div className="restock-text">{product.restockMessage}</div>
+                    </div>
+                  )}
                 </div>
                 <div className="product-details">
                   <div className="product-code">{product.productCode}</div>
-                  <div className="product-lineup">{product.lineup}</div>
-                  <div className="product-color">{product.color}</div>
                   <div className="stock-status-bar">
                     <span 
-                      className="color-bar" 
+                      className="legend-dot" 
                       style={{ backgroundColor: getStockColor(product.stock) }}
                     ></span>
+                    <span className="stock-text">
+                      {product.stock === 0 ? '일시품절' : 
+                       product.stock <= 5 ? '소량' : 
+                       product.stock <= 10 ? '재고많음' : '영구품절'}
+                    </span>
+                  </div>
+                  <div className="product-lineup">{product.lineup}</div>
+                  <div className="product-color">{product.color}</div>
+                  <div className="product-remarks">
+                    {product.remarks || ''}
                   </div>
                 </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 페이지네이션 */}
+            {!loading && filteredProducts.length > 0 && (
+              <div className="pagination">
+                <button 
+                  className="pagination-btn"
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                >
+                  &lt;
+                </button>
+                
+                <div className="pagination-numbers">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      className={`pagination-number ${currentPage === page ? 'active' : ''}`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+                
+                <button 
+                  className="pagination-btn"
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  &gt;
+                </button>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>

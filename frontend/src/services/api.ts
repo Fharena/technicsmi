@@ -19,6 +19,8 @@ export interface Product {
   color: string;
   image: string;
   stock: number;
+  restockMessage?: string;
+  remarks?: string;
 }
 
 // 모든 제품 조회 (라인업 필터링 지원)
@@ -51,6 +53,7 @@ export const createProduct = async (product: Omit<Product, 'id'>): Promise<Produ
 
 // 제품 수정
 export const updateProduct = async (id: string, product: Partial<Product>): Promise<Product> => {
+  console.log('API updateProduct called with:', { id, product });
   const response = await fetch(`${API_BASE_URL}/products/${id}`, {
     method: 'PUT',
     headers: {
@@ -58,8 +61,11 @@ export const updateProduct = async (id: string, product: Partial<Product>): Prom
     },
     body: JSON.stringify(product),
   });
+  console.log('API response status:', response.status);
   if (!response.ok) {
-    throw new Error('Failed to update product');
+    const errorText = await response.text();
+    console.error('API error response:', errorText);
+    throw new Error(`Failed to update product: ${response.status} ${errorText}`);
   }
   return response.json();
 };

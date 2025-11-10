@@ -5,12 +5,10 @@ const MainFooter: React.FC = () => {
     <div className="main-footer-section">
       <div className="footer-bottom">
         <div className="footer-logo">
-          <video 
-            src="/홈페이지 소스정리/홈메인/tcs최하단 로고영상.mp4" 
-            autoPlay 
-            muted 
-            loop 
-            className="logo-video"
+          <img 
+            src="/홈페이지 소스정리/로고.png" 
+            alt="TCS Logo"
+            className="logo-image"
           />
         </div>
         
@@ -40,7 +38,7 @@ const MainFooter: React.FC = () => {
             <div className="contact-row-2-col-1">
               <div className="contact-item">
                 <span className="contact-label">Technics e-mail</span>
-                <span className="contact-value">sanjdnkjak@gmail.com</span>
+                <span className="contact-value">tcsworkin@gmail.com</span>
               </div>
             </div>
             
@@ -52,6 +50,26 @@ const MainFooter: React.FC = () => {
                 <span className="contact-value">2025</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* 모바일 전용 연락처 섹션 */}
+      <div className="mobile-contact-section">
+        <h3 className="mobile-contact-title">CONTACT US</h3>
+        <div className="mobile-contact-grid">
+          <div className="mobile-contact-col">
+            <p>tcsworkin@gmail.com</p>
+            <p>+82) 10-6680-1543</p>
+            <p>instagram</p>
+            <p>@tcs.textile</p>
+          </div>
+          <div className="mobile-contact-col">
+            <p>Korea, goyang</p>
+            <p>23-11, ILSAN-RO 427BEON-GIL,</p>
+            <p>ILSANDONG-GU</p>
+            <p></p>
+            <p>2025</p>
           </div>
         </div>
       </div>

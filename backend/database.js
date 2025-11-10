@@ -20,6 +20,7 @@ const initDB = () => {
         color TEXT NOT NULL,
         image TEXT,
         stock INTEGER DEFAULT 0,
+        restock_message TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
       )

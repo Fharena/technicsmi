@@ -29,6 +29,8 @@ router.get("/", (req, res) => {
       color: row.color,
       image: row.image,
       stock: row.stock,
+      restockMessage: row.restock_message,
+      remarks: row.remarks,
     }));
 
     res.json(products);
@@ -40,7 +42,8 @@ router.get("/", (req, res) => {
 
 // POST - 제품 추가
 router.post("/", (req, res) => {
-  const { lineup, productCode, color, image, stock } = req.body;
+  const { lineup, productCode, color, image, stock, restockMessage, remarks } =
+    req.body;
 
   if (!lineup || !productCode || !color) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -48,9 +51,17 @@ router.post("/", (req, res) => {
 
   try {
     const stmt = db.prepare(
-      "INSERT INTO products (lineup, product_code, color, image, stock) VALUES (?, ?, ?, ?, ?)"
+      "INSERT INTO products (lineup, product_code, color, image, stock, restock_message, remarks) VALUES (?, ?, ?, ?, ?, ?, ?)"
     );
-    const info = stmt.run(lineup, productCode, color, image || "", stock || 0);
+    const info = stmt.run(
+      lineup,
+      productCode,
+      color,
+      image || "",
+      stock || 0,
+      restockMessage || "",
+      remarks || ""
+    );
 
     const newProduct = {
       id: info.lastInsertRowid.toString(),
@@ -59,6 +70,8 @@ router.post("/", (req, res) => {
       color,
       image: image || "",
       stock: stock || 0,
+      restockMessage: restockMessage || "",
+      remarks: remarks || "",
     };
 
     res.status(201).json(newProduct);
@@ -71,15 +84,46 @@ router.post("/", (req, res) => {
 // PUT - 제품 수정
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { lineup, productCode, color, image, stock } = req.body;
+  const { lineup, productCode, color, image, stock, restockMessage, remarks } =
+    req.body;
+
+  console.log("PUT /products/:id", { id, body: req.body });
+
+  // 기본값 설정 (더 안전한 방법)
+  const safeLineup = lineup && lineup.trim() !== "" ? lineup : "UNKNOWN";
+  const safeProductCode =
+    productCode && productCode.trim() !== "" ? productCode : "UNKNOWN";
+  const safeColor = color && color.trim() !== "" ? color : "UNKNOWN";
+
+  // 검증 로직 임시 제거 (디버깅용)
+  console.log("Received data:", {
+    lineup,
+    productCode,
+    color,
+    image,
+    stock,
+    restockMessage,
+    remarks,
+  });
 
   try {
     const stmt = db.prepare(
       `UPDATE products 
-       SET lineup = ?, product_code = ?, color = ?, image = ?, stock = ?, updated_at = CURRENT_TIMESTAMP
+       SET lineup = ?, product_code = ?, color = ?, image = ?, stock = ?, restock_message = ?, remarks = ?, updated_at = CURRENT_TIMESTAMP
        WHERE id = ?`
     );
-    const info = stmt.run(lineup, productCode, color, image, stock, id);
+    const info = stmt.run(
+      safeLineup,
+      safeProductCode,
+      safeColor,
+      image,
+      stock,
+      restockMessage || "",
+      remarks || "",
+      id
+    );
+
+    console.log("Update result:", { changes: info.changes });
 
     if (info.changes === 0) {
       return res.status(404).json({ error: "Product not found" });
@@ -87,13 +131,16 @@ router.put("/:id", (req, res) => {
 
     const updatedProduct = {
       id,
-      lineup,
-      productCode,
-      color,
+      lineup: safeLineup,
+      productCode: safeProductCode,
+      color: safeColor,
       image,
       stock,
+      restockMessage: restockMessage || "",
+      remarks: remarks || "",
     };
 
+    console.log("Updated product:", updatedProduct);
     res.json(updatedProduct);
   } catch (error) {
     console.error("Error updating product:", error);

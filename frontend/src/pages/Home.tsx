@@ -123,6 +123,10 @@ const Home: React.FC = () => {
   // hoverEffect를 위한 ref
   const attributeRef = useRef<HTMLDivElement>(null);
   const hoverEffectInstance = useRef<any>(null);
+  
+  // Group 1458 hoverEffect를 위한 ref
+  const group1458Ref = useRef<HTMLDivElement>(null);
+  const group1458HoverEffectInstance = useRef<any>(null);
 
   // hoverEffect 초기화
   useEffect(() => {
@@ -167,6 +171,54 @@ const Home: React.FC = () => {
     return () => {
       if (hoverEffectInstance.current) {
         hoverEffectInstance.current = null;
+      }
+    };
+  }, []);
+
+  // Group 1458 hoverEffect 초기화
+  useEffect(() => {
+    if (group1458Ref.current && !group1458HoverEffectInstance.current) {
+      try {
+        // 초기 이미지 먼저 표시
+        group1458Ref.current.innerHTML = '<img src="/홈페이지 소스v2/home/image 1658.png" alt="Group 1458 기본" style="width: 100%; height: auto; display: block;" />';
+        
+        // 이미지 로드하여 실제 높이 확인
+        const img = new Image();
+        img.onload = () => {
+          if (group1458Ref.current && !group1458HoverEffectInstance.current) {
+            const aspectRatio = img.height / img.width;
+            group1458Ref.current.style.aspectRatio = `${img.width} / ${img.height}`;
+            
+            // 기존 이미지 제거하고 hoverEffect 초기화
+            group1458Ref.current.innerHTML = '';
+            
+            group1458HoverEffectInstance.current = new hoverEffect({
+              parent: group1458Ref.current,
+              intensity: 0.3,
+              image1: '/홈페이지 소스v2/home/image 1658.png',
+              image2: '/홈페이지 소스v2/home/Group 1458.png',
+              displacementImage: 'https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/dot.jpg',
+              imagesRatio: aspectRatio
+            });
+          }
+        };
+        img.onerror = () => {
+          // 이미지 로드 실패 시 fallback 이미지 유지
+          console.error('Group 1458 이미지 로드 실패');
+        };
+        img.src = '/홈페이지 소스v2/home/image 1658.png';
+      } catch (error) {
+        console.error('Group 1458 HoverEffect initialization failed:', error);
+        // 에러 발생 시 fallback 이미지 표시
+        if (group1458Ref.current) {
+          group1458Ref.current.innerHTML = '<img src="/홈페이지 소스v2/home/image 1658.png" alt="Group 1458 기본" style="width: 100%; height: auto; display: block;" />';
+        }
+      }
+    }
+
+    return () => {
+      if (group1458HoverEffectInstance.current) {
+        group1458HoverEffectInstance.current = null;
       }
     };
   }, []);
@@ -287,9 +339,9 @@ const Home: React.FC = () => {
         </div>
       </div>
       
-      {/* Group 1458 이미지 섹션 */}
+      {/* Group 1458 이미지 섹션 (호버 효과) */}
       <div className="group-1458-section">
-        <img src="/홈페이지 소스v2/home/Group 1458.png" alt="Group 1458" className="group-1458-image" />
+        <div ref={group1458Ref} className="group-1458-hover-container"></div>
       </div>
       
       {/* 속성 이미지 섹션 (호버 효과) */}
@@ -300,7 +352,14 @@ const Home: React.FC = () => {
       {/* Always On 섹션 */}
       <div className="always-on-section">
         <div className="always-on-background">
-          <img src="/홈페이지 소스정리/홈메인/5메인1 영상2(대체예정).png" alt="Always On Background" className="always-on-bg-image" />
+          <video 
+            src="/홈페이지 소스v2/시계 하단영상.mp4" 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="always-on-bg-image"
+          />
         </div>
         
         <div className="always-on-content">

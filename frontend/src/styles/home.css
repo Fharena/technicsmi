@@ -128,6 +128,7 @@
   line-height: 1.3;
   letter-spacing: -0.02em;
   margin: 0 !important;
+  position: relative;
 }
 
 .sub-text-quote::before {
@@ -136,6 +137,12 @@
 
 .sub-text-quote::after {
   content: '"';
+}
+
+/* 두 번째 줄부터 따옴표 너비만큼 들여쓰기 */
+.sub-text-quote .quote-line-rest {
+  display: inline-block;
+  padding-left: 0.5em; /* 따옴표 너비만큼 */
 }
 
 .sub-text-right {
@@ -288,14 +295,34 @@
   font-size: 0;
 }
 
-.group-1458-hover-container canvas {
-  width: 100% !important;
-  height: 100% !important;
+.group-1458-image-default,
+.group-1458-image-hover {
+  width: 100%;
+  height: auto;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.group-1458-image-default {
   position: relative;
-  object-fit: contain;
-  margin: 0;
-  padding: 0;
+  opacity: 1;
+  z-index: 1;
+}
+
+.group-1458-image-hover {
+  opacity: 0;
+  z-index: 2;
+}
+
+.group-1458-hover-container:hover .group-1458-image-default {
+  opacity: 0;
+}
+
+.group-1458-hover-container:hover .group-1458-image-hover {
+  opacity: 1;
 }
 
 /* ============ 속성 이미지 섹션 (호버 효과) ============ */
@@ -321,14 +348,160 @@
   font-size: 0;
 }
 
-.attribute-hover-container canvas {
-  width: 100% !important;
-  height: 100% !important;
+.attribute-image-default,
+.attribute-image-hover {
+  width: 100%;
+  height: auto;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.attribute-image-default {
   position: relative;
-  object-fit: contain;
+  opacity: 1;
+  z-index: 1;
+}
+
+.attribute-image-hover {
+  opacity: 0;
+  z-index: 2;
+}
+
+.attribute-hover-container:hover .attribute-image-default {
+  opacity: 0;
+}
+
+.attribute-hover-container:hover .attribute-image-hover {
+  opacity: 1;
+}
+
+/* ============ A New Chapter in the Wool Story 섹션 ============ */
+.wool-story-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  border-radius: 0 !important;
+}
+
+.wool-story-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 0 !important;
+}
+
+.wool-story-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0 !important;
+}
+
+.wool-story-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 60px;
+  max-width: 600px;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.wool-story-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.wool-story-text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wool-story-text-english,
+.wool-story-text-korean {
+  font-size: 0.75rem;
+  color: #ffffff;
+  line-height: 1.6;
   margin: 0;
-  padding: 0;
+  font-weight: 300;
+  letter-spacing: 0.15px;
+}
+
+.wool-story-text-korean {
+  font-size: 0.7rem;
+  letter-spacing: 0.1px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .wool-story-content {
+    padding: 50px 40px;
+    max-width: 550px;
+  }
+  
+  .wool-story-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wool-story-section {
+    min-height: auto;
+  }
+  
+  .wool-story-content {
+    padding: 40px 30px;
+    max-width: 100%;
+  }
+  
+  .wool-story-title {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    margin-bottom: 20px;
+  }
+  
+  .wool-story-text {
+    gap: 18px;
+  }
+  
+  .wool-story-text-english,
+  .wool-story-text-korean {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .wool-story-content {
+    padding: 30px 20px;
+  }
+  
+  .wool-story-title {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+    margin-bottom: 15px;
+  }
+  
+  .wool-story-text-english,
+  .wool-story-text-korean {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
 }
 
 /* ============ Purpose 섹션 ============ */
@@ -1523,4 +1696,97 @@
   .mission-text {
     font-size: 1rem;
   }
+}
+
+/* ============ 스크롤 애니메이션 ============ */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 각 텍스트 요소별 지연 시간 추가 */
+.home-text1 .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.home-text1 .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.home-text1 .scroll-animate:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.home-text1 .scroll-animate:nth-child(4) {
+  transition-delay: 0.6s;
+}
+
+.innovation-text-top .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.innovation-text-top .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.innovation-text-top .scroll-animate:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.innovation-text-bottom .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.innovation-text-bottom .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.innovation-text-bottom .scroll-animate:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.purpose-overlay .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.purpose-overlay .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.purpose-overlay .scroll-animate:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.purpose-content .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.purpose-content .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.purpose-content .scroll-animate:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.purpose-content .scroll-animate:nth-child(4) {
+  transition-delay: 0.6s;
+}
+
+.always-on-header .scroll-animate:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.always-on-header .scroll-animate:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.always-on-description .scroll-animate {
+  transition-delay: 0.4s;
 }

@@ -57,14 +57,13 @@
 .work-page .hero-content {
   position: absolute;
   bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   max-width: 1000px;
-  width: 90%;
+  width: auto;
 }
 
 .work-page .hero-title {
@@ -133,6 +132,8 @@
   flex: 1;
   background-color: #ffffff;
   overflow: hidden;
+  padding-right: 60px;
+  box-sizing: border-box;
 }
 
 .work-page .text-content {
@@ -168,7 +169,7 @@
   flex-wrap: wrap;
   gap: 8px;
   margin: 0;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .work-page .branding-item {
@@ -211,7 +212,7 @@
   line-height: 1.5;
   margin: 0;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
 }
 
 .work-page .image-container {

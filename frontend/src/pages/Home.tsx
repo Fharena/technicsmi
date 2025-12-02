@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 // import { useRive } from '@rive-app/react-canvas';
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
-// @ts-ignore
-import hoverEffect from 'hover-effect';
+import '../styles/home.css';
 
 const Home: React.FC = () => {
   // 실시간 시계 상태
@@ -119,107 +118,49 @@ const Home: React.FC = () => {
   // };
 
   const currentRotatingCountry = rotatableCountries[currentCountryIndex];
-  
-  // hoverEffect를 위한 ref
-  const attributeRef = useRef<HTMLDivElement>(null);
-  const hoverEffectInstance = useRef<any>(null);
-  
-  // Group 1458 hoverEffect를 위한 ref
-  const group1458Ref = useRef<HTMLDivElement>(null);
-  const group1458HoverEffectInstance = useRef<any>(null);
 
-  // hoverEffect 초기화
+  // 스크롤 애니메이션을 위한 ref
+  const textSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // 스크롤 애니메이션 효과
   useEffect(() => {
-    if (attributeRef.current && !hoverEffectInstance.current) {
-      try {
-        // 컨테이너 내부의 모든 내용 제거 (이미지가 있다면)
-        attributeRef.current.innerHTML = '';
-        
-        // 이미지 로드하여 실제 높이 확인
-        const img = new Image();
-        img.onload = () => {
-          if (attributeRef.current && !hoverEffectInstance.current) {
-            const aspectRatio = img.height / img.width;
-            attributeRef.current.style.aspectRatio = `${img.width} / ${img.height}`;
-            
-            hoverEffectInstance.current = new hoverEffect({
-              parent: attributeRef.current,
-              intensity: 0.3,
-              image1: '/홈페이지 소스v2/home/속성 1=기본.png',
-              image2: '/홈페이지 소스v2/home/속성 1=베리언트2.png',
-              displacementImage: 'https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/dot.jpg',
-              imagesRatio: aspectRatio
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 부모 컨테이너에 visible 클래스 추가
+            entry.target.classList.add('visible');
+            // 부모 컨테이너 내의 모든 scroll-animate 요소에도 visible 클래스 추가
+            const scrollAnimateElements = entry.target.querySelectorAll('.scroll-animate');
+            scrollAnimateElements.forEach((el) => {
+              el.classList.add('visible');
             });
           }
-        };
-        img.onerror = () => {
-          // 이미지 로드 실패 시 fallback 이미지 표시
-          if (attributeRef.current) {
-            attributeRef.current.innerHTML = '<img src="/홈페이지 소스v2/home/속성 1=기본.png" alt="속성 기본" style="width: 100%; height: auto; display: block;" />';
-          }
-        };
-        img.src = '/홈페이지 소스v2/home/속성 1=기본.png';
-      } catch (error) {
-        console.error('HoverEffect initialization failed:', error);
-        // 에러 발생 시 fallback 이미지 표시
-        if (attributeRef.current) {
-          attributeRef.current.innerHTML = '<img src="/홈페이지 소스v2/home/속성 1=기본.png" alt="속성 기본" style="width: 100%; height: auto; display: block;" />';
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    );
+
+    textSectionRefs.current.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+        // 초기 로드 시 화면에 보이는 요소는 즉시 visible 클래스 추가
+        const rect = ref.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          ref.classList.add('visible');
+          const scrollAnimateElements = ref.querySelectorAll('.scroll-animate');
+          scrollAnimateElements.forEach((el) => {
+            el.classList.add('visible');
+          });
         }
       }
-    }
+    });
 
     return () => {
-      if (hoverEffectInstance.current) {
-        hoverEffectInstance.current = null;
-      }
-    };
-  }, []);
-
-  // Group 1458 hoverEffect 초기화
-  useEffect(() => {
-    if (group1458Ref.current && !group1458HoverEffectInstance.current) {
-      try {
-        // 초기 이미지 먼저 표시
-        group1458Ref.current.innerHTML = '<img src="/홈페이지 소스v2/home/image 1658.png" alt="Group 1458 기본" style="width: 100%; height: auto; display: block;" />';
-        
-        // 이미지 로드하여 실제 높이 확인
-        const img = new Image();
-        img.onload = () => {
-          if (group1458Ref.current && !group1458HoverEffectInstance.current) {
-            const aspectRatio = img.height / img.width;
-            group1458Ref.current.style.aspectRatio = `${img.width} / ${img.height}`;
-            
-            // 기존 이미지 제거하고 hoverEffect 초기화
-            group1458Ref.current.innerHTML = '';
-            
-            group1458HoverEffectInstance.current = new hoverEffect({
-              parent: group1458Ref.current,
-              intensity: 0.3,
-              image1: '/홈페이지 소스v2/home/image 1658.png',
-              image2: '/홈페이지 소스v2/home/Group 1458.png',
-              displacementImage: 'https://raw.githubusercontent.com/robin-dela/hover-effect/master/images/dot.jpg',
-              imagesRatio: aspectRatio
-            });
-          }
-        };
-        img.onerror = () => {
-          // 이미지 로드 실패 시 fallback 이미지 유지
-          console.error('Group 1458 이미지 로드 실패');
-        };
-        img.src = '/홈페이지 소스v2/home/image 1658.png';
-      } catch (error) {
-        console.error('Group 1458 HoverEffect initialization failed:', error);
-        // 에러 발생 시 fallback 이미지 표시
-        if (group1458Ref.current) {
-          group1458Ref.current.innerHTML = '<img src="/홈페이지 소스v2/home/image 1658.png" alt="Group 1458 기본" style="width: 100%; height: auto; display: block;" />';
-        }
-      }
-    }
-
-    return () => {
-      if (group1458HoverEffectInstance.current) {
-        group1458HoverEffectInstance.current = null;
-      }
+      textSectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
     };
   }, []);
 
@@ -246,26 +187,26 @@ const Home: React.FC = () => {
         />
       </div>
       
-      <div className="home-text1">
+      <div className="home-text1" ref={(el) => { textSectionRefs.current[0] = el; }}>
           <div className="text-container">
-            <h3 className="main-heading">
+            <h3 className="main-heading scroll-animate">
               Crafted for Classy Textiles,<br/>
               One Thread at a Time.
             </h3>
             
             <div className="sub-text-container">
               <div className="sub-text-left">
-                <h3 className="sub-text-quote">
-                  Every process<br/>
-                  refined to create<br/>
-                  fabrics
+                <h3 className="sub-text-quote scroll-animate">
+                  <span className="quote-line-first">Every process</span><br/>
+                  <span className="quote-line-rest">refined to create</span><br/>
+                  <span className="quote-line-rest">fabrics</span>
                 </h3>
               </div>
               <div className="sub-text-right">
-                <p className="sub-text">
+                <p className="sub-text scroll-animate">
                   Technics aims for progress. It is a fabric created for better color, enhanced strength, improved friction, and greater durability. We strive for excellence within the framework of fundamentals.
                 </p>
-                <p className="sub-text-korean">
+                <p className="sub-text-korean scroll-animate">
                   테크닉스는 언제나 '더 나은 방향'을 향해 나아갑니다. 이 원단은 보다 선명하고 깊은 색감, 강화된 강도, 세밀하게 조정된 마찰감, 그리고 오랜 시간 형태를 유지할 수 있는 높은 내구성을 목표로 만들어졌습니다. 우리는 화려한 변화를 좇기보다, 기본에 충실한 완성도를 통해 진정한 품질을 추구합니다. 보이지 않는 곳에서도 원단의 본질을 다듬고, 그 안에서 기술과 감각의 균형을 찾아갑니다.
                 </p>
               </div>
@@ -281,23 +222,23 @@ const Home: React.FC = () => {
         
         <div className="innovation-content">
           {/* 우측 상단 텍스트 */}
-          <div className="innovation-text-top">
-            <h3 className="innovation-heading">Innovation Meets Texture</h3>
-            <p className="innovation-text">
+          <div className="innovation-text-top" ref={(el) => { textSectionRefs.current[1] = el; }}>
+            <h3 className="innovation-heading scroll-animate">Innovation Meets Texture</h3>
+            <p className="innovation-text scroll-animate">
               We weave technology and build precision. TECHNICS explores new possibilities within the fine structure of every thread. Each fabric we create is the result of our process and conviction.
             </p>
-            <p className="innovation-text-korean">
+            <p className="innovation-text-korean scroll-animate">
               우리는 기술을 짜고, 정밀함을 쌓습니다. TECHNICS는 실의 미세함 속에서 새로운 가능성을 탐구합니다. 직물 한 장은 우리의 철저한 과정과 신념으로 완성됩니다.
             </p>
           </div>
           
           {/* 좌측 하단 텍스트 */}
-          <div className="innovation-text-bottom">
-            <h3 className="innovation-heading">Rooted in Fundamentals</h3>
-            <p className="innovation-text">
+          <div className="innovation-text-bottom" ref={(el) => { textSectionRefs.current[2] = el; }}>
+            <h3 className="innovation-heading scroll-animate">Rooted in Fundamentals</h3>
+            <p className="innovation-text scroll-animate">
               Our commitment to excellence begins with the basics: strong foundations, time-honored techniques, and an obsession with quality. By mastering these fundamental, we elevate everyday textiles into enduring expressions of purpose and performance.
             </p>
-            <p className="innovation-text-korean">
+            <p className="innovation-text-korean scroll-animate">
               테크닉스는 언제나 더 나은 방향을 향해 나아갑니다. 더 선명한 색감과 강화된 강도, 균형 잡힌 마찰감, 그리고 오랜 시간 형태를 유지하는 내구성을 위해 만들어진 원단, 우리는 기본의 틀 안에서 완성도를 다듬으며, 본질 속에서 품질의 기준을 새롭게 정의합니다.
             </p>
           </div>
@@ -313,27 +254,27 @@ const Home: React.FC = () => {
       <div className="purpose-section">
         <div className="purpose-image-container">
           <img src="/홈페이지 소스v2/home/image 1633.png" alt="Purpose Background" className="purpose-image" />
-          <div className="purpose-overlay">
-            <h3 className="purpose-title">Our purpose</h3>
-            <p className="purpose-subtitle">Where creativity meets cutting edge tech.</p>
-            <Link to="/about" className="purpose-button">
+          <div className="purpose-overlay" ref={(el) => { textSectionRefs.current[3] = el; }}>
+            <h3 className="purpose-title scroll-animate">Our purpose</h3>
+            <p className="purpose-subtitle scroll-animate">Where creativity meets cutting edge tech.</p>
+            <Link to="/about" className="purpose-button scroll-animate">
               ABOUT
             </Link>
           </div>
         </div>
         
-        <div className="purpose-content">
-          <h2 className="purpose-content-title">ABOUT</h2>
-          <p className="purpose-content-text">
+        <div className="purpose-content" ref={(el) => { textSectionRefs.current[4] = el; }}>
+          <h2 className="purpose-content-title scroll-animate">ABOUT</h2>
+          <p className="purpose-content-text scroll-animate">
             Our mission is to provide innovative and high performance technical fabrics that elevate everyday life. We are committed to developing and exporting textiles that combine exceptional durability, breath ability, and comfort designed to withstand the demands of daily use across diverse climates and environments.
           </p>
-          <p className="purpose-content-text-korean">
+          <p className="purpose-content-text-korean scroll-animate">
             우리는 일상 속에서 더 나은 삶을 만들어가는 혁신적이고 고기능성 원단을 제공합니다. 탁월한 내구성과 통기성, 그리고 편안한 착용감을 모두 갖춘 섬유를 개발·수출하며, 다양한 기후와 환경 속에서도 언제나 안정적이고 쾌적한 품질을 유지할 수 있도록 설계합니다.
           </p>
-          <p className="purpose-content-text">
+          <p className="purpose-content-text scroll-animate">
             With a strong focus on sustainability, advanced material engineering, and consistent quality, we aim to be a trusted global partner to brands.
           </p>
-          <p className="purpose-content-text-korean">
+          <p className="purpose-content-text-korean scroll-animate">
             지속가능성, 첨단 소재 기술, 그리고 일관된 품질을 핵심으로, 우리는 전 세계 브랜드가 신뢰할 수 있는 파트너가 되는 것을 목표로 합니다.
           </p>
         </div>
@@ -341,12 +282,34 @@ const Home: React.FC = () => {
       
       {/* Group 1458 이미지 섹션 (호버 효과) */}
       <div className="group-1458-section">
-        <div ref={group1458Ref} className="group-1458-hover-container"></div>
+        <div className="group-1458-hover-container">
+          <img 
+            src="/홈페이지 소스v2/home/image 1658.png" 
+            alt="Group 1458 기본" 
+            className="group-1458-image-default"
+          />
+          <img 
+            src="/홈페이지 소스v2/home/Group 1458.png" 
+            alt="Group 1458 hover" 
+            className="group-1458-image-hover"
+          />
+        </div>
       </div>
       
       {/* 속성 이미지 섹션 (호버 효과) */}
       <div className="attribute-section">
-        <div ref={attributeRef} className="attribute-hover-container"></div>
+        <div className="attribute-hover-container">
+          <img 
+            src="/홈페이지 소스v2/home/속성 1=기본.png" 
+            alt="속성 기본" 
+            className="attribute-image-default"
+          />
+          <img 
+            src="/홈페이지 소스v2/home/속성 1=베리언트2.png" 
+            alt="속성 hover" 
+            className="attribute-image-hover"
+          />
+        </div>
       </div>
       
       {/* Always On 섹션 */}
@@ -363,10 +326,10 @@ const Home: React.FC = () => {
         </div>
         
         <div className="always-on-content">
-          <div className="always-on-header">
-            <h1 className="always-on-title">Always on</h1>
+          <div className="always-on-header" ref={(el) => { textSectionRefs.current[5] = el; }}>
+            <h1 className="always-on-title scroll-animate">Always on</h1>
             
-            <div className="timezone-info">
+            <div className="timezone-info scroll-animate">
               <div className="timezone-row">
                 <div className="time-display left">{formatTime(currentTime, koreaTimezone.zone)}</div>
                 <span className="timezone-separator">/</span>
@@ -388,8 +351,8 @@ const Home: React.FC = () => {
             </div>
           </div>
           
-          <div className="always-on-description">
-            <p>
+          <div className="always-on-description" ref={(el) => { textSectionRefs.current[6] = el; }}>
+            <p className="scroll-animate">
               At Technic, precision meets purpose. Every fabric begins with a vision refined 
               through skilled hands, advanced techniques, and a relentless pursuit of quality. 
               From fiber to finish, we craft suiting materials that embody structure, movement, 

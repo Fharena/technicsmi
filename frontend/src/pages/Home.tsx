@@ -118,7 +118,7 @@ const Home: React.FC = () => {
   // };
 
   const currentRotatingCountry = rotatableCountries[currentCountryIndex];
-
+  
   // 스크롤 애니메이션을 위한 ref
   const textSectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -153,8 +153,8 @@ const Home: React.FC = () => {
           scrollAnimateElements.forEach((el) => {
             el.classList.add('visible');
           });
-        }
       }
+    }
     });
 
     return () => {

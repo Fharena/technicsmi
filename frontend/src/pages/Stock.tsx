@@ -38,8 +38,16 @@ const Stock: React.FC = () => {
   const loadProducts = async () => {
     try {
       setLoading(true);
-      const data = await fetchProducts(selectedLineup);
-      setProducts(data);
+      // 재고 현황 필터인 경우 모든 제품을 가져온 후 클라이언트에서 필터링
+      if (stockStatuses.includes(selectedLineup)) {
+        const data = await fetchProducts(); // 모든 제품 가져오기
+        const filtered = data.filter(p => getStockStatus(p.stock) === selectedLineup);
+        setProducts(filtered);
+      } else {
+        // 라인업 필터인 경우
+        const data = await fetchProducts(selectedLineup === '전체' ? undefined : selectedLineup);
+        setProducts(data);
+      }
       setError(null);
     } catch (err) {
       console.error('Failed to load products:', err);
@@ -57,13 +65,26 @@ const Stock: React.FC = () => {
     return '#000000'; // 영구품절 (검정)
   };
 
+  // 재고 상태 반환
+  const getStockStatus = (stock: number): string => {
+    if (stock === 0) return '일시품절';
+    if (stock <= 5) return '소량';
+    if (stock <= 10) return '재고많음';
+    return '영구품절';
+  };
+
   // 라인업 목록 추출 (모든 제품에서)
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const lineups = ['전체', ...Array.from(new Set(allProducts.map(p => p.lineup)))];
+  
+  // 재고 현황 목록
+  const stockStatuses = ['재고많음', '소량', '일시품절', '영구품절'];
 
   // 필터된 제품 목록
   const filteredProducts = selectedLineup === '전체' 
     ? products 
+    : stockStatuses.includes(selectedLineup)
+    ? products.filter(p => getStockStatus(p.stock) === selectedLineup)
     : products.filter(p => p.lineup === selectedLineup);
 
   // 검색어로 필터링
@@ -137,6 +158,14 @@ const Stock: React.FC = () => {
                 {lineup === '전체' ? `전체 (${allProducts.length})` : `${lineup} (${allProducts.filter(p => p.lineup === lineup).length})`}
               </option>
             ))}
+            {stockStatuses.map(status => {
+              const count = allProducts.filter(p => getStockStatus(p.stock) === status).length;
+              return (
+                <option key={status} value={status}>
+                  {status} ({count})
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>

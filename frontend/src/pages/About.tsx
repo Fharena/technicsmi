@@ -128,15 +128,15 @@ const About: React.FC = () => {
       {/* Video Collage Section */}
       <div className="video-collage-section">
         <div className="video-collage-container">
-          <video 
+            <video 
             ref={(el) => { videoRefs.current[0] = el; }}
             src="/홈페이지 소스v2/about/어바웃 프로세스 뭉친영상.mp4" 
-            muted 
-            loop 
-            playsInline
-            preload="metadata"
-            className="collage-video"
-          />
+              muted 
+              loop 
+              playsInline
+              preload="metadata"
+              className="collage-video"
+            />
         </div>
       </div>
       
@@ -198,16 +198,16 @@ const About: React.FC = () => {
       <div className="process-section">
         <div ref={(el) => { textSectionRefs.current[4] = el; }}>
           <h2 className="process-title scroll-animate">How We Think About Process</h2>
-          <div className="process-content">
-            <div className="process-text-column">
+        <div className="process-content">
+          <div className="process-text-column">
               <p className="process-text-english scroll-animate">
-                For us, process is more than production it is a discipline built on integrity. Each step values precision over speed, care over convenience. Even the unseen details are shaped with intention and respect. We believe true mastery lies not in haste, but in quiet craftsmanship that endures over time.
-              </p>
-            </div>
-            <div className="process-text-column">
+              For us, process is more than production it is a discipline built on integrity. Each step values precision over speed, care over convenience. Even the unseen details are shaped with intention and respect. We believe true mastery lies not in haste, but in quiet craftsmanship that endures over time.
+            </p>
+          </div>
+          <div className="process-text-column">
               <p className="process-text-korean scroll-animate">
-                우리에게 '공정'은 생산의 절차 이상입니다. 그것은 하나의 규율이자, 정직함에 대한 약속 입니다. 모든 단계는 속도보다 정밀함을, 편의보다 세심함을 우선합니다. 눈에 보이지 않 는 디테일조차도 동일한 의도와 존중으로 다뤄집니다. 우리는 서두름보다 정확함을, 반복 보다 숙련을 믿습니다. 그 결과 탄생한 원단은 시간과 장인정신, 그리고 정직함을 조용히 품고 있습니다.
-              </p>
+              우리에게 '공정'은 생산의 절차 이상입니다. 그것은 하나의 규율이자, 정직함에 대한 약속 입니다. 모든 단계는 속도보다 정밀함을, 편의보다 세심함을 우선합니다. 눈에 보이지 않 는 디테일조차도 동일한 의도와 존중으로 다뤄집니다. 우리는 서두름보다 정확함을, 반복 보다 숙련을 믿습니다. 그 결과 탄생한 원단은 시간과 장인정신, 그리고 정직함을 조용히 품고 있습니다.
+            </p>
             </div>
           </div>
         </div>

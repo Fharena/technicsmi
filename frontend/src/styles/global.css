@@ -2,24 +2,34 @@
 /* 전역 여백 제거 및 스크롤 방지 */
 html, body{ 
   overflow-x:hidden; 
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: none !important;
+  display: block !important;
+  place-items: unset !important;
 }
 
 /* ============ 앱 기본 구조 ============ */
 .App {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: none !important;
   min-height: 100vh;
 }
 
 .main-content { 
   flex: 1; 
   padding: 0; 
-  max-width: none; 
+  max-width: none !important; 
   margin: 0; 
-  width: 100%; 
+  width: 100% !important;
+  min-width: 100% !important;
+  display: flex;
+  justify-content: center;
 }
 
 /* ============ 기본 텍스트 스타일 ============ */
@@ -37,4 +47,10 @@ p {
 /* 터치: hover가 없으니 탭으로 연 상태 유지 */
 @media (hover: none){
   .navigation{ cursor: pointer; }
+}
+
+/* ============ 로딩 스피너 애니메이션 ============ */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

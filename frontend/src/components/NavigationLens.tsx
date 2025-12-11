@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState, useId } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 type Sample =
   | { kind: "img"; el: HTMLImageElement; src: string }
@@ -35,6 +35,7 @@ const NavigationLens: React.FC<Props> = ({
   const [sample, setSample] = useState<Sample | null>(null);
   const overlapRef = useRef(0);           // 현재 샘플과의 겹침 면적(히스테리시스용)
   const location = useLocation();
+  const navigate = useNavigate();
   const uid = useId();
 
   // 현재 페이지 이름 가져오기
@@ -55,10 +56,6 @@ const NavigationLens: React.FC<Props> = ({
         return 'FRØMA';
       case '/archive':
         return 'ARCHIVE';
-      case '/contact':
-        return 'CONTACT';
-      case '/cart':
-        return 'CART';
       default:
         return 'HOME';
     }
@@ -181,7 +178,7 @@ const NavigationLens: React.FC<Props> = ({
     raf = requestAnimationFrame(sync);
     return () => cancelAnimationFrame(raf);
   }, [sample]);
-  const toggleOpen = () => setOpen(o => !o);
+  // const toggleOpen = () => setOpen(o => !o); // 사용하지 않는 함수 주석 처리
 
   // 컴포넌트 언마운트 시 타이머 정리
   useEffect(() => {
@@ -204,11 +201,11 @@ const NavigationLens: React.FC<Props> = ({
             setOpen(true);
         }}
         onMouseLeave={() => {
-            // 500ms 지연 후 닫기 (충분한 시간)
+            // 200ms 지연 후 닫기
             closeTimerRef.current = setTimeout(() => {
                 setOpen(false);
                 setSubOpen(false);
-            }, 500);
+            }, 200);
         }}
     >
         <nav
@@ -347,40 +344,76 @@ const NavigationLens: React.FC<Props> = ({
                         }}
                     >
                         <li>
-                            <NavLink 
-                                to="/libra"   
+                            <button 
                                 className="sub-link"
-                                onClick={() => {
+                                onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    
+                                    // 즉시 상태 초기화
                                     setOpen(false);
                                     setSubOpen(false);
+                                    
+                                    // 타이머 정리
+                                    if (closeTimerRef.current) {
+                                        clearTimeout(closeTimerRef.current);
+                                        closeTimerRef.current = null;
+                                    }
+                                    
+                                    // 네비게이션 실행
+                                    navigate('/libra');
                                 }}
                             >
                                 LIBRA
-                            </NavLink>
+                            </button>
                         </li>
                         <li>
-                            <NavLink 
-                                to="/aqua"    
+                            <button 
                                 className="sub-link"
-                                onClick={() => {
+                                onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    
+                                    // 즉시 상태 초기화
                                     setOpen(false);
                                     setSubOpen(false);
+                                    
+                                    // 타이머 정리
+                                    if (closeTimerRef.current) {
+                                        clearTimeout(closeTimerRef.current);
+                                        closeTimerRef.current = null;
+                                    }
+                                    
+                                    // 네비게이션 실행
+                                    navigate('/aqua');
                                 }}
                             >
                                 AQUARIUS
-                            </NavLink>
+                            </button>
                         </li>
                         <li>
-                            <NavLink 
-                                to="/froma"   
+                            <button 
                                 className="sub-link"
-                                onClick={() => {
+                                onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    
+                                    // 즉시 상태 초기화
                                     setOpen(false);
                                     setSubOpen(false);
+                                    
+                                    // 타이머 정리
+                                    if (closeTimerRef.current) {
+                                        clearTimeout(closeTimerRef.current);
+                                        closeTimerRef.current = null;
+                                    }
+                                    
+                                    // 네비게이션 실행
+                                    navigate('/froma');
                                 }}
                             >
                                 FRØMA
-                            </NavLink>
+                            </button>
                         </li>
                     </ul>
                 </li>
@@ -394,30 +427,6 @@ const NavigationLens: React.FC<Props> = ({
                         }}
                     >
                         ARCHIVE
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/contact"    
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        CONTACT
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/cart"    
-                        className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-                        onClick={() => {
-                            setOpen(false);
-                            setSubOpen(false);
-                        }}
-                    >
-                        CART
                     </NavLink>
                 </li>
             </ul>

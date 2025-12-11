@@ -147,30 +147,6 @@ const Archive1: React.FC = () => {
         </div>
       </section>
 
-      {/* Text and Fashion Section - 12, 13 */}
-      <section className="archive1-text-fashion-section">
-        {/* Text Section */}
-        <div className="text-fashion-text">
-          <div className="text-container">
-            <div className="text-english">
-              <p>Through the work of designer Niklas Hansen, we gained a renewed perspective. We learned that a shipping box isn't merely protective packaging or disposable waste after unboxing it can become a meaningful object that brings order and emotional depth to a space.</p>
-            </div>
-            <div className="text-korean">
-              <p>우리는 디자이너 Niklas Hansen 작업을 통해 새로운 시각을 얻게 되었습니다. 택배 박스는 단순히 제품을 보호하는 포장재이자, 개봉 후 버려지는 부산물이 아니라, 공간을 정돈하고 감성을 더하는 하나의 오브젝트가 될 수 있다는 가능성을 배웠습니다.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Fashion Images Section */}
-        <div className="fashion-images-layout">
-          <div className="fashion-image-left">
-            <img src="/홈페이지 소스정리/아카이브1/12.png" alt="Fashion Editorial 1" className="half-width-image"/>
-          </div>
-          <div className="fashion-image-right">
-            <img src="/홈페이지 소스정리/아카이브1/13.png" alt="Fashion Editorial 2" className="half-width-image"/>
-          </div>
-        </div>
-      </section>
 
       {/* Next Image Section - 14 */}
       <section className="archive1-next-image-section">

@@ -1,0 +1,696 @@
+/* ============ Libra 페이지 스타일 ============ */
+
+.libra-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ Main Video Section ============ */
+.libra-main-video {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.libra-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ============ LIBRA Image Section ============ */
+.libra-image-section {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.libra-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ============ Libra Description Video Section ============ */
+.libra-description-video {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============ Libra Product Section ============ */
+.libra-product-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 100px 60px 60px 180px;
+  background: transparent;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.libra-product-section > * {
+  pointer-events: auto;
+}
+
+.libra-section-line {
+  width: 100%;
+  height: 1px;
+  background: #333333;
+  margin-bottom: 20px;
+}
+
+.libra-product-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.libra-product-left {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+  flex: 0 0 auto;
+  min-width: 700px;
+}
+
+.libra-color-palette-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  min-width: 400px;
+}
+
+.libra-product-code {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.libra-product-image-container {
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+.libra-product-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+
+.libra-product-divider {
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 50px 0;
+}
+
+/* ============ Twill Weave Section ============ */
+.libra-twill-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  padding-right: 250px;
+}
+
+.libra-twill-info {
+  max-width: 450px;
+}
+
+.libra-twill-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 20px 0;
+}
+
+.libra-twill-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0 0 15px 0;
+}
+
+.libra-twill-description-kr {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+.libra-twill-patterns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.libra-pattern-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.libra-pattern-icon.selected {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000;
+  transform: scale(1.05);
+}
+
+.libra-pattern-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============ Libra Color Palette ============ */
+.libra-color-palette {
+  width: 100%;
+  max-width: 400px;
+  padding: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.libra-color-palette-header {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.libra-color-palette-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.libra-color-swatches {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.libra-color-swatch {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  max-width: 42px;
+  max-height: 42px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.libra-color-swatch:hover {
+  transform: scale(1.1);
+  border-color: #cccccc;
+}
+
+.libra-color-swatch.selected {
+  border-color: #000000 !important;
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000 !important;
+  z-index: 10;
+  position: relative;
+}
+
+.libra-selected-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+  .libra-product-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .libra-product-info {
+    order: 1;
+  }
+
+  .libra-product-image-container {
+    order: 2;
+  }
+
+  .libra-color-palette-wrapper {
+    order: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .libra-product-section {
+    padding: 40px 20px;
+  }
+
+  .libra-color-palette {
+    padding: 0;
+  }
+
+  .libra-color-swatches {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .libra-color-swatch {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+}
+
+/* ============ Top Image Section ============ */
+.libra-top-image {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.libra-top-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ Hero Section with Video Background ============ */
+.libra-hero {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: #e8dfd0;
+  aspect-ratio: 14 / 10;
+  padding-bottom: 100px;
+}
+
+.libra-hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.libra-hero-overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.libra-hero-content {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.libra-hero-left {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+}
+
+.libra-hero-text h2 {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.libra-description {
+  font-size: clamp(0.75rem, 1.3vw, 1rem);
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+
+.libra-hero-right {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-top: -20px;
+}
+
+.libra-number {
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+
+.libra-hero-bottom {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  right: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.libra-feature h3 {
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.libra-feature p {
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============ 반응형 디자인 ============ */
+
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .libra-hero-overlay {
+    padding: 60px 40px;
+  }
+
+  .libra-number {
+    font-size: 12rem;
+  }
+
+  .libra-hero-bottom {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 60px;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .libra-hero-overlay {
+    padding: 40px 20px;
+  }
+
+  .libra-hero-content {
+    margin: 0 auto 0 50px;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .libra-hero-left {
+    max-width: 100%;
+  }
+
+  .libra-hero-text h2 {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .libra-description {
+    font-size: 0.8rem;
+  }
+
+  .libra-number {
+    font-size: 8rem;
+  }
+
+  .libra-hero-bottom {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-top: 40px;
+  }
+
+  .libra-feature h3 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .libra-feature p {
+    font-size: 0.8rem;
+  }
+}
+
+/* 소형 모바일 */
+@media (max-width: 480px) {
+  .libra-hero-overlay {
+    padding: 30px 15px;
+  }
+
+  .libra-hero-text h2 {
+    font-size: 0.85rem;
+  }
+
+  .libra-description {
+    font-size: 0.75rem;
+  }
+
+  .libra-number {
+    font-size: 6rem;
+  }
+
+  .libra-hero-bottom {
+    gap: 20px;
+    padding-top: 30px;
+  }
+
+  .libra-feature h3 {
+    font-size: 0.85rem;
+  }
+
+  .libra-feature p {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============ LIBRA Collection Section ============ */
+.libra-collection-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.libra-section-bg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  z-index: 1;
+  display: block;
+}
+
+/* ============ Pure Wool Section ============ */
+.pure-wool-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.pure-wool-bg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  z-index: 1;
+  display: block;
+}
+
+.pure-wool-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 80px 60px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.main-quote {
+  position: relative;
+  text-align: left;
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quote-mark {
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  z-index: 3;
+}
+
+.quote-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+
+.sub-quotes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  gap: 40px;
+  margin: 0 auto 0 auto;
+  transform: translateX(70px);
+}
+
+.left-quote {
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.left-quote::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.right-quote {
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.right-quote::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.left-quote p,
+.right-quote p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Pure Wool Section Responsive */
+@media (max-width: 768px) {
+  .pure-wool-content {
+    padding: 60px 40px;
+  }
+  
+  .quote-text {
+    font-size: 2.5rem;
+  }
+  
+  .quote-mark {
+    font-size: 3rem;
+    top: -15px;
+    left: -20px;
+  }
+  
+  .quote-divider {
+    width: 150px;
+    margin-bottom: 30px;
+  }
+  
+  .sub-quotes {
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+  }
+  
+  .left-quote p,
+  .right-quote p {
+    font-size: 1rem;
+  }
+}
+
+
+

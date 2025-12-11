@@ -1,0 +1,427 @@
+/* ============ AQUA PAGE STYLES ============ */
+.aqua-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.aqua-page * {
+  box-sizing: border-box;
+}
+
+.aqua-page section {
+  margin: 0;
+  padding: 0;
+}
+
+/* ============ FIRST SECTION ============ */
+.aqua-first-section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+  border: none;
+}
+
+.aqua-first-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ============ Aqua2 Image Section ============ */
+.aqua-image-section {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+  border: none;
+}
+
+.aqua-image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ============ Aqua3 Quote Section ============ */
+.aqua-quote-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.aqua-quote-bg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  z-index: 1;
+  display: block;
+}
+
+.aqua-quote-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 80px 60px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.main-quote {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quote-mark {
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  z-index: 3;
+}
+
+.quote-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.sub-quotes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  gap: 40px;
+  margin: 0 auto 0 auto;
+  transform: translateX(70px);
+}
+
+.left-quote {
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.left-quote::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.right-quote {
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.right-quote::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.left-quote p,
+.right-quote p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Aqua Quote Section Responsive */
+@media (max-width: 768px) {
+  .aqua-quote-content {
+    padding: 60px 40px;
+  }
+  
+  .quote-text {
+    font-size: 2.5rem;
+  }
+  
+  .quote-mark {
+    font-size: 3rem;
+    top: -15px;
+    left: -20px;
+  }
+  
+  .sub-quotes {
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .left-quote p,
+  .right-quote p {
+    font-size: 1rem;
+  }
+}
+
+/* ============ Hero Section with Video Background ============ */
+.aqua-hero {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  background: transparent;
+  aspect-ratio: 16 / 9;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+  border: none;
+}
+
+.aqua-hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.aqua-hero-overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.aqua-hero-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: clamp(40px, 4.2vw, 80px) clamp(30px, 3.1vw, 60px) 0 clamp(30px, 3.1vw, 60px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top Header */
+.aqua-header {
+  position: absolute;
+  top: clamp(20px, 2.1vw, 40px);
+  left: clamp(30px, 3.1vw, 60px);
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.04vw, 20px);
+  z-index: 3;
+}
+
+.aqua-number-small {
+  font-size: clamp(0.8rem, 1.2vw, 1.2rem);
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.aqua-collection-text {
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  font-weight: 400;
+  color: #ffffff;
+  opacity: 0.7;
+  letter-spacing: clamp(0.5px, 0.1vw, 2px);
+}
+
+/* Left Side - Header 바로 아래 배치 */
+.aqua-left {
+  position: absolute;
+  top: clamp(40px, 4.2vw, 80px);
+  left: clamp(30px, 3.1vw, 60px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.04vw, 20px);
+  max-width: clamp(450px, 20.8vw, 550px);
+}
+
+.aqua-title {
+  font-size: clamp(1.1rem, 2vw, 2.1rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: clamp(0.5px, 0.1vw, 2px);
+}
+
+.aqua-description {
+  font-size: clamp(0.75rem, 1vw, 1rem);
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: clamp(300px, 20.8vw, 400px);
+}
+
+/* Main Grid Layout - 오른쪽만 */
+.aqua-main-grid {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: clamp(20px, 2.08vw, 40px);
+  flex: 1;
+  width: 100%;
+  max-width: clamp(600px, 83.3vw, 1600px);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* Right Side */
+.aqua-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transform: translateY(clamp(-40px, -4.2vw, -80px));
+}
+
+.aqua-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(15px, 1.56vw, 30px);
+  max-width: clamp(400px, 41.7vw, 800px);
+  width: 100%;
+}
+
+.aqua-feature h3 {
+  font-size: clamp(0.7rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 clamp(8px, 0.78vw, 15px) 0;
+  line-height: 1.3;
+}
+
+.aqua-feature p {
+  font-size: clamp(0.65rem, 0.9vw, 0.9rem);
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* Large Number */
+.aqua-large-number {
+  position: absolute;
+  top: clamp(20px, 2.1vw, 40px);
+  right: clamp(30px, 3.1vw, 60px);
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.3;
+  line-height: 1;
+  z-index: 3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aqua-hero {
+    aspect-ratio: 4 / 3;
+  }
+  
+  .aqua-hero-content {
+    padding: 7.8vw 5.2vw 0 5.2vw;
+  }
+  
+  .aqua-header {
+    top: 7.8vw;
+    left: 5.2vw;
+    gap: 1.95vw;
+  }
+  
+  .aqua-number-small {
+    font-size: 1.3vw;
+  }
+  
+  .aqua-collection-text {
+    font-size: 1.17vw;
+  }
+  
+  .aqua-left {
+    top: 10.4vw;
+    left: 5.2vw;
+    max-width: 100%;
+  }
+  
+  .aqua-title {
+    font-size: 2.6vw;
+  }
+  
+  .aqua-description {
+    font-size: 1.17vw;
+  }
+  
+  .aqua-main-grid {
+    margin-top: 2.6vw;
+  }
+  
+  .aqua-features {
+    max-width: 39vw;
+    gap: 2.6vw;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .aqua-feature h3 {
+    font-size: 1.3vw;
+  }
+  
+  .aqua-feature p {
+    font-size: 0.975vw;
+  }
+  
+  .aqua-large-number {
+    top: 7.8vw;
+    right: 5.2vw;
+    font-size: 5.2vw;
+  }
+}

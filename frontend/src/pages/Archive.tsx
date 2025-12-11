@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; // 사용하지 않는 import 제거
 import ContactForm from '../components/ContactForm';
 import MainFooter from '../components/MainFooter';
 import ArchiveTimelineSection from '../components/ArchiveTimelineSection';

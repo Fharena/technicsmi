@@ -17,7 +17,7 @@
 .navigation{
   --nav-h: 46px;                      /* 접힘 높이 */
   --nav-h-sub: 160px;                 /* 서브 펼침 높이 */
-  --w-collapsed: clamp(160px, 36vw, 240px);
+  --w-collapsed: clamp(120px, 28vw, 180px); /* 너비를 더 줄임 */
   --w-expanded:  clamp(560px, 80vw, 920px);
   
   --nav-r: calc(var(--nav-h) / 2);
@@ -29,22 +29,17 @@
    /* 좌/우 패딩(메뉴가 시작·끝나는 지점 확보) */
    --pl-left: calc(var(--icon-inset) + var(--dot) + var(--gap));
    --pl-right: 0; /* 오른쪽 패딩 제거 */
-  /* position: relative;   
-  height: var(--nav-h);
-  width: clamp(340px, 80vw, 920px); */
+  
   position: relative;
   height: var(--nav-h);
   width: var(--w-collapsed);          /* 기본은 좁게 */
   padding-left:  0;
   padding-right: var(--pl-right);
   margin-inline: auto;                /* ✅ 가로 정중앙 */
-  border-radius: var(--nav-r);
+  border-radius: 23px; /* 둥근 모서리 직접 설정 */
   box-sizing: border-box;
-  overflow: visible;
+  overflow: visible; /* 하위 메뉴가 보이도록 visible로 변경 */
   isolation: isolate;
-
-  /* ← 패딩과 점 좌표를 같은 변수로 계산 */
-  /* padding-left:  var(--pl-left); */
 
   display: flex;
   align-items: center;
@@ -80,14 +75,6 @@
   z-index: 1; 
 }
 
-/* 네비 확장 - React 상태 기반으로만 제어 */
-.navigation.open {
-  width: var(--w-expanded);
-  border-radius: 23px;
-}
-
-/* 포커스가 있을 때 메뉴 유지 - 제거 */
-
 /* 기본 상태: 작게 */
 .navigation {
   width: clamp(120px, 28vw, 180px); /* 너비를 더 줄임 */
@@ -96,7 +83,7 @@
   border-radius: 23px; /* 둥근 모서리 직접 설정 */
 }
 
-/* 마우스 hover or focus or open state 시 넓게 */
+/* 네비 확장 - React 상태 기반으로만 제어 */
 .navigation.open {
   width: clamp(560px, 80vw, 920px);
   border-radius: 23px; /* 확장 시에도 둥근 모서리 유지 */
@@ -161,7 +148,7 @@
   flex: 0 0 auto;
 }
 
-/* 메뉴 리스트 - 위에서 이미 정의됨, 중복 제거 */
+/* HOME 메뉴 링크 숨김 */
 .nav-list .home .nav-link {
   opacity: 0;
 }
@@ -254,8 +241,6 @@
   justify-content: center; /* 기본과 동일하게 중앙 정렬 유지 */
 }
 
-/* 왼쪽 아이콘은 이미 위에서 완전 고정 설정됨 - 중복 제거 */
-
 /* 모든 메뉴 아이템에 relative 위치 설정 */
 .nav-list li {
   position: relative;
@@ -327,8 +312,6 @@
   width: 100%; /* 네비바 전체 너비 사용 */
 }
 
-/* WORK 기본 상태 스타일링 - 중복 제거 */
-
 /* WORK와 서브메뉴를 하나의 그룹으로 만들어 더 뚜렷하게 표시 */
 .has-sub:hover {
   background: transparent; /* WORK 배경 제거 */
@@ -345,7 +328,7 @@
 /* React 상태가 열린 상태일 때만 서브메뉴 표시 */
 .navigation.sub-open .submenu {
   opacity: 1;
-  /* pointer-events: auto !important; 제거 - 이미 항상 활성화됨 */
+  pointer-events: auto;
   visibility: visible;
   max-height: 400px; /* 서브메뉴 높이 더 확장 (300px → 400px) */
   overflow: visible;
@@ -353,7 +336,7 @@
   transition: opacity 0.15s ease, max-height 0.15s ease; /* 더 빠른 전환 */
 }
 
-/* 중복 제거됨 - 위에서 이미 .navigation:has(.submenu:hover) 처리됨 */
+/* 서브메뉴 링크 스타일 */
 .sub-link{
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
@@ -384,12 +367,6 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-}
-
-/* 네비가 sub-open일 때 서브 표시 */
-.navigation.sub-open .submenu{
-  opacity: 1;
-  pointer-events: auto;
 }
 
 /* 서브메뉴 li와 링크들의 모든 배경과 테두리 완전 제거 - NavLink active 상태 포함 */
@@ -423,8 +400,6 @@
   margin: 0 !important;
   border-radius: 0 !important;
 }
-
-/* 중복 규칙 제거됨 */
 
 /* 렌즈 오버레이는 네비 높이 변화에도 꽉 채우도록 이미 absolute inset:0 상태여야 함 */
 .nav-overlay{ position:absolute; inset:0; border-radius:inherit; pointer-events:none; }

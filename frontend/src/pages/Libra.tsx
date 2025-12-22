@@ -66,16 +66,16 @@ const Libra: React.FC = () => {
                 alt={selectedColor.name}
                 className="libra-product-image"
               />
+              </div>
             </div>
-          </div>
           <div className="libra-color-palette-wrapper">
             <div className="libra-section-line"></div>
             <LibraColorPalette 
               selectedColor={selectedColor}
               onColorSelect={setSelectedColor}
             />
+            </div>
           </div>
-        </div>
         <div className="libra-product-divider"></div>
         <div className="libra-twill-section">
           <div className="libra-twill-info">
@@ -118,7 +118,7 @@ const Libra: React.FC = () => {
                 </p>
               </>
             )}
-          </div>
+            </div>
           <div className="libra-twill-patterns">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((num, index) => (
               <div 
@@ -126,7 +126,7 @@ const Libra: React.FC = () => {
                 className={`libra-pattern-icon ${index === selectedPatternIndex ? 'selected' : ''}`}
               >
                 <img src={`/홈페이지 소스v2/텍스터/${num}.png`} alt={`Pattern ${num}`} />
-              </div>
+            </div>
             ))}
           </div>
         </div>

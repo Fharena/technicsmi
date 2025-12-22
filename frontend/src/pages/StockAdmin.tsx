@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchProducts, createProduct, updateProduct, deleteProduct, uploadImage, getImageUrl } from '../services/api';
+import { fetchProducts, createProduct, updateProduct, deleteProduct, uploadImage, uploadGlb, getImageUrl } from '../services/api';
 import type { Product } from '../services/api';
 import '../styles/stock.css';
 
@@ -31,7 +31,11 @@ const StockAdmin: React.FC = () => {
     stock: 0,
     restockMessage: '',
     remarks: '',
+    glbFile: '',
   });
+  
+  // GLB 업로드 ref
+  const glbInputRef = useRef<HTMLInputElement>(null);
 
   // 비밀번호 변경 상태
   const [passwordForm, setPasswordForm] = useState({
@@ -77,6 +81,7 @@ const StockAdmin: React.FC = () => {
         stock: 0,
         restockMessage: '',
         remarks: '',
+        glbFile: '',
       });
       setShowAddForm(false);
       alert('제품이 추가되었습니다.');
@@ -138,7 +143,8 @@ const StockAdmin: React.FC = () => {
         image: product.image,
         stock: stockValue,
         restockMessage: product.restockMessage || '',
-        remarks: product.remarks || ''
+        remarks: product.remarks || '',
+        glbFile: product.glbFile || ''
       });
     }
   };
@@ -190,7 +196,8 @@ const StockAdmin: React.FC = () => {
             image: imageUrl,
             stock: product.stock,
             restockMessage: product.restockMessage || '',
-            remarks: product.remarks || ''
+            remarks: product.remarks || '',
+            glbFile: product.glbFile || ''
           });
         }
         
@@ -226,6 +233,68 @@ const StockAdmin: React.FC = () => {
       }
     } else {
       alert('이미지 파일만 업로드 가능합니다.');
+    }
+  };
+
+  // 새 제품용 GLB 파일 업로드 처리
+  const handleGlbUpload = async (file: File) => {
+    const ext = file.name.toLowerCase().split('.').pop();
+    if (ext === 'glb' || ext === 'gltf') {
+      try {
+        // 파일 크기 체크 (50MB)
+        if (file.size > 50 * 1024 * 1024) {
+          alert('GLB 파일 크기는 50MB 이하여야 합니다.');
+          return;
+        }
+        
+        // 서버에 업로드
+        const glbUrl = await uploadGlb(file);
+        setNewProduct({...newProduct, glbFile: glbUrl});
+      } catch (error) {
+        console.error('GLB upload failed:', error);
+        alert('GLB 업로드에 실패했습니다.');
+      }
+    } else {
+      alert('GLB/GLTF 파일만 업로드 가능합니다.');
+    }
+  };
+
+  // 기존 제품 GLB 업데이트
+  const handleProductGlbUpdate = async (productId: string, file: File) => {
+    const ext = file.name.toLowerCase().split('.').pop();
+    if (ext === 'glb' || ext === 'gltf') {
+      try {
+        // 파일 크기 체크 (50MB)
+        if (file.size > 50 * 1024 * 1024) {
+          alert('GLB 파일 크기는 50MB 이하여야 합니다.');
+          return;
+        }
+        
+        // 서버에 업로드
+        const glbUrl = await uploadGlb(file);
+        
+        // 제품 정보 업데이트
+        const product = products.find(p => p.id === productId);
+        if (product) {
+          await handleUpdateProduct(productId, { 
+            lineup: product.lineup,
+            productCode: product.productCode,
+            color: product.color,
+            image: product.image,
+            stock: product.stock,
+            restockMessage: product.restockMessage || '',
+            remarks: product.remarks || '',
+            glbFile: glbUrl
+          });
+        }
+        
+        alert('GLB 파일이 업데이트되었습니다.');
+      } catch (error) {
+        console.error('GLB update failed:', error);
+        alert('GLB 업데이트에 실패했습니다.');
+      }
+    } else {
+      alert('GLB/GLTF 파일만 업로드 가능합니다.');
     }
   };
 
@@ -360,6 +429,45 @@ const StockAdmin: React.FC = () => {
               />
             </div>
             <div className="form-group">
+              <label>3D 모델 (GLB)</label>
+              <div 
+                className={`glb-upload-area ${newProduct.glbFile ? 'has-file' : ''}`}
+                onClick={() => glbInputRef.current?.click()}
+              >
+                {newProduct.glbFile ? (
+                  <div className="glb-file-info">
+                    <div className="glb-icon">📦</div>
+                    <p>GLB 파일 업로드됨</p>
+                    <button 
+                      className="btn-remove-glb"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setNewProduct({...newProduct, glbFile: ''});
+                      }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ) : (
+                  <div className="upload-placeholder">
+                    <div className="upload-icon">📦</div>
+                    <p>클릭하여 GLB 파일 업로드</p>
+                    <span>GLB, GLTF 지원 (최대 50MB)</span>
+                  </div>
+                )}
+              </div>
+              <input
+                ref={glbInputRef}
+                type="file"
+                accept=".glb,.gltf"
+                style={{ display: 'none' }}
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) await handleGlbUpload(file);
+                }}
+              />
+            </div>
+            <div className="form-group">
               <label>재고</label>
               <select
                 value={getStockStatus(newProduct.stock)}
@@ -414,6 +522,7 @@ const StockAdmin: React.FC = () => {
                   stock: 0,
                   restockMessage: '',
                   remarks: '',
+                  glbFile: '',
                 });
               }}>취소</button>
             </div>
@@ -511,6 +620,7 @@ const StockAdmin: React.FC = () => {
           <thead>
             <tr>
               <th>이미지</th>
+              <th>3D 모델</th>
               <th>라인업</th>
               <th>제품코드</th>
               <th>컬러</th>
@@ -574,6 +684,50 @@ const StockAdmin: React.FC = () => {
                             업로드 중...
                           </div>
                         )}
+                      </div>
+                    )}
+                  </div>
+                </td>
+                <td>
+                  <div className="table-glb-cell">
+                    {product.glbFile ? (
+                      <div className="glb-status has-glb">
+                        <span className="glb-badge">📦 GLB</span>
+                        <input
+                          type="file"
+                          accept=".glb,.gltf"
+                          style={{ display: 'none' }}
+                          id={`glb-input-${product.id}`}
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) await handleProductGlbUpdate(product.id, file);
+                          }}
+                        />
+                        <button 
+                          className="btn-edit-glb"
+                          onClick={() => document.getElementById(`glb-input-${product.id}`)?.click()}
+                        >
+                          변경
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="glb-status no-glb">
+                        <input
+                          type="file"
+                          accept=".glb,.gltf"
+                          style={{ display: 'none' }}
+                          id={`glb-input-${product.id}`}
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) await handleProductGlbUpdate(product.id, file);
+                          }}
+                        />
+                        <button 
+                          className="btn-add-glb"
+                          onClick={() => document.getElementById(`glb-input-${product.id}`)?.click()}
+                        >
+                          + GLB
+                        </button>
                       </div>
                     )}
                   </div>

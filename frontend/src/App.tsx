@@ -72,6 +72,10 @@ function App() {
         </filter>
       </svg>
 
+
+
+
+
       <Routes>
         {/* 스톡 페이지는 네비게이션 바 없이 완전 격리 */}
         <Route path="/stock" element={<Stock />} />

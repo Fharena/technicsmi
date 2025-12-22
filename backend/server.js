@@ -30,9 +30,20 @@ app.get("/api/health", (req, res) => {
 
 // 프로덕션 환경에서는 빌드된 React 앱 제공
 if (process.env.NODE_ENV === "production") {
+  // 정적 파일 먼저 서빙 (JS, CSS, 이미지 등)
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
+  // API가 아니고 파일 확장자가 없는 요청만 index.html로 (SPA 라우팅)
   app.get("*", (req, res) => {
+    // API 요청은 제외
+    if (req.path.startsWith("/api")) {
+      return res.status(404).json({ error: "API endpoint not found" });
+    }
+    // 파일 확장자가 있으면 정적 파일로 간주 (이미 위에서 처리됨)
+    if (req.path.includes(".")) {
+      return res.status(404).send("File not found");
+    }
+    // 나머지만 index.html로 (SPA 라우팅)
     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
   });
 }

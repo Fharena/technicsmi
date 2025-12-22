@@ -26,6 +26,14 @@ const initDB = () => {
       )
     `);
 
+    // restock_message 컬럼 추가 (마이그레이션)
+    try {
+      db.exec(`ALTER TABLE products ADD COLUMN restock_message TEXT`);
+      console.log("✅ Added restock_message column to products table");
+    } catch (e) {
+      // 컬럼이 이미 존재하면 무시
+    }
+
     // remarks 컬럼 추가 (마이그레이션)
     try {
       db.exec(`ALTER TABLE products ADD COLUMN remarks TEXT`);

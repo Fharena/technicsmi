@@ -21,6 +21,7 @@ export interface Product {
   stock: number;
   restockMessage?: string;
   remarks?: string;
+  glbFile?: string | null;
 }
 
 // 모든 제품 조회 (라인업 필터링 지원)
@@ -120,5 +121,44 @@ export const deleteImage = async (filename: string): Promise<void> => {
   if (!response.ok) {
     throw new Error('Failed to delete image');
   }
+};
+
+// GLB 파일 업로드
+export const uploadGlb = async (file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append('glb', file);
+  
+  const response = await fetch(`${API_BASE_URL}/upload/glb`, {
+    method: 'POST',
+    body: formData,
+  });
+  
+  if (!response.ok) {
+    throw new Error('Failed to upload GLB file');
+  }
+  
+  const data = await response.json();
+  return data.glbUrl;
+};
+
+// GLB 파일 삭제
+export const deleteGlb = async (filename: string): Promise<void> => {
+  const response = await fetch(`${API_BASE_URL}/upload/glb/${filename}`, {
+    method: 'DELETE',
+  });
+  
+  if (!response.ok) {
+    throw new Error('Failed to delete GLB file');
+  }
+};
+
+// GLB URL을 완전한 URL로 변환
+export const getGlbUrl = (glbPath: string): string => {
+  if (!glbPath) return '';
+  if (glbPath.startsWith('http')) return glbPath;
+  if (glbPath.startsWith('/uploads/')) {
+    return `${SERVER_BASE_URL}${glbPath}`;
+  }
+  return glbPath;
 };
 

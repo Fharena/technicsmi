@@ -31,6 +31,7 @@ router.get("/", (req, res) => {
       stock: row.stock,
       restockMessage: row.restock_message,
       remarks: row.remarks,
+      glbFile: row.glb_file || null,
     }));
 
     res.json(products);
@@ -42,8 +43,16 @@ router.get("/", (req, res) => {
 
 // POST - 제품 추가
 router.post("/", (req, res) => {
-  const { lineup, productCode, color, image, stock, restockMessage, remarks } =
-    req.body;
+  const {
+    lineup,
+    productCode,
+    color,
+    image,
+    stock,
+    restockMessage,
+    remarks,
+    glbFile,
+  } = req.body;
 
   if (!lineup || !productCode || !color) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -51,7 +60,7 @@ router.post("/", (req, res) => {
 
   try {
     const stmt = db.prepare(
-      "INSERT INTO products (lineup, product_code, color, image, stock, restock_message, remarks) VALUES (?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO products (lineup, product_code, color, image, stock, restock_message, remarks, glb_file) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     );
     const info = stmt.run(
       lineup,
@@ -60,7 +69,8 @@ router.post("/", (req, res) => {
       image || "",
       stock || 0,
       restockMessage || "",
-      remarks || ""
+      remarks || "",
+      glbFile || ""
     );
 
     const newProduct = {
@@ -72,6 +82,7 @@ router.post("/", (req, res) => {
       stock: stock || 0,
       restockMessage: restockMessage || "",
       remarks: remarks || "",
+      glbFile: glbFile || null,
     };
 
     res.status(201).json(newProduct);
@@ -84,8 +95,16 @@ router.post("/", (req, res) => {
 // PUT - 제품 수정
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { lineup, productCode, color, image, stock, restockMessage, remarks } =
-    req.body;
+  const {
+    lineup,
+    productCode,
+    color,
+    image,
+    stock,
+    restockMessage,
+    remarks,
+    glbFile,
+  } = req.body;
 
   console.log("PUT /products/:id", { id, body: req.body });
 
@@ -104,12 +123,13 @@ router.put("/:id", (req, res) => {
     stock,
     restockMessage,
     remarks,
+    glbFile,
   });
 
   try {
     const stmt = db.prepare(
       `UPDATE products 
-       SET lineup = ?, product_code = ?, color = ?, image = ?, stock = ?, restock_message = ?, remarks = ?, updated_at = CURRENT_TIMESTAMP
+       SET lineup = ?, product_code = ?, color = ?, image = ?, stock = ?, restock_message = ?, remarks = ?, glb_file = ?, updated_at = CURRENT_TIMESTAMP
        WHERE id = ?`
     );
     const info = stmt.run(
@@ -120,6 +140,7 @@ router.put("/:id", (req, res) => {
       stock,
       restockMessage || "",
       remarks || "",
+      glbFile || "",
       id
     );
 
@@ -138,6 +159,7 @@ router.put("/:id", (req, res) => {
       stock,
       restockMessage: restockMessage || "",
       remarks: remarks || "",
+      glbFile: glbFile || null,
     };
 
     console.log("Updated product:", updatedProduct);
@@ -153,8 +175,10 @@ router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
   try {
-    // 먼저 제품 정보 조회 (이미지 파일명 확인용)
-    const selectStmt = db.prepare("SELECT image FROM products WHERE id = ?");
+    // 먼저 제품 정보 조회 (이미지, GLB 파일명 확인용)
+    const selectStmt = db.prepare(
+      "SELECT image, glb_file FROM products WHERE id = ?"
+    );
     const product = selectStmt.get(id);
 
     if (!product) {
@@ -169,15 +193,27 @@ router.delete("/:id", (req, res) => {
       return res.status(404).json({ error: "Product not found" });
     }
 
+    const fs = require("fs");
+
     // 이미지 파일이 업로드된 파일이면 삭제
     if (product.image && product.image.startsWith("/uploads/")) {
-      const fs = require("fs");
       const filename = product.image.replace("/uploads/", "");
       const filePath = path.join(__dirname, "../uploads", filename);
 
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
         console.log(`Deleted image file: ${filename}`);
+      }
+    }
+
+    // GLB 파일이 업로드된 파일이면 삭제
+    if (product.glb_file && product.glb_file.startsWith("/uploads/")) {
+      const filename = product.glb_file.replace("/uploads/", "");
+      const filePath = path.join(__dirname, "../uploads", filename);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        console.log(`Deleted GLB file: ${filename}`);
       }
     }
 

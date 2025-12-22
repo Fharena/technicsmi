@@ -16,10 +16,6 @@
   "keywords": ["react", "express", "postgresql"],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@rive-app/canvas": "^2.31.2",
-    "@rive-app/react-canvas": "^4.23.1"
-  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }

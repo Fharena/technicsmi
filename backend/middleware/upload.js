@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 // 파일 필터링 (이미지만 허용)
-const fileFilter = (req, file, cb) => {
+const imageFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image/")) {
     cb(null, true);
   } else {
@@ -23,13 +23,36 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// multer 설정
-const upload = multer({
+// GLB 파일 필터링
+const glbFilter = (req, file, cb) => {
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (
+    ext === ".glb" ||
+    ext === ".gltf" ||
+    file.mimetype === "model/gltf-binary"
+  ) {
+    cb(null, true);
+  } else {
+    cb(new Error("GLB/GLTF 파일만 업로드 가능합니다."), false);
+  }
+};
+
+// 이미지 업로드용 multer 설정
+const imageUpload = multer({
   storage: storage,
-  fileFilter: fileFilter,
+  fileFilter: imageFilter,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB 제한
   },
 });
 
-module.exports = upload;
+// GLB 업로드용 multer 설정
+const glbUpload = multer({
+  storage: storage,
+  fileFilter: glbFilter,
+  limits: {
+    fileSize: 50 * 1024 * 1024, // 50MB 제한 (3D 모델은 크기가 클 수 있음)
+  },
+});
+
+module.exports = { imageUpload, glbUpload };

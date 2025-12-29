@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchProducts, createProduct, updateProduct, deleteProduct, uploadImage, uploadGlb, getImageUrl } from '../services/api';
+import { fetchProducts, createProduct, updateProduct, deleteProduct, uploadImage, uploadGlb, getImageUrl, deleteImage, deleteGlb } from '../services/api';
 import type { Product } from '../services/api';
 import '../styles/stock.css';
 
@@ -295,6 +295,98 @@ const StockAdmin: React.FC = () => {
       }
     } else {
       alert('GLB/GLTF 파일만 업로드 가능합니다.');
+    }
+  };
+
+  // 이미지 삭제
+  const handleDeleteImage = async (productId: string) => {
+    if (!window.confirm('이미지를 삭제하시겠습니까?')) {
+      return;
+    }
+
+    try {
+      const product = products.find(p => p.id === productId);
+      if (!product || !product.image) {
+        alert('삭제할 이미지가 없습니다.');
+        return;
+      }
+
+      // 이미지 URL에서 파일명 추출
+      let filename = '';
+      if (product.image.startsWith('/uploads/')) {
+        filename = product.image.replace('/uploads/', '');
+      } else if (product.image.includes('/uploads/')) {
+        filename = product.image.split('/uploads/')[1];
+      } else {
+        alert('업로드된 이미지만 삭제할 수 있습니다.');
+        return;
+      }
+
+      // 서버에서 파일 삭제
+      await deleteImage(filename);
+
+      // 제품 정보에서 이미지 필드 제거
+      await handleUpdateProduct(productId, {
+        lineup: product.lineup,
+        productCode: product.productCode,
+        color: product.color,
+        image: '',
+        stock: product.stock,
+        restockMessage: product.restockMessage || '',
+        remarks: product.remarks || '',
+        glbFile: product.glbFile || ''
+      });
+
+      alert('이미지가 삭제되었습니다.');
+    } catch (error) {
+      console.error('Image delete failed:', error);
+      alert('이미지 삭제에 실패했습니다.');
+    }
+  };
+
+  // GLB 파일 삭제
+  const handleDeleteGlb = async (productId: string) => {
+    if (!window.confirm('GLB 파일을 삭제하시겠습니까?')) {
+      return;
+    }
+
+    try {
+      const product = products.find(p => p.id === productId);
+      if (!product || !product.glbFile) {
+        alert('삭제할 GLB 파일이 없습니다.');
+        return;
+      }
+
+      // GLB URL에서 파일명 추출
+      let filename = '';
+      if (product.glbFile.startsWith('/uploads/')) {
+        filename = product.glbFile.replace('/uploads/', '');
+      } else if (product.glbFile.includes('/uploads/')) {
+        filename = product.glbFile.split('/uploads/')[1];
+      } else {
+        alert('업로드된 GLB 파일만 삭제할 수 있습니다.');
+        return;
+      }
+
+      // 서버에서 파일 삭제
+      await deleteGlb(filename);
+
+      // 제품 정보에서 GLB 필드 제거
+      await handleUpdateProduct(productId, {
+        lineup: product.lineup,
+        productCode: product.productCode,
+        color: product.color,
+        image: product.image,
+        stock: product.stock,
+        restockMessage: product.restockMessage || '',
+        remarks: product.remarks || '',
+        glbFile: ''
+      });
+
+      alert('GLB 파일이 삭제되었습니다.');
+    } catch (error) {
+      console.error('GLB delete failed:', error);
+      alert('GLB 파일 삭제에 실패했습니다.');
     }
   };
 
@@ -663,22 +755,40 @@ const StockAdmin: React.FC = () => {
                         ) : (
                           <div className="table-no-image">No Image</div>
                         )}
-                        <button 
-                          className="btn-edit-image"
-                          onClick={() => setEditingImage(product.id)}
-                          style={{ 
-                            fontSize: '10px', 
-                            padding: '2px 6px', 
-                            marginTop: '4px',
-                            backgroundColor: '#007bff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '3px',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          이미지 수정
-                        </button>
+                        <div style={{ display: 'flex', gap: '4px', marginTop: '4px', flexWrap: 'wrap' }}>
+                          <button 
+                            className="btn-edit-image"
+                            onClick={() => setEditingImage(product.id)}
+                            style={{ 
+                              fontSize: '10px', 
+                              padding: '2px 6px', 
+                              backgroundColor: '#007bff',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '3px',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            수정
+                          </button>
+                          {product.image && (
+                            <button 
+                              className="btn-delete-image"
+                              onClick={() => handleDeleteImage(product.id)}
+                              style={{ 
+                                fontSize: '10px', 
+                                padding: '2px 6px', 
+                                backgroundColor: '#dc3545',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '3px',
+                                cursor: 'pointer'
+                              }}
+                            >
+                              삭제
+                            </button>
+                          )}
+                        </div>
                         {imageUploading === product.id && (
                           <div style={{ fontSize: '10px', color: '#666', marginTop: '2px' }}>
                             업로드 중...
@@ -703,12 +813,29 @@ const StockAdmin: React.FC = () => {
                             if (file) await handleProductGlbUpdate(product.id, file);
                           }}
                         />
-                        <button 
-                          className="btn-edit-glb"
-                          onClick={() => document.getElementById(`glb-input-${product.id}`)?.click()}
-                        >
-                          변경
-                        </button>
+                        <div style={{ display: 'flex', gap: '4px', marginTop: '4px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                          <button 
+                            className="btn-edit-glb"
+                            onClick={() => document.getElementById(`glb-input-${product.id}`)?.click()}
+                          >
+                            변경
+                          </button>
+                          <button 
+                            className="btn-delete-glb"
+                            onClick={() => handleDeleteGlb(product.id)}
+                            style={{ 
+                              fontSize: '10px', 
+                              padding: '2px 6px', 
+                              backgroundColor: '#dc3545',
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '3px',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            삭제
+                          </button>
+                        </div>
                       </div>
                     ) : (
                       <div className="glb-status no-glb">

@@ -15,6 +15,7 @@ function Model({ url }: { url: string }) {
 
 const Stock: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>('전체');
   const [adminPassword, setAdminPassword] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -23,6 +24,12 @@ const Stock: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [focusedSuggestionIndex, setFocusedSuggestionIndex] = useState(-1);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  // 라인업 목록 추출
+  const lineups = ['전체', ...Array.from(new Set(allProducts.map(p => p.lineup)))];
 
   // API에서 제품 데이터 불러오기
   useEffect(() => {
@@ -32,15 +39,12 @@ const Stock: React.FC = () => {
 
   // 필터 변경 시 제품 데이터 다시 불러오기
   useEffect(() => {
-    // 필터가 라인업인 경우에만 API 호출
-    if (selectedFilter === '전체' || lineups.includes(selectedFilter)) {
-      loadProducts();
-    }
+    loadProducts();
   }, [selectedFilter]);
 
   const loadAllProducts = async () => {
     try {
-      const data = await fetchProducts(); // 라인업 필터 없이 모든 제품 가져오기
+      const data = await fetchProducts();
       setAllProducts(data);
     } catch (err) {
       console.error('Failed to load all products:', err);
@@ -50,9 +54,7 @@ const Stock: React.FC = () => {
   const loadProducts = async () => {
     try {
       setLoading(true);
-      // 필터가 라인업인 경우에만 API에 전달
-      const lineup = (selectedFilter === '전체' || lineups.includes(selectedFilter)) ? selectedFilter : '전체';
-      const data = await fetchProducts(lineup === '전체' ? undefined : lineup);
+      const data = await fetchProducts(selectedFilter === '전체' ? undefined : selectedFilter);
       setProducts(data);
       setError(null);
     } catch (err) {
@@ -79,37 +81,83 @@ const Stock: React.FC = () => {
     return '영구품절';
   };
 
-  // 라인업 목록 추출 (모든 제품에서)
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const lineups = ['전체', ...Array.from(new Set(allProducts.map(p => p.lineup)))];
-
-  // 필터된 제품 목록
-  let filteredProducts = products;
-  
-  // 필터 적용
-  if (selectedFilter !== '전체') {
-    if (lineups.includes(selectedFilter)) {
-      // 라인업 필터
-      filteredProducts = products.filter(p => p.lineup === selectedFilter);
-    } else {
-      // 재고현황 필터
-      filteredProducts = products.filter(product => {
-        const status = getStockStatus(product.stock);
-        return status === selectedFilter;
-      });
-    }
-  }
-
-  // 검색어로 필터링
-  const searchFilteredProducts = filteredProducts.filter(product => {
+  // 검색어로 필터링 (재고 상태로도 검색 가능)
+  const searchFilteredProducts = products.filter(product => {
     if (!searchTerm) return true;
     const search = searchTerm.toLowerCase();
+    const stockStatus = getStockStatus(product.stock).toLowerCase();
     return (
       product.productCode.toLowerCase().includes(search) ||
       product.color.toLowerCase().includes(search) ||
-      product.lineup.toLowerCase().includes(search)
+      product.lineup.toLowerCase().includes(search) ||
+      stockStatus.includes(search)
     );
   });
+
+  // 연관검색어 생성
+  const getSuggestions = (): string[] => {
+    if (!searchTerm || searchTerm.length < 1) return [];
+    
+    const search = searchTerm.toLowerCase();
+    const suggestions = new Set<string>();
+    
+    // 재고 상태 검색어
+    const stockStatuses = ['재고많음', '소량', '일시품절', '영구품절'];
+    stockStatuses.forEach(status => {
+      if (status.includes(search)) {
+        suggestions.add(status);
+      }
+    });
+    
+    // 제품 데이터에서 연관검색어 추출
+    allProducts.forEach(product => {
+      // 제품코드
+      if (product.productCode.toLowerCase().includes(search)) {
+        suggestions.add(product.productCode);
+      }
+      // 컬러
+      if (product.color.toLowerCase().includes(search)) {
+        suggestions.add(product.color);
+      }
+      // 라인업
+      if (product.lineup.toLowerCase().includes(search)) {
+        suggestions.add(product.lineup);
+      }
+    });
+    
+    // 최대 8개까지만 반환
+    return Array.from(suggestions).slice(0, 8);
+  };
+
+  const suggestions = getSuggestions();
+
+  // 연관검색어 선택
+  const handleSuggestionClick = (suggestion: string) => {
+    setSearchTerm(suggestion);
+    setShowSuggestions(false);
+    setFocusedSuggestionIndex(-1);
+  };
+
+  // 키보드 네비게이션
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || suggestions.length === 0) return;
+    
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setFocusedSuggestionIndex(prev => 
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setFocusedSuggestionIndex(prev => prev > 0 ? prev - 1 : -1);
+    } else if (e.key === 'Enter' && focusedSuggestionIndex >= 0) {
+      e.preventDefault();
+      handleSuggestionClick(suggestions[focusedSuggestionIndex]);
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+      setFocusedSuggestionIndex(-1);
+    }
+  };
 
   // 페이지네이션 로직
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
@@ -119,10 +167,10 @@ const Stock: React.FC = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentProducts = searchFilteredProducts.slice(startIndex, endIndex);
 
-  // 필터 변경 시 페이지를 1로 리셋
+  // 검색어 또는 필터 변경 시 페이지를 1로 리셋
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedFilter]);
+  }, [searchTerm, selectedFilter]);
 
   // 관리자 페이지 접근 (새창으로 열기)
   const handleAdminAccess = async () => {
@@ -159,24 +207,56 @@ const Stock: React.FC = () => {
           </div>
         </div>
         
-        {/* 드롭다운 */}
+        {/* 커스텀 드롭다운 - 라인업만 */}
         <div className="stock-dropdown-container">
-          <select 
-            value={selectedFilter} 
-            onChange={(e) => setSelectedFilter(e.target.value)}
-            className="stock-dropdown"
+          <div 
+            className={`stock-dropdown-custom ${showDropdown ? 'open' : ''}`}
+            onClick={() => setShowDropdown(!showDropdown)}
           >
-            <option value="전체">전체</option>
-            {lineups.filter(l => l !== '전체').map(lineup => (
-              <option key={lineup} value={lineup}>
-                {lineup} ({allProducts.filter(p => p.lineup === lineup).length})
-              </option>
-            ))}
-            <option value="재고많음">재고많음</option>
-            <option value="소량">소량</option>
-            <option value="일시품절">일시품절</option>
-            <option value="영구품절">영구품절</option>
-          </select>
+            <span className="dropdown-selected-text">
+              {selectedFilter === '전체' 
+                ? '전체' 
+                : `${selectedFilter} (${allProducts.filter(p => p.lineup === selectedFilter).length})`
+              }
+            </span>
+            <span className="dropdown-arrow">
+              <svg width="10" height="6" viewBox="0 0 10 6">
+                <path fill="white" d="M1 0L5 4L9 0L10 1L5 6L0 1z"/>
+              </svg>
+            </span>
+          </div>
+          
+          {showDropdown && (
+            <>
+              <div 
+                className="dropdown-backdrop" 
+                onClick={() => setShowDropdown(false)}
+              />
+              <div className="stock-dropdown-list">
+                <div 
+                  className={`dropdown-option ${selectedFilter === '전체' ? 'selected' : ''}`}
+                  onClick={() => {
+                    setSelectedFilter('전체');
+                    setShowDropdown(false);
+                  }}
+                >
+                  전체
+                </div>
+                {lineups.filter(l => l !== '전체').map(lineup => (
+                  <div 
+                    key={lineup}
+                    className={`dropdown-option ${selectedFilter === lineup ? 'selected' : ''}`}
+                    onClick={() => {
+                      setSelectedFilter(lineup);
+                      setShowDropdown(false);
+                    }}
+                  >
+                    {lineup} ({allProducts.filter(p => p.lineup === lineup).length})
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -184,21 +264,33 @@ const Stock: React.FC = () => {
       <div className="stock-content-section">
         <div className="stock-content-wrapper">
 
-          {/* 재고 범례 */}
+          {/* 재고 범례 - 클릭하면 해당 재고 상태로 필터링 */}
           <div className="stock-legend">
-            <div className="legend-item">
+            <div 
+              className={`legend-item clickable ${searchTerm === '재고많음' ? 'active' : ''}`}
+              onClick={() => setSearchTerm(searchTerm === '재고많음' ? '' : '재고많음')}
+            >
               <span className="legend-dot" style={{ backgroundColor: '#22c55e' }}></span>
               <span>재고많음</span>
             </div>
-            <div className="legend-item">
+            <div 
+              className={`legend-item clickable ${searchTerm === '소량' ? 'active' : ''}`}
+              onClick={() => setSearchTerm(searchTerm === '소량' ? '' : '소량')}
+            >
               <span className="legend-dot" style={{ backgroundColor: '#ffcc00' }}></span>
               <span>소량</span>
             </div>
-            <div className="legend-item">
+            <div 
+              className={`legend-item clickable ${searchTerm === '일시품절' ? 'active' : ''}`}
+              onClick={() => setSearchTerm(searchTerm === '일시품절' ? '' : '일시품절')}
+            >
               <span className="legend-dot" style={{ backgroundColor: '#ff4444' }}></span>
               <span>일시품절</span>
             </div>
-            <div className="legend-item">
+            <div 
+              className={`legend-item clickable ${searchTerm === '영구품절' ? 'active' : ''}`}
+              onClick={() => setSearchTerm(searchTerm === '영구품절' ? '' : '영구품절')}
+            >
               <span className="legend-dot" style={{ backgroundColor: '#000000' }}></span>
               <span>영구품절</span>
             </div>
@@ -206,13 +298,23 @@ const Stock: React.FC = () => {
 
           {/* 검색창 */}
           <div className="stock-search-container">
-            <div className="stock-search-box">
+            <div className={`stock-search-box ${showSuggestions && suggestions.length > 0 ? 'has-suggestions' : ''}`}>
               <input 
                 type="text" 
                 placeholder="Search(검색)" 
                 className="stock-search-input"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setShowSuggestions(true);
+                  setFocusedSuggestionIndex(-1);
+                }}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => {
+                  // 약간의 딜레이를 줘서 클릭 이벤트가 먼저 처리되도록
+                  setTimeout(() => setShowSuggestions(false), 200);
+                }}
+                onKeyDown={handleSearchKeyDown}
               />
               <div className="stock-search-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -220,6 +322,24 @@ const Stock: React.FC = () => {
                   <path d="m21 21-4.35-4.35"></path>
                 </svg>
               </div>
+              
+              {/* 연관검색어 드롭다운 */}
+              {showSuggestions && suggestions.length > 0 && (
+                <div className="search-suggestions">
+                  {suggestions.map((suggestion, index) => (
+                    <div
+                      key={suggestion}
+                      className={`search-suggestion-item ${index === focusedSuggestionIndex ? 'focused' : ''}`}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      <span className="suggestion-text">{suggestion}</span>
+                      {['재고많음', '소량', '일시품절', '영구품절'].includes(suggestion) && (
+                        <span className="suggestion-badge">재고상태</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -269,7 +389,7 @@ const Stock: React.FC = () => {
             </div>
 
             {/* 페이지네이션 */}
-            {!loading && filteredProducts.length > 0 && (
+            {!loading && searchFilteredProducts.length > 0 && (
               <div className="pagination">
                 <button 
                   className="pagination-btn"
